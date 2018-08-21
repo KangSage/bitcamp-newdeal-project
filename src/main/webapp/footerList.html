@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>회원가입</title>
+	<title>리스트</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -14,79 +14,36 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<style>
-		button#authBtn{
-			width: 48%;
-			margin-right: 2%;
-		} 
-		button#joinBtn{
-			width: 48%;
-			margin-left: 2%;
+		.imp{
+			width: 450px;
+  			background: #fff;
+ 			border-radius: 3px;
+  			overflow: hidden;
+			background-color: rgba( 255, 255, 255, 0.75 );
+			/* height: 600px;  */
 		}
+		
+		.lnr{
+		  font-size:30px;
+		     padding: 0% 2% 0% 25%;
+		}
+		
 	</style>
-
-
+	
 </head>
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-55">
-						Sing Up
-					</span>
-					
-					<div class="wrap-input100 validate-input m-b-16" >
-						<input class="input100" type="text" name="name" placeholder="Name">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-					</div>
-
-						<!--이메일 버튼-->	
-						<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
-							<input class="input100" type="text" name="email" placeholder="Email">
-							<span class="focus-input100"></span>
-							<span class="symbol-input100">
-							<span class="lnr lnr-envelope"></span>
-							</span>
-						</div>
-						<!--이메일 버튼-->	
-
-
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-lock"></span>
-						</span>
-					</div>
-
-					
-					
-					<div class="container-login100-form-btn p-t-25">
-						<button class="login100-form-btn" id="authBtn">
-							auth
-						</button>
-						<button class="login100-form-btn" id="joinBtn">
-							join
-						</button>
-					</div>
-
-					
-
-					
-                    
-					
-				</form>
+			<div class="imp">
+				하이ddd
+				<footer></footer>
 			</div>
 		</div>
 	</div>
 	
 	
-
+	
 	
 <!--===============================================================================================-->	
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -97,6 +54,6 @@
 	<script src="node_modules/select2/dist/js/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/login.js"></script>
-
+	<script src="js/common.js"></script>
 </body>
 </html>
