@@ -20,14 +20,3 @@
 	justify-content: center;
 	border-top: 3px solid rgba(0, 0, 0, 0.1);
 }
-
-#breadcrumb {
-	font-family: Raleway-Black;
-	font-size: 30px;
-	color: #333333;
-	line-height: 1.2;
-	text-transform: uppercase;
-	text-align: center;
-	width: 100%;
-	display: block;
-}

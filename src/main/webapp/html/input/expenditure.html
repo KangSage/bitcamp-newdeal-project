@@ -71,15 +71,22 @@ button#InBtn {
 
 </div>
 
-
-
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
+            <span class="lnr lnr-apartment"></span></span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" 
+          aria-describedby="inputGroup-sizing-default" id="hst" placeholder="내역">
+        </div>
+        
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="cat">
             <span class="lnr lnr-database"></span></span>
           </div>
           <input type="text" class="form-control" aria-label="Sizing example input" 
-          aria-describedby="inputGroup-sizing-default" placeholder="금액">
+          aria-describedby="inputGroup-sizing-default" id="amnt" placeholder="금액">
         </div>
                     
         <div class="input-group mb-2">
@@ -95,42 +102,25 @@ button#InBtn {
           </select>
         </div>
                     
+        
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
-            <span class="lnr lnr-envelope"></span></span>
+            <span class="lnr lnr-map-marker"></span></span>
           </div>
           <input type="text" class="form-control" aria-label="Sizing example input" 
-          aria-describedby="inputGroup-sizing-default" placeholder="Email">
-        </div>
-                    
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">
-            <span class="lnr lnr-apartment"></span></span>
-          </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" 
-          aria-describedby="inputGroup-sizing-default" placeholder="내역">
+          aria-describedby="inputGroup-sizing-default" id="plcnm" placeholder="사용처">
         </div>
               
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
-            <span class="lnr lnr-calendar-full"></span></span>
-          </div>
-          <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
-                
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">
-            <span class="lnr lnr-pencil"></span></span>
+            <span class="lnr lnr-map-marker"></span></span>
           </div>
           <input type="text" class="form-control" aria-label="Sizing example input" 
-          aria-describedby="inputGroup-sizing-default" placeholder="메모">
+          aria-describedby="inputGroup-sizing-default" id="plc" placeholder="지도">
         </div>
-        
-        
+
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupFileAddon01">
@@ -138,12 +128,30 @@ button#InBtn {
           </div>
           
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" 
+            aria-describedby="inputGroupFileAddon01" id="rcpt">
             <label class="custom-file-label" for="inputGroupFile01"></label>
           </div>
         </div>
-    
 
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">
+            <span class="lnr lnr-pencil"></span></span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" 
+          aria-describedby="inputGroup-sizing-default" id="memo" placeholder="메모">
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">
+            <span class="lnr lnr-calendar-full"></span></span>
+          </div>
+          <input type="date" class="form-control" aria-label="Sizing example input" 
+          aria-describedby="inputGroup-sizing-default" id="sdt">
+        </div>
+        
 <div class="container-login100-form-btn p-t-25 m-b-15">
 <button type="button" class="login100-form-btn" id="CancelBtn">
 취소
@@ -172,7 +180,7 @@ button#InBtn {
 <!--===============================================================================================-->
 <script src="../../node_modules/select2/dist/js/select2.min.js"></script>
 <!--===============================================================================================-->
-<script src="form.js"></script>
+<script src="expenditure.js"></script>
 
 
 </body>
