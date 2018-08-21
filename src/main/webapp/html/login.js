@@ -6,6 +6,10 @@ let inputEmail = $('#loginEmail'),
     loginBtn = $('#login-btn');
 
 loginBtn.on("click", () => {
+
+    $('.validate-form').trigger('validate-email');
+
+    
 $.post(`${serverApiAddr}/json/auth/signIn`, {
     'email': inputEmail.val(),
     'password': inputPassword.val(),

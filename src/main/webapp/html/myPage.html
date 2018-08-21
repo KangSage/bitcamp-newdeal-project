@@ -19,6 +19,9 @@
           href="../node_modules/hamburgers/dist/hamburgers.min.css">
     <link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+    
+    
     <style>
         #imp {
             width: 450px;
@@ -29,29 +32,7 @@
 
         }
 
-        .icon-box {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            margin: 3% 15% 0% 15%;
-        }
-
-        #footer-account-btn, #footer-mypage-btn {
-            font-size: 35px;
-            color: rgba(0, 0, 0, 0.5);
-        }
-
-        .icon-text {
-            font-size: 12px;
-            color: rgba(0, 0, 0, 0.6);
-        }
-
-        #footer-box {
-            display: flex;
-            justify-content: center;
-            border-top: 3px solid rgba(0, 0, 0, 0.1);
-
-        }
+       
 
         #breadcrumb {
             font-family: Raleway-Black;
@@ -59,19 +40,26 @@
             color: rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             text-align: center;
+            margin: 20% 0% 20% 0%;
         }
 
         #mypage-big-box {
-            margin: 30% 0% 30% 0%;
+            margin: 20% 0% 20% 0%;
         }
 
-        #mypage-small-box {
+        .mypage-small-box {
             display: flex;
             border-top: 5px solid rgba(0, 0, 0, 0.1);
         }
 
-        #mypage-text {
+        .mypage-text {
             margin: 3.5%;
+        }
+        
+        #first-small-box {
+            
+            background-color: rgba(0, 0, 0, 0.1);
+           
         }
     </style>
 
@@ -83,17 +71,17 @@
         <div id="imp">
             <h1 id="breadcrumb">Breadcrumb</h1>
             <div id="mypage-big-box">
-                <div id="mypage-small-box">
-                    <span id="mypage-text">계정</span>
+                <div id="first-small-box" class="mypage-small-box">
+                    <span class="mypage-text">계정</span>
                 </div>
-                <div id="mypage-small-box">
-                    <span id="mypage-text">이름/비밀번호 변경</span>
+                <div class="mypage-small-box">
+                    <span class="mypage-text">이름/비밀번호 변경</span>
                 </div>
-                <div id="mypage-small-box">
-                    <span id="mypage-text">로그아웃</span>
+                <div class="mypage-small-box">
+                    <span class="mypage-text">로그아웃</span>
                 </div>
-                <div id="mypage-small-box">
-                    <span id="mypage-text">회원탈퇴</span>
+                <div class="mypage-small-box">
+                    <span class="mypage-text">회원탈퇴</span>
                 </div>
             </div>
             <footer></footer>
@@ -112,5 +100,6 @@
 <!--===============================================================================================-->
 
 <script src="../js/common.js"></script>
+<script src="myPage.js"></script>
 </body>
 </html>
