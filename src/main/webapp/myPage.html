@@ -14,13 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<style>
-		.imp{
+		#imp{
 			width: 450px;
   			background: #fff;
  			border-radius: 3px;
   			overflow: hidden;
 			background-color: rgba( 255, 255, 255, 0.75 );
-			/* height: 600px;  */
+		
 		}
 		.icon-box{
 		    display: flex;
@@ -45,13 +45,19 @@
 		#breadcrumb{
 	      font-family: Raleway-Black;
 		  font-size: 30px;
-		  color: #333333;
-		  line-height: 1.2;
+		  color: rgba( 0,0,0,0.5);
 		  text-transform: uppercase;
 		  text-align: center;
-		
-		  width: 100%;
-		  display: block;
+		}
+		#mypage-big-box{
+		  margin: 30% 0% 30% 0%;
+		}
+		#mypage-small-box{
+		  display: flex;
+		  border-top: 5px solid rgba( 0,0,0,0.1);
+		}
+		#mypage-text{
+		  margin: 3.5%;
 		}
 	</style>
 	
@@ -60,8 +66,22 @@
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="imp">
+			<div id="imp">
 				<h1 id="breadcrumb">Breadcrumb</h1>
+				<div id="mypage-big-box">
+				    <div id="mypage-small-box">
+				        <span id="mypage-text">계정</span>
+				    </div>
+				    <div id="mypage-small-box">
+				         <span id="mypage-text">이름/비밀번호 변경</span>
+				    </div>
+				    <div id="mypage-small-box">
+				         <span id="mypage-text">로그아웃</span>
+				    </div>
+				    <div id="mypage-small-box">
+				         <span id="mypage-text">회원탈퇴</span>
+				    </div>
+				</div>
 				<footer></footer>
 			</div>
 		</div>
