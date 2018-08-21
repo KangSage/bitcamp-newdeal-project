@@ -6,6 +6,10 @@ let inputEmail = $('#loginEmail'),
     loginBtn = $('#login-btn');
 
 loginBtn.on("click", () => {
+
+    $('.validate-form').trigger('validate-email');
+
+    
 $.post(`${serverApiAddr}/json/auth/signIn`, {
     'email': inputEmail.val(),
     'password': inputPassword.val(),
@@ -21,16 +25,18 @@ $.post(`${serverApiAddr}/json/auth/signIn`, {
     } else if (result.status === 'fail') {
         swal('로그인 실패!',
             '아이디 혹은 비밀번호가 맞지 않습니다.',
-            'success'
+            'error'
         ).then(function() {
             console.log('다음 경로 실행');
         });
     }
 }, 'json')
     .fail(() => {
-        swal('로그인 실패!',
-            '아이디 혹은 비밀번호가 맞지 않습니다.',
-            'error'
-        );
+        swal({
+            title: '로그인 실패!',
+            text: '서버와의 통신에 알 수 없는 문제가 생겼습니다.',
+            type: 'error',
+            confirmButtonColor: "#e83e8c"
+        });
     });
 });
