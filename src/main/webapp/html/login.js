@@ -32,6 +32,7 @@ $.post(`${serverApiAddr}/json/auth/signIn`, {
     }
 }, 'json')
     .fail(() => {
+    
         swal({
             title: '로그인 실패!',
             text: '서버와의 통신에 알 수 없는 문제가 생겼습니다.',
