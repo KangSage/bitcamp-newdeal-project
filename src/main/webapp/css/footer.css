@@ -1,0 +1,33 @@
+.icon-box {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin: 3% 15% 0% 15%;
+}
+
+#footer-account-btn, #footer-mypage-btn {
+	font-size: 35px;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.icon-text {
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+#footer-box {
+	display: flex;
+	justify-content: center;
+	border-top: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+#breadcrumb {
+	font-family: Raleway-Black;
+	font-size: 30px;
+	color: #333333;
+	line-height: 1.2;
+	text-transform: uppercase;
+	text-align: center;
+	width: 100%;
+	display: block;
+}

@@ -20,6 +20,8 @@ href="node_modules/animate.css/animate.css">
 href="node_modules/hamburgers/dist/hamburgers.min.css">
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/footer.css">
+
 <style>
 #month {
     border-bottom:2px solid gray;
@@ -29,22 +31,60 @@ href="node_modules/hamburgers/dist/hamburgers.min.css">
 
 #middle {
     padding-top:50px;
-    border:1px solid green;
     height:200px;
 }
 
 #bottom {
-    border:1px solid blue;
+    font-size:75%;
     height:100px;
 }
 
 .progress {
+    height:50px;
     background-color:#e8d0e2;
+    border-bottom:2px solid gray;
 }
 
 .progress-bar {
     background-color:#d43f8d;
 }
+
+.list {
+    width:25%;
+    float: left;
+    padding:10px 0 0 10px;
+    height:100%;
+    font-weight:bold
+}
+
+.form {
+    width:75%;
+    float: right;
+    text-align: right;
+    padding-right:10px;
+}
+
+#font {
+    font-size:50%;
+}
+
+a {
+    margin-left:56%;
+    color:#7538d8;
+    font-weight: bold;
+}
+
+span {
+    font-size: 2em;
+}
+
+#ddd {
+    padding:12px 0 0 3px;
+    font-size: 1.3em;
+    font-weight:bold;
+    color:#e02c7f;
+}
+
 </style>
 </head>
 <body>
@@ -56,19 +96,34 @@ href="node_modules/hamburgers/dist/hamburgers.min.css">
 
 <div id="month">◀  8월  ▶</div>
 
-<div id="middle"></div>
+<div id="middle">
 
-<div class="progress">
-  <div class="progress-bar progress-bar-striped active" role="progressbar"
+<div class="list">예산</div>
+
+<div class="form p-r-10"><span>491,000</span>원 남음</div>
+
+<div class="form p-r-10" id="font">
+예산을 맞추려면 하루에 30,687원씩 써야해요<br>
+이 추세로 쓴다면 이번달 지출 17,769원 예상</div>
+
+<a href="#">예산 설정</a>
+
+</div>
+
+<div class="progress m-b-3">
+  <div class="progress-bar progress-bar-striped active  m-b-1" role="progressbar"
   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-    40%
   </div>
+  <div id="ddd">40%</div>
 </div>
 
 <div id="bottom">
-    예산
+    <ul>
+        <li>예산</li>
+        <li>지출</li>
+    </ul>
 </div>
-
+    <footer></footer>
 </div>
 </div>
 </div>
@@ -83,7 +138,7 @@ href="node_modules/hamburgers/dist/hamburgers.min.css">
 <!--===============================================================================================-->
 <script src="node_modules/select2/dist/js/select2.min.js"></script>
 <!--===============================================================================================-->
-<script src="js/signUp.js"></script>
+<script src="budget.js"></script>
 
 
 </body>
