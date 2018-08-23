@@ -47,14 +47,14 @@
         max-age="100" />
   </mvc:cors>
 
-<mvc:interceptors>
+<!-- <mvc:interceptors>
     <mvc:interceptor>
         <mvc:mapping path="/**"/>
         <mvc:exclude-mapping path="/auth/**"/>
         <mvc:exclude-mapping path="/member/signUp"/>
         <bean class="xyz.breadcrumb.web.interceptor.AuthCheckInterceptor"/>
     </mvc:interceptor>
-</mvc:interceptors>
+</mvc:interceptors> -->
 
 </beans>
 

@@ -4,17 +4,19 @@
 
 $('#add-btn').on('click', () => {
     console.log('추가 버튼 클릭');
-    $.post(`${serverApiAddr}/json/amont/add`, 
+    $.post(`${serverApiAddr}/json/amount/add`, 
         {
-            'histroy': $('#histroy').val(),
+            
+            'mno':11/*$('#mno').val()*/,
+            'type': $('#type').val(),
+            'history': $('#history').val(),
             'amount': $('#amount').val(),
             'category': $('#category').val(),
             'memo': $('#memo').val(),
-            'date': $('#date').val(),
-            'type': $('#type').val()
+            'date': $('#date').val()
         },
         function(data) {
-            location.href = 'expenditure.html';
+            location.href = '../main/list.html';
         },
         'json');
 });
@@ -49,4 +51,9 @@ $('#in-btn').on('click',() => {
     $('#ex-btn').css('background', '#ef93c3');
     
     $('.input-group').css('visibility', 'visible');
+});
+
+
+$('#cancel-btn').on('click',() => {
+    location.href = '../main/list.html';
 });

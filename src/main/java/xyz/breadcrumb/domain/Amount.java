@@ -10,12 +10,12 @@ public class Amount {
     protected String memo;
     protected String date;
     
+    
     @Override
     public String toString() {
         return "Amount [no=" + no + ", mno=" + mno + ", type=" + type + ", history=" + history + ", amount=" + amount
                 + ", category=" + category + ", memo=" + memo + ", date=" + date + "]";
     }
-    
     public int getNo() {
         return no;
     }
@@ -64,5 +64,7 @@ public class Amount {
     public void setDate(String date) {
         this.date = date;
     }
+    
+    
     
 }
