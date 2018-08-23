@@ -20,12 +20,12 @@
     <link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <style>
-        button#authBtn {
+        button#auth-btn {
             width: 48%;
             margin-right: 2%;
         }
 
-        button#joinBtn {
+        button#join-btn {
             width: 48%;
             margin-left: 2%;
         }
@@ -44,18 +44,18 @@
                 </span>
 
                 <div class="wrap-input100 validate-input m-b-16">
-                    <input class="input100" type="text" name="name"
+                    <input id="signUpName" class="input100" type="text" name="name"
                            placeholder="Name">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <span class="lnr lnr-envelope"></span>
+                        <span class="lnr lnr-user"></span>
                     </span>
                 </div>
 
                 <!--이메일 버튼-->
                 <div class="wrap-input100 validate-input m-b-16"
                      data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email"
+                    <input id="signUpEmail" class="input100" type="text" name="email"
                            placeholder="Email">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -67,7 +67,7 @@
 
                 <div class="wrap-input100 validate-input m-b-16"
                      data-validate="Password is required">
-                    <input class="input100" type="password" name="pass"
+                    <input id="signUpPassword" class="input100" type="password" name="pass"
                            placeholder="Password">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -77,10 +77,10 @@
 
 
                 <div class="container-login100-form-btn p-t-25">
-                    <button type="button" class="login100-form-btn" id="authBtn">
+                    <button type="button" class="login100-form-btn" id="auth-btn">
                         auth
                     </button>
-                    <button type="button" class="login100-form-btn" id="joinBtn">
+                    <button type="button" class="login100-form-btn" id="join-btn">
                         join
                     </button>
                 </div>
@@ -99,7 +99,9 @@
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="../node_modules/select2/dist/js/select2.min.js"></script>
+<script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!--===============================================================================================-->
+<script src="../js/common.js"></script>
 <script src="signUp.js"></script>
 
 </body>

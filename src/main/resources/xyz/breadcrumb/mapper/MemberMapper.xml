@@ -6,23 +6,31 @@
 
     <!-- 컬럼명과 객체의 프로퍼티명을 연결한다. -->
     <resultMap type="member" id="memberMap">
-        <id column="MNO" property="no"/>
-        <result column="NAME" property="name"/>
-        <result column="EMAIL" property="email"/>
-        <result column="PWD" property="password"/>
+        <id column="mno" property="no"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="pwd" property="password"/>
+        <result column="athcd" property="authCode"/>
+        <result column="actvt" property="activation"/>
     </resultMap>
 
     <insert id="insert" parameterType="member">
-        insert into P2_MEMB(EMAIL,NAME,PWD)
-        values(#{email},#{name},password(#{password}))
+        insert into
+        bc_memb(name,email,pwd,athcd,actvt)
+        values(
+        #{name},
+        #{email},
+        HEX(AES_ENCRYPT(#{password}, '959591')),
+        #{authCode},
+        #{activation})
     </insert>
 
     <select id="findByEmailAndPassword"
             parameterType="map"
             resultMap="memberMap">
-        select MNO, EMAIL, NAME
-        from P2_MEMB
-        where EMAIL=#{email} and PWD=password(#{password})
+        select mno, email, name, athcd, actvt
+        from bc_memb
+        where email=#{email} and AES_DECRYPT(UNHEX(pwd), '959591')=#{password}
     </select>
 
 </mapper>

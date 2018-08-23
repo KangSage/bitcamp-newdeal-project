@@ -86,7 +86,6 @@
   <!-- .properties 파일을 읽어서 그 데이터를 보관할 객체를 등록한다. -->
   <context:property-placeholder 
       location="classpath:xyz/breadcrumb/config/jdbc.properties"/>
-
 </beans>
 
 

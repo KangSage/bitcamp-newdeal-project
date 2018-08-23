@@ -18,6 +18,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
                              Object handler)
             throws Exception {
 
+        System.out.println("인터셉터!");
         HttpSession session = request.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
         System.out.printf("loginUser:%s\n", loginUser);

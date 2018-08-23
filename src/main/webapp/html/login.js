@@ -1,8 +1,8 @@
 "use strict";
 
-let inputEmail = $('#loginEmail'),
-    inputPassword = $('#loginPassword'),
-    inputSaveEmail = $('#loginSaveEmail'),
+let loginEmail = $('#loginEmail'),
+    loginPassword = $('#loginPassword'),
+    loginSaveEmail = $('#loginSaveEmail'),
     loginBtn = $('#login-btn');
 
 loginBtn.on("click", () => {
@@ -10,25 +10,23 @@ loginBtn.on("click", () => {
     $('.validate-form').trigger('validate-email');
 
     
-$.post(`${serverApiAddr}/json/auth/signIn`, {
-    'email': inputEmail.val(),
-    'password': inputPassword.val(),
-    'saveEmail': inputSaveEmail.prop('checked')
+$.post(`${serverApiAddr}/json/auth/login`, {
+    'email': loginEmail.val(),
+    'password': loginPassword.val(),
+    'saveEmail': loginSaveEmail.prop('checked')
 }, (result) => {
     if (result.status === 'success') {
         swal('감사합니다!',
             '로그인 되었습니다.',
             'success'
         ).then(function() {
-            console.log('다음 경로 실행');
+            location.href = 'main/list.html';
         });
     } else if (result.status === 'fail') {
         swal('로그인 실패!',
             '아이디 혹은 비밀번호가 맞지 않습니다.',
             'error'
-        ).then(function() {
-            console.log('다음 경로 실행');
-        });
+        )
     }
 }, 'json')
     .fail(() => {
