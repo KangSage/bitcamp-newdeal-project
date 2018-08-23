@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>리스트</title>
+    <title>마이 페이지</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -20,8 +20,10 @@
     <link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/footer.css">
-    
-    
+    <link href="../css/dashboard.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <style>
         #imp {
             width: 450px;
@@ -29,18 +31,20 @@
             border-radius: 3px;
             overflow: hidden;
             background-color: rgba(255, 255, 255, 0.75);
-
+            height: 95vh;
         }
 
        
 
         #breadcrumb {
-            font-family: Raleway-Black;
+            font-family: Raleway-Black; 
             font-size: 30px;
             color: rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             text-align: center;
             margin: 20% 0% 20% 0%;
+            width: 450px;
+            height: 40px;
         }
 
         #mypage-big-box {
@@ -69,19 +73,20 @@
 <div class="limiter">
     <div class="container-login100">
         <div id="imp">
-            <h1 id="breadcrumb">Breadcrumb</h1>
+            
+            <h1 id="breadcrumb"></h1>
             <div id="mypage-big-box">
                 <div id="first-small-box" class="mypage-small-box">
                     <span class="mypage-text">계정</span>
                 </div>
                 <div class="mypage-small-box">
-                    <span class="mypage-text">이름/비밀번호 변경</span>
+                    <button class="mypage-text">이름/비밀번호 변경</button>
                 </div>
                 <div class="mypage-small-box">
-                    <span class="mypage-text">로그아웃</span>
+                    <button class="mypage-text">로그아웃</button>
                 </div>
                 <div class="mypage-small-box">
-                    <span class="mypage-text">회원탈퇴</span>
+                    <button class="mypage-text">회원탈퇴</button>
                 </div>
             </div>
             <footer></footer>
@@ -99,7 +104,12 @@
 <script src="../node_modules/select2/dist/js/select2.min.js"></script>
 <!--===============================================================================================-->
 
+
 <script src="../js/common.js"></script>
+
 <script src="myPage.js"></script>
+<script type="demo.js"></script>
+<script src="dashboard.js" type="text/javascript"></script>
+
 </body>
 </html>
