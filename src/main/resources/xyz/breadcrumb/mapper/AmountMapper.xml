@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.breadcrumb.repository.MemberRepository">
+
+    <!-- 컬럼명과 객체의 프로퍼티명을 연결한다. -->
+    <resultMap type="member" id="memberMap">
+        <id column="mno" property="no"/>
+        <id column="mno" property="no"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="pwd" property="password"/>
+        <result column="athcd" property="authCode"/>
+        <result column="actvt" property="activation"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="member">
+        insert into
+        bc_memb(name,email,pwd,athcd,actvt)
+        values(
+        #{name},
+        #{email},
+        HEX(AES_ENCRYPT(#{password}, '959591')),
+        #{authCode},
+        #{activation})
+    </insert>
+
+    <select id="findByEmailAndPassword"
+            parameterType="map"
+            resultMap="memberMap">
+        select mno, email, name, athcd, actvt
+        from bc_memb
+        where email=#{email} and AES_DECRYPT(UNHEX(pwd), '959591')=#{password}
+    </select>
+
+</mapper>
