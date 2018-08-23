@@ -2,9 +2,6 @@
 
 //var formState = 'view';
 
-/*$('section#list').load(`${serverApiAddr}/html/list.html`);*/
-$('footer').load('../footer.html');
-
 $('#add-btn').on('click', () => {
     console.log('추가 버튼 클릭');
     $.post(`${serverApiAddr}/json/amont/add`, 
