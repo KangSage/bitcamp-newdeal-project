@@ -118,10 +118,11 @@ lbd = {
         }
 
         if (!toggle_initialized) {
+            
             $toggle = $('.navbar-toggler');
-
-            $toggle.click(function() {
-
+            $header = $('header');
+            $header.on('click', '.navbar-toggler', function() {
+                console.log('클릭');
                 if (mobile_menu_visible == 1) {
                     $('html').removeClass('nav-open');
 
