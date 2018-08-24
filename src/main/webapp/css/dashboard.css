@@ -14,33 +14,6 @@ button.close {
     font-weight: 400;
 }
 
-h4,
-.h4 {
-    font-weight: 300;
-    margin: 30px 0 15px;
-}
-
-h4,
-.h4 {
-    font-size: 22px;
-    line-height: 30px;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-
-h4 small,
-.h4 small,
-h4 .small,
-.h4 .small,
- {
-    color: #9A9A9A;
-    font-weight: 300;
-    line-height: 1.5;
-}
 
 body,
 .wrapper {
@@ -373,13 +346,11 @@ body>.navbar-collapse:before {
 
 .sidebar:after,
 body>.navbar-collapse:after {
-    background: #d43f8d;
-    background: -moz-linear-gradient(top, #d43f8d 0%, #d43f8d 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d43f8d), color-stop(100%, #d43f8d));
-    background: -webkit-linear-gradient(top, #d43f8d 0%, #d43f8d 100%);
-    background: -o-linear-gradient(top, #d43f8d 0%, #d43f8d 100%);
-    background: -ms-linear-gradient(top, #d43f8d 0%, #d43f8d 100%);
-    background: linear-gradient(to bottom, #d43f8d 0%, #d43f8d 100%);
+    background: rgb(95, 75, 139);
+    background: -webkit-linear-gradient(bottom, rgb(95, 75, 139), #d43f8d);
+    background: -o-linear-gradient(bottom, rgb(95, 75, 139), #d43f8d);
+    background: -moz-linear-gradient(bottom, rgb(95, 75, 139), #d43f8d);
+    background: linear-gradient(bottom, rgb(95, 75, 139), #d43f8d);
     background-size: 150% 150%;
     z-index: 3;
     opacity: 1;

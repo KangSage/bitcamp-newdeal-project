@@ -22,13 +22,13 @@ public class AuthController {
 
    @PostMapping("/login")
     public Object login(
-            @RequestParam("email") String email,
-            @RequestParam("password") String password,
-            boolean saveEmail,
-            HttpSession session) throws Exception {
+           @RequestParam("email") String email,
+           @RequestParam("password") String password,
+           boolean saveEmail,
+           HttpSession session) throws Exception {
        System.out.println(saveEmail);
         Cookie cookie = null;
-        if (saveEmail != true) {
+        if (saveEmail) {
             // 입력폼에서 로그인할 때 사용한 ID를 자동으로 출력할 수 있도록
             // 웹브라우저로 보내 저장시킨다.
             cookie = new Cookie("email", email);
@@ -53,7 +53,7 @@ public class AuthController {
         if (member != null) { // 로그인 성공!
             System.out.println("로그인 성공");
             session.setAttribute("loginUser", member);
-            System.out.println(session.getAttribute("loginUser").toString());
+            System.out.println("세션 로그인 유저의 정보 => " + (Member) session.getAttribute("loginUser"));
             result.put("status", "success");
             /*out.print(mapper.writeValueAsString(result));*/
         } else { // 로그인 실패!

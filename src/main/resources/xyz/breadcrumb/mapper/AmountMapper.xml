@@ -16,6 +16,20 @@
         <result column="date" property="date"/>
     </resultMap>
 
+    <resultMap type="DayHistory" id="DayHistoryMap">
+        <id column="day" property="day"/>
+        <collection property="amounts" ofType="Amount">
+            <id column="amntno" property="no"/>
+            <result column="mno" property="mno"/>
+            <result column="type" property="type"/>
+            <result column="hst" property="history"/>
+            <result column="amnt" property="amount"/>
+            <result column="cat" property="category"/>
+            <result column="memo" property="memo"/>
+            <result column="amnt_dt" property="date"/>
+        </collection>
+    </resultMap>
+
     <insert id="insert" parameterType="Amount" >
         insert into
         bc_amount(mno,type,hst,amnt,cat,memo,date)
@@ -29,4 +43,47 @@
         #{date})
     </insert>
 
+<!--
+    <select id="selectList" parameterType="int" resultMap="AmountMap" >
+        select amntno, type, hst, amnt, cat, memo, date
+        from bc_amount
+        where mno=#{value}
+    </select>
+    <select id="selectOneBy지출" parameterType="int" resultMap="AmountMap" >
+        select amntno, type, hst, amnt, cat, memo, date
+        from bc_amount
+        where mno=#{value} and type='지출'
+    </select>
+-->
+
+    <select id="selectList2" parameterType="int" resultMap="DayHistoryMap" >
+        SELECT
+            date_format(date, '%Y-%m-%d') day,
+            amntno,
+            mno,
+            type,
+            hst,
+            amnt,
+            date_format(date, '%Y-%m-%d') amnt_dt
+        FROM `bc_amount`
+        WHERE mno = 11
+        ORDER BY date DESC;
+    </select>
+    
+    <update id="update" parameterType="Amount">
+        update bc_amount set
+            type = #{type},
+            hst = #{history},
+            amnt = #{amount},
+            cat = #{category},
+            memo = #{memo},
+            date = #{date}
+        where amntno = #{no} and mno = #{mno}
+    </update>
+  
+    <delete id="delete" parameterType="Amount">
+    	delete from bc_amount 
+    	where amntno = #{no} and mno = #{mno}
+    </delete>
+    
 </mapper>
