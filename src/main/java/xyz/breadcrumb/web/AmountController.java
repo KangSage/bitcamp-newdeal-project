@@ -19,8 +19,10 @@ public class AmountController {
     @PostMapping("add")
     public Object add(Amount amount) throws Exception {
         System.out.println(amount);
+        amountService.add(amount);
+        
         HashMap<String,Object> result = new HashMap<>();
-//        amountService.add(amount);
+        
         result.put("status", "success");
         return result;
     }

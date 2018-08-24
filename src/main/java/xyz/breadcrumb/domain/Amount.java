@@ -5,7 +5,7 @@ public class Amount {
     protected int mno;
     protected String type;
     protected String history;
-    protected String amount;
+    protected int amount;
     protected String category;
     protected String memo;
     protected String date;
@@ -40,10 +40,10 @@ public class Amount {
     public void setHistory(String history) {
         this.history = history;
     }
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
     public String getCategory() {

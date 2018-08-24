@@ -9,12 +9,13 @@ import xyz.breadcrumb.service.AmountService;
 
 @Service
 public class AmountServiceImpl implements AmountService {
+
     @Autowired
     AmountRepository amountRepository;
-
+    
     @Override
     public int add(Amount amount) {
         return amountRepository.insert(amount);
     }
-
+    
 }
