@@ -18,35 +18,35 @@ href="../../node_modules/select2/dist/css/select2.min.css">
 href="../../node_modules/animate.css/animate.css">
 <link rel="stylesheet" type="text/css"
 href="../../node_modules/hamburgers/dist/hamburgers.min.css">
+<link rel="stylesheet" href="../../css/dashboard.css"  />
 <link rel="stylesheet" type="text/css" href="../../css/util.css">
 <link rel="stylesheet" type="text/css" href="../../css/main.css">
-<link rel="stylesheet" type="text/css" href="../../css/footer.css">
 <style>
 
-button#ex-btn {
-    width: 20%;
+button#cancel-btn {
+    width: 28%;
+    margin-right: 7%;
+}
+
+button#add-btn {
+    width: 28%;
     margin-left: 7%;
+}
+
+button#ex-btn {
+    width: 28%;
+    margin-right: 7%;
+    margin-bottom: 5%;
     background-color: #e1c5ec;
 }
 
 button#in-btn {
-    width: 20%;
-    margin-left:16%;
-    margin-right: 7%;
+    width: 28%;
+    margin-left: 7%;
 }
 
-
-#update-title {
-    background:#f8e7f1;
-}
-
-#history-update {
-    color:#888888;
-    margin-right: 120px;
-}
-
-#add-btn {
-    color:#00cc44;
+.login100-form-btn {
+    height:25px;
 }
 
 </style>
@@ -55,27 +55,22 @@ button#in-btn {
 <div class="limiter">
 <div class="container-login100">
 <div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
+<form class="login100-form validate-form">
+<span class="login100-form-title" id="ex">
+내역 변경
+</span>
 
-    <div class="navbar p-t-5 p-b-5 p-l-15 p-r-15 fs-15" id="update-title">
-        <button class="" type="button">
-        <span class="lnr lnr-arrow-left" id="back-btn"></span>
-        </button>
-        <p class="fs-20" id="history-update">내역 추가 </p>
-        <button class="" type="button" id="add-btn">완료</button>
-    </div>
+<div class="container-login100-form-btn p-t-25">
+<button type="button" class="login100-form-btn" id="ex-btn">
+수입
+</button>
+<button type="button" class="login100-form-btn" id="in-btn">
+지출
+</button>
 
-        <div class="input-group mb-3 mt-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">
-            <span class="lnr lnr-select"></span></span>
-          </div>
-            <button type="button" class="" id="in-btn">지출</button>
-            <button type="button" class="" id="ex-btn">수입 </button>
-        </div>
-		
-		
+</div>
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-apartment"></span></span>
@@ -84,7 +79,7 @@ button#in-btn {
           aria-describedby="inputGroup-sizing-default" id="history" placeholder="내역">
         </div>
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text">
             <span class="lnr lnr-database"></span></span>
@@ -93,20 +88,24 @@ button#in-btn {
           aria-describedby="inputGroup-sizing-default" id="amount" placeholder="금액">
         </div>
                     
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">
             <span class="lnr lnr-menu"></span></label>
           </div>
           <select class="custom-select" id="category">
-            <option selected>Choose...</option>
-            <option value="카페">카페</option>
-            <option value="외식">외식</option>
-            <option value="쇼핑">쇼핑</option>
+            <option selected class="expenditure">지출</option>
+            <option value="식비" class="expenditure">식비</option>
+            <option value="카페/간식" class="expenditure">카페/간식</option>
+            <option value="술/유흥" class="expenditure">술/유흥</option>
+            <option selected class="income">수입</option>
+            <option value="급여" class="income">급여</option>
+            <option value="용돈" class="income">용돈</option>
+            <option value="기타수입" class="income">기타수입</option>
           </select>
         </div>
                     
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-pencil"></span></span>
@@ -115,7 +114,7 @@ button#in-btn {
           aria-describedby="inputGroup-sizing-default" id="memo" placeholder="메모">
         </div>
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-calendar-full"></span></span>
@@ -124,7 +123,7 @@ button#in-btn {
           aria-describedby="inputGroup-sizing-default" id="date">
         </div>
         
-        <div class="input-group mb-3" id="input-plcnm">
+        <div class="input-group mb-2" id="input-plcnm">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-store"></span></span>
@@ -133,7 +132,7 @@ button#in-btn {
           aria-describedby="inputGroup-sizing-default" id="plcnm" placeholder="사용처">
         </div>
               
-        <div class="input-group mb-3" id="input-plc">
+        <div class="input-group mb-2" id="input-plc">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-map-marker"></span></span>
@@ -142,7 +141,7 @@ button#in-btn {
           aria-describedby="inputGroup-sizing-default" id="plc" placeholder="지도">
         </div>
 
-        <div class="input-group mb-3" id="input-rcpt">
+        <div class="input-group mb-2" id="input-rcpt">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroupFileAddon01">
             <span class="lnr lnr-picture"></span></span>
@@ -158,6 +157,8 @@ button#in-btn {
         <input type="hidden" id="type" placeholder="입출금유형">
         <!-- <input type="hidden" id="mno" placeholder="회원번호"> -->
         
+</form>
+
 </div>
 </div>
 </div>
@@ -172,8 +173,7 @@ button#in-btn {
 <script src="../../node_modules/select2/dist/js/select2.min.js"></script>
 <!--===============================================================================================-->
 <script src="../../js/common.js"></script>
-<script src="expenditure.js"></script>
-
+<script src="update.js"></script>
 
 </body>
 </html>

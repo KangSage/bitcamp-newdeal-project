@@ -1,6 +1,9 @@
 'use strict'
 
-/*$('header').load('../main/list2.html');*/
+$('#update-btn').on('click',() => {
+    
+})
+
 
 // 수입 화면으로 변환
 $('#ex-btn').on('click',() => {
@@ -8,8 +11,8 @@ $('#ex-btn').on('click',() => {
     $('#type').val('수입');
     console.log($('#type').val());
     
-    $('#ex-btn').css('background', '#d33f8d');
-    $('#in-btn').css('background', '#ef93c3');
+    $('#ex-btn').css('background', '#8bc1ef');
+    $('#in-btn').css('background', '#efcfe2');
     
     $('#input-plcnm').css('visibility', 'hidden');
     $('#input-plc').css('visibility', 'hidden');
@@ -24,8 +27,13 @@ $('#in-btn').on('click',() => {
     $('#type').val('지출');
     console.log($('#type').val());
     
-    $('#in-btn').css('background', '#d33f8d');
-    $('#ex-btn').css('background', '#ef93c3');
+    $('#in-btn').css('background', '#8bc1ef');
+    $('#ex-btn').css('background', '#efcfe2');
     
     $('.input-group').css('visibility', 'visible');
+});
+
+
+$('#cancel-btn').on('click',() => {
+    location.href = '../main/list.html';
 });

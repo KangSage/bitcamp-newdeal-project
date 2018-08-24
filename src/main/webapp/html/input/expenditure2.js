@@ -55,6 +55,6 @@ $('#in-btn').on('click',() => {
 });
 
 
-$('#back-btn').on('click',() => {
+$('#cancel-btn').on('click',() => {
     location.href = '../main/list.html';
 });
