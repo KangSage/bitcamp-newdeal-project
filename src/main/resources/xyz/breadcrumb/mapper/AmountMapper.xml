@@ -15,7 +15,19 @@
         <result column="memo" property="memo"/>
         <result column="date" property="date"/>
     </resultMap>
-
+    
+<!--   <select id="findByMemberNo" 
+          parameterType="int"
+          resultMap="AmountMap">
+    select 
+        amntno,
+        mno,
+        NAME
+    from bc_amount
+    where MNO=#{value}
+    order by NAME asc
+  </select> -->
+    
     <insert id="insert" parameterType="Amount" >
         insert into
         bc_amount(mno,type,hst,amnt,cat,memo,date)
@@ -28,5 +40,22 @@
         #{memo},
         #{date})
     </insert>
-
+    
+  <update id="update" parameterType="Amount">
+    update bc_amount set 
+        type = #{type},
+        hst = #{history},
+        amnt = #{amount},
+        cat = #{category},
+        memo = #{memo},
+        date = #{date}
+    where amntno = #{no} and mno = #{mno}
+  </update>
+  
+  <delete id="delete" parameterType="Amount">
+    delete from bc_amount 
+    where amntno = #{no} and mno = #{mno}
+  </delete>
+  
+  
 </mapper>

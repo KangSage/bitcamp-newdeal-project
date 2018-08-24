@@ -17,5 +17,17 @@ public class AmountServiceImpl implements AmountService {
     public int add(Amount amount) {
         return amountRepository.insert(amount);
     }
-    
+
+    @Override
+    public int update(Amount amount) {
+        return amountRepository.update(amount);
+    }
+
+    @Override
+    public int delete(Amount amount, int memberNo) {
+        return amountRepository.delete(amount, memberNo);
+        
+    }
+
+
 }
