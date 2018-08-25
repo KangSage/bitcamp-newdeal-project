@@ -55,6 +55,7 @@
         <bean class="xyz.breadcrumb.web.interceptor.AuthCheckInterceptor"/>
     </mvc:interceptor>
 </mvc:interceptors>
+
 </beans>
 
 

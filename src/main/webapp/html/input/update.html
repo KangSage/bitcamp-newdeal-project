@@ -26,6 +26,7 @@ href="../../node_modules/hamburgers/dist/hamburgers.min.css">
 button#ex-btn {
     width: 20%;
     margin-left: 7%;
+    background-color: #8bc1ef;
 }
 
 button#in-btn {
@@ -58,8 +59,8 @@ button#in-btn {
   <div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
   
     <div class="navbar p-t-5 p-b-5 p-l-15 p-r-15 fs-15" id="update-title">
-        <button class="" type="button" id="back-btn">
-        <span class="lnr lnr-arrow-left"></span>
+        <button class="" type="button">
+        <span class="lnr lnr-arrow-left" id="back-btn"></span>
         </button>
         <p class="fs-20" id="history-update">내역 변경 </p>
         <button class="" type="button" id="delete-btn">삭제</button>
@@ -71,8 +72,8 @@ button#in-btn {
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-select"></span></span>
           </div>
-            <button type="button" class="btn btn-outline-info" id="in-btn">지출</button>
-            <button type="button" class="btn btn-outline-info" id="ex-btn">수입 </button>
+            <button type="button" class="btn btn-outline-info" id="in-btn">수입 </button>
+            <button type="button" class="btn btn-outline-info" id="ex-btn">지출</button>
         </div>
         
         
@@ -172,6 +173,7 @@ button#in-btn {
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="../../node_modules/select2/dist/js/select2.min.js"></script>
+<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!--===============================================================================================-->
 <script src="../../js/common.js"></script>
 <script src="update.js"></script>

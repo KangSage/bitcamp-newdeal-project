@@ -1,14 +1,20 @@
 package xyz.breadcrumb.service;
 
+import java.util.List;
+
 import xyz.breadcrumb.domain.Amount;
 import xyz.breadcrumb.domain.DayHistory;
 
-import java.util.List;
-
 public interface AmountService {
-    int add(Amount amount);
+    
     List<DayHistory> list(int memberNo);
+    
+    Amount get(int amntNo, int memberNo);
+    
+    int add(Amount amount);
+    
     int update(Amount amount);
-    int delete(Amount amount, int memberNo);
+    
+    int delete(int amntNo, int memberNo);
 
 }
