@@ -15,6 +15,7 @@
         <result column="memo" property="memo"/>
         <result column="date" property="date"/>
     </resultMap>
+    
 
     <resultMap type="DayHistory" id="DayHistoryMap">
         <id column="day" property="day"/>
@@ -29,6 +30,26 @@
             <result column="amnt_dt" property="date"/>
         </collection>
     </resultMap>
+    
+    
+    
+    
+  <select id="findByAmntNoAndMemberNo" 
+          parameterType="map"
+          resultMap="AmountMap">
+    select 
+        amntno,
+        mno,
+        type,
+        hst,
+        amnt,
+        cat,
+        memo,
+        date
+    from bc_amount
+    where amntno = #{amntNo} and mno = #{memberNo}
+  </select>
+    
 
     <insert id="insert" parameterType="Amount" >
         insert into
@@ -60,11 +81,10 @@
         SELECT
             date_format(date, '%Y-%m-%d') day,
             amntno,
-            mno,
             type,
             hst,
-            amnt,
-            date_format(date, '%Y-%m-%d') amnt_dt
+            amnt/*,
+            date_format(date, '%Y-%m-%d') amnt_dt*/
         FROM bc_amount
         WHERE mno = #{value}
         ORDER BY date DESC;
@@ -81,9 +101,9 @@
         where amntno = #{no} and mno = #{mno}
     </update>
   
-    <delete id="delete" parameterType="Amount">
+    <delete id="delete" parameterType="map">
     	delete from bc_amount 
-    	where amntno = #{no} and mno = #{mno}
+    	where amntno = #{amntNo} and mno = #{memberNo}
     </delete>
     
 </mapper>

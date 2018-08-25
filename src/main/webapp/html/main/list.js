@@ -1,5 +1,9 @@
+"use strict";
 
-$.getJSON(`${serverApiAddr}/json/amount/list`, (result) => {
+var liTemplateSrc = $('#li-template').text();
+var template = Handlebars.compile(liTemplateSrc);
+
+$.post(`${serverApiAddr}/json/amount/list`, (result) => {
     if (result.status === 'fail') {
         swal('로그인 되지 않았습니다.',
             '로그인 페이지로 이동합니다.',
@@ -14,14 +18,14 @@ $.getJSON(`${serverApiAddr}/json/amount/list`, (result) => {
     console.log(list);
     for (let i=0; i < list.length; i++){
         let {day, amounts} = list[i];
-        let headElement = $("<li></li>").addClass("list-group-item list-group-item-action");
-        headElement.append($("<span></span>").html(day)).append('<br>');
-       for(let j = 0; j < amounts.length; j++){
-           let itemNo = $("<span></span>").html(amounts[j].no);
-           let itemType = $("<span></span>").attr('data-no');
-            headElement.append(itemType, itemNo, "세상에나 마상에나");
+        let headElement = $("<div></div>").addClass("list-group-item");
+        headElement.append(day);
+
+      for(let j = 0; j < amounts.length; j++) {
+          var html = template(amounts[j]);
+            headElement.append(html);
         }
-        $('#list').append(headElement);
+        $('#listBody').append(headElement);
     }
 });
 
