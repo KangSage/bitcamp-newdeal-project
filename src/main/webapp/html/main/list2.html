@@ -57,6 +57,20 @@ button#in-btn {
     font-size : 50px;
     color : rgb(95, 75, 139);
 }
+
+.modal-content{
+    background-color: transparent;
+
+}
+.modal-footer{
+    background-color: rgba(255,255,255,0.69);
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+
+}
+.modal-header{
+    background-color: rgba(255,255,255,0.69);
+}
 </style>
 </head>
 
@@ -98,7 +112,7 @@ button#in-btn {
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header p-2">
 					<h5 class="modal-title" id="exampleModalCenterTitle">내역 추가</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -223,23 +237,14 @@ button#in-btn {
 										</div>
 
 										<input type="hidden" id="type" placeholder="입출금유형">
-										<!-- <input type="hidden" id="mno" placeholder="회원번호"> -->
-
-
-										<div class="container-login100-form-btn p-t-15 m-b-15">
-											<button type="reset" class="login100-form-btn"
-												id="cancel-btn">취소</button>
-											<button type="button" class="login100-form-btn" id="add-btn">
-												추가</button>
-										</div>
-
-
 									</form>
 
 								</div>
 							</div>
 						</div>
-
+                        <div class="modal-footer p-2">
+				        <button type="button" class="btn btn-outline-secondary" >저장</button>
+				        </div>
 						<!-- 모달 내용 끝 -->
 <!-- 				</div> -->
 			</div>
