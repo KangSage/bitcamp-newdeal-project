@@ -21,14 +21,9 @@ public class AmountServiceImpl implements AmountService {
         return amountRepository.insert(amount);
     }
 
-/*    @Override
-    public List<Amount> list(int memberNo) {
-        return amountRepository.selectList(memberNo);
-    }*/
-
     @Override
-    public List<DayHistory> list2(int memberNo) {
-        return amountRepository.selectList2(memberNo);
+    public List<DayHistory> list(int memberNo) {
+        return amountRepository.selectList(memberNo);
     }
 
     @Override

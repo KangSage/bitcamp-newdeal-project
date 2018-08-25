@@ -56,7 +56,7 @@
     </select>
 -->
 
-    <select id="selectList2" parameterType="int" resultMap="DayHistoryMap" >
+    <select id="selectList" parameterType="int" resultMap="DayHistoryMap" >
         SELECT
             date_format(date, '%Y-%m-%d') day,
             amntno,
@@ -65,8 +65,8 @@
             hst,
             amnt,
             date_format(date, '%Y-%m-%d') amnt_dt
-        FROM `bc_amount`
-        WHERE mno = 11
+        FROM bc_amount
+        WHERE mno = #{value}
         ORDER BY date DESC;
     </select>
     

@@ -19,7 +19,30 @@
     <link rel="stylesheet" type="text/css" href="../../css/util.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <style>
-        
+        /**{margin:0;padding:0;list-style: none;}*/
+        .view{
+            width:200px;
+            height:150px;
+            border:1px solid red;
+            overflow: hidden;
+        }
+        .scrollBlind {
+            width:95%;
+            height:100%;
+            overflow-y:scroll;
+            background-color: green;
+        }
+        ul {
+            text-align: center;
+            width:calc(90% - 20px);
+        }
+        li{
+            /*height:50px;*/
+            /*line-height: 50px;*/
+            text-align: center;
+            border-bottom: 1px solid blue;
+            background-color: yellow;
+        }
     </style>
 </head>
 
@@ -38,8 +61,8 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
-                     <div class="card">
+                <div class="col-md-auto">
+                     <div class="scrollBlind">
                         <ul id="list">
                         </ul>
                     </div>

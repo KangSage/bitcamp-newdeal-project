@@ -3,8 +3,8 @@ package xyz.breadcrumb.domain;
 import java.util.List;
 
 public class DayHistory {
-    String day;
-    List<Amount> amounts;
+    private String day;
+    private List<Amount> amounts;
 
     public String getDay() {
         return day;

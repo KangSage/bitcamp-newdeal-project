@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface AmountService {
     int add(Amount amount);
-    /*List<Amount> list(int memberNo);*/
-    List<DayHistory> list2(int memberNo);
+    List<DayHistory> list(int memberNo);
     int update(Amount amount);
     int delete(Amount amount, int memberNo);
 

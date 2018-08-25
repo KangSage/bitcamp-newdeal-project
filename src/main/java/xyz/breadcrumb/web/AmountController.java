@@ -13,6 +13,7 @@ import xyz.breadcrumb.domain.DayHistory;
 import xyz.breadcrumb.domain.Member;
 import xyz.breadcrumb.service.AmountService;
 
+import javax.lang.model.util.Elements;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,7 +33,7 @@ public class AmountController {
         return result;
     }
     
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping("list")
     public Object list(HttpServletRequest httpRequest) throws Exception {
         HttpSession session = httpRequest.getSession();
@@ -40,7 +41,7 @@ public class AmountController {
 
         int userNo = loginUser.getNo();
         /*List<Amount> list = amountService.list(memberNo);*/
-        List<DayHistory> list = amountService.list2(userNo);
+        List<DayHistory> list = amountService.list(userNo);
         HashMap<String,Object> data = new HashMap<>();
         data.put("list", list);
         return data;

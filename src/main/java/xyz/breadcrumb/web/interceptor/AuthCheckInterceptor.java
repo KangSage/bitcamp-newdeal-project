@@ -1,6 +1,7 @@
 package xyz.breadcrumb.web.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import xyz.breadcrumb.domain.Member;
 
@@ -12,6 +13,7 @@ import java.util.HashMap;
 
 public class AuthCheckInterceptor implements HandlerInterceptor {
 
+    @CrossOrigin()
     @Override
     public boolean preHandle(
             HttpServletRequest request,

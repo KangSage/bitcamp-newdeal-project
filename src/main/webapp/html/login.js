@@ -1,16 +1,18 @@
 "use strict";
 
+// input 태그와 버튼을 jQuery로 미리 찾는다.
 let loginEmail = $('#loginEmail'),
     loginPassword = $('#loginPassword'),
     loginSaveEmail = $('#loginSaveEmail'),
-    loginBtn = $('#login-btn');
 
+    loginBtn = $('#login-btn'),
+    goSignUp = $('#go-sign-up');
 
-
+// 로그인 버튼을 클릭 시 이벤트 처리.
 loginBtn.on("click", () => {
+    // 이메일과 password의 값을 체크한다.
     let input = $('.validate-input .input100');
-
-    var check = false;
+    let check = false;
 
     (function () {
         check = true;
@@ -53,6 +55,7 @@ loginBtn.on("click", () => {
         $(thisAlert).removeClass('alert-validate');
     }
 
+// 이메일과 페스워드의 체크가 완료되면 로그인을 처리한다.
 if (check) {
     console.log('check == true');
 $.post(`${serverApiAddr}/json/auth/login`, {
@@ -83,4 +86,8 @@ $.post(`${serverApiAddr}/json/auth/login`, {
         });
     });
 }
+});
+
+goSignUp.on('click', () => {
+    location.href = 'signUp.html';
 });
