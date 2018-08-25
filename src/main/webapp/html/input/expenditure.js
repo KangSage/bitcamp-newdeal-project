@@ -27,13 +27,13 @@ $('#add-btn').on('click', () => {
 
 
 // 수입 화면으로 변환
-$('#ex-btn').on('click',() => {
+$('#in-btn').on('click',() => {
     $('.form-control').val('');
     $('#type').val('수입');
     console.log($('#type').val());
     
-    $('#ex-btn').css('background', '#d33f8d');
-    $('#in-btn').css('background', '#ef93c3');
+    $('#ex-btn').css('background', '#e1c5ec');
+    $('#in-btn').css('background', '#d33f8d');
     
     $('#input-plcnm').css('visibility', 'hidden');
     $('#input-plc').css('visibility', 'hidden');
@@ -42,14 +42,14 @@ $('#ex-btn').on('click',() => {
 });
 
 // 지출 화면으로 변환
-$('#in-btn').on('click',() => {
+$('#ex-btn').on('click',() => {
     $(".hst").empty();
     $('.form-control').val('');
     $('#type').val('지출');
     console.log($('#type').val());
     
-    $('#in-btn').css('background', '#d33f8d');
-    $('#ex-btn').css('background', '#ef93c3');
+    $('#in-btn').css('background', '#e1c5ec');
+    $('#ex-btn').css('background', '#d33f8d');
     
     $('.input-group').css('visibility', 'visible');
 });

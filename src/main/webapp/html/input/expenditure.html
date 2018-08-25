@@ -26,7 +26,7 @@ href="../../node_modules/hamburgers/dist/hamburgers.min.css">
 button#ex-btn {
     width: 20%;
     margin-left: 7%;
-    background-color: #e1c5ec;
+    background-color: #8bc1ef;
 }
 
 button#in-btn {
@@ -55,10 +55,10 @@ button#in-btn {
 <div class="limiter">
 <div class="container-login100">
 <div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
-
+<form class="login100-form validate-form">
     <div class="navbar p-t-5 p-b-5 p-l-15 p-r-15 fs-15" id="update-title">
         <button class="" type="button">
-        <span class="lnr lnr-arrow-left" id="back-btn"></span>
+        <span class="lnr lnr-arrow-left mr-3" id="back-btn"></span>
         </button>
         <p class="fs-20" id="history-update">내역 추가 </p>
         <button class="" type="button" id="add-btn">완료</button>
@@ -69,8 +69,8 @@ button#in-btn {
             <span class="input-group-text" id="inputGroup-sizing-default">
             <span class="lnr lnr-select"></span></span>
           </div>
-            <button type="button" class="" id="in-btn">지출</button>
-            <button type="button" class="" id="ex-btn">수입 </button>
+            <button type="button" class="btn btn-outline-info" id="in-btn">수입 </button>
+            <button type="button" class="btn btn-outline-info" id="ex-btn">지출</button>
         </div>
 		
 		
@@ -157,7 +157,9 @@ button#in-btn {
 
         <input type="hidden" id="type" placeholder="입출금유형">
         <!-- <input type="hidden" id="mno" placeholder="회원번호"> -->
-        
+
+</form>
+
 </div>
 </div>
 </div>
