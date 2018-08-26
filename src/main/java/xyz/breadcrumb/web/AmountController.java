@@ -56,7 +56,19 @@ public class AmountController {
     }    
     
     @PostMapping("add")
-    public Object add(Amount amount) throws Exception {
+    public Object add(
+            Amount amount,
+            HttpServletRequest httpRequest) {
+        
+        HttpSession session = httpRequest.getSession();
+        
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        
+        System.out.println(loginUser);
+        
+        amount.setMemberNo(loginUser.getNo());
+        System.out.println(amount);
+        
         amountService.add(amount);
         
         HashMap<String,Object> result = new HashMap<>();
@@ -96,6 +108,8 @@ public class AmountController {
         HttpSession session = httpRequest.getSession();
         
         Member loginUser = (Member) session.getAttribute("loginUser");
+        
+        System.out.println(loginUser);
         
         amountService.delete(no, loginUser.getNo());
         

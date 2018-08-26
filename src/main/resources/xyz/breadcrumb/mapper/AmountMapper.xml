@@ -47,7 +47,7 @@
         memo,
         hdt
     from bc_amount
-    where amntno = #{amountNo} and mno = #{memberNo}
+    where amntno = #{amountNo} and mno = #{userNo}
   </select>
     
 
@@ -80,18 +80,18 @@
     
     <update id="update" parameterType="Amount">
         update bc_amount set
-            attype = #{type},
+            attype = #{amountType},
             hst = #{history},
             amnt = #{amount},
             cat = #{category},
             memo = #{memo},
-            hdt = #{date}
+            hdt = #{happenDate}
         where amntno = #{no} and mno = #{memberNo}
     </update>
   
     <delete id="delete" parameterType="map">
     	delete from bc_amount 
-    	where amntno = #{amntNo} and mno = #{memberNo}
+    	where amntno = #{amountNo} and mno = #{userNo}
     </delete>
     
 </mapper>

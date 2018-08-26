@@ -30,7 +30,7 @@ public class AmountServiceImpl implements AmountService {
     public Amount get(int amountNo, int userNo) {
         HashMap<String,Object> params = new HashMap<>();
         params.put("amountNo", amountNo);
-        params.put("memberNo", userNo);
+        params.put("userNo", userNo);
         return amountRepository.findByAmountNoAndMemberNo(params);
     }
     
@@ -43,7 +43,7 @@ public class AmountServiceImpl implements AmountService {
     public int delete(int amountNo, int userNo) {
         HashMap<String,Object> params = new HashMap<>();
         params.put("amountNo", amountNo);
-        params.put("memberNo", userNo);
+        params.put("userNo", userNo);
         return amountRepository.delete(params);
     }
 

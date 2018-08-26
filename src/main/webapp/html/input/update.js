@@ -4,13 +4,13 @@
 $('#update-btn').on('click',() => {
     console.log('완료 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/update`, {
-        'no':12/*$('#mno').val()*/,
-        'type': $('#type').val(),
+        'memberNo':3/*$('#mno').val()*/,
+        'amountType': $('#type').val(),
         'history': $('#history').val(),
         'amount': $('#amount').val(),
         'category': $('#category').val(),
         'memo': $('#memo').val(),
-        'date': $('#date').val()
+        'happenDate': $('#date').val()
     }, (result) => {
 
         if (result.status !== 'success') return;
@@ -24,7 +24,7 @@ $('#update-btn').on('click',() => {
 
 $('#delete-btn').on('click',() => {
     console.log('삭제 버튼 클릭');
-    $.post(`${serverApiAddr}/json/amount/delete`, {no:13})
+    $.post(`${serverApiAddr}/json/amount/delete`, {no:2})
         .done(function(data) {
             console.log(data)
                 if (data.status == 'success') {
@@ -44,8 +44,8 @@ $('#delete-btn').on('click',() => {
 
 // 수입 화면으로 변환
 $('#in-btn').on('click',() => {
-    $('.form-control').val('');
     $('#type').val('수입');
+    $('#category').val('Choose...');
     console.log($('#type').val());
     
     $('#ex-btn').css('background', '#e1c5ec');
@@ -60,8 +60,8 @@ $('#in-btn').on('click',() => {
 // 지출 화면으로 변환
 $('#ex-btn').on('click',() => {
     $(".hst").empty();
-    $('.form-control').val('');
     $('#type').val('지출');
+    $('#category').val('Choose...');
     console.log($('#type').val());
     
     $('#in-btn').css('background', '#e1c5ec');
