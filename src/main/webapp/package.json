@@ -15,6 +15,7 @@
     "hamburgers": "^0.9.3",
     "handlebars": "^4.0.11",
     "jquery": "^3.3.1",
+    "jquery.cookie": "^1.4.1",
     "popper.js": "^1.14.4",
     "select2": "^4.0.6-rc.1",
     "sweetalert2": "^7.26.11"
