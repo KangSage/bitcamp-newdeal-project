@@ -40,7 +40,6 @@ $('#delete-btn').on('click',() => {
                     ).then(function() {
                         location.href = '../main/list.html';
                     });
-                
             } else {
                 alert('삭제 오류입니다!');
                 console.log(data.error);

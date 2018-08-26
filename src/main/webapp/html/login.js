@@ -8,6 +8,18 @@ let loginEmail = $('#loginEmail'),
     loginBtn = $('#login-btn'),
     goSignUp = $('#go-sign-up');
 
+
+    $(document).ready(() => {
+        if ($.cookie('email')) {
+            loginSaveEmail.prop('checked', true);
+            loginEmail.val($.cookie('email'));
+        } else if ($.cookie('')) {
+            loginSaveEmail.prop('checked', false);
+            loginEmail.val('');
+        }
+    });
+
+
 // 로그인 버튼을 클릭 시 이벤트 처리.
 loginBtn.on("click", () => {
     // 이메일과 password의 값을 체크한다.
@@ -68,6 +80,11 @@ $.post(`${serverApiAddr}/json/auth/login`, {
             '로그인 되었습니다.',
             'success'
         ).then(function() {
+            if (loginSaveEmail.prop('checked')) {
+                $.cookie('email', loginEmail.val());
+            } else {
+                $.cookie('email', '');
+            }
             location.href = 'main/list.html';
         });
     } else if (result.status === 'fail') {
