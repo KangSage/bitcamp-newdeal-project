@@ -114,7 +114,6 @@ public class AmountController {
         try {
             amountService.delete(no, loginUser.getNo());
             data.put("status", "success");
-            return data;
         } catch (Exception e) {
             data.put("status", "fail");
             data.put("message", e.getMessage());

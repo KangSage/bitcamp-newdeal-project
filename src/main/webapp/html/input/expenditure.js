@@ -38,6 +38,9 @@ $('#in-btn').on('click',() => {
     $('#input-plc').css('visibility', 'hidden');
     $('#input-rcpt').css('visibility', 'hidden');
     
+    $('.ex-category').hide();
+    $('.in-category').show();
+    
 });
 
 // 지출 화면으로 변환
@@ -51,6 +54,10 @@ $('#ex-btn').on('click',() => {
     $('#ex-btn').css('background', '#d33f8d');
     
     $('.input-group').css('visibility', 'visible');
+    
+    $('.in-category').hide();
+    $('.ex-category').show();
+    
 });
 
 

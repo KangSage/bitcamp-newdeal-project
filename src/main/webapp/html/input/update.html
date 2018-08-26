@@ -47,6 +47,10 @@ button#in-btn {
 #delete-btn, #update-btn {
     color:#00cc44;
 }
+
+.in-category {
+    display: none;
+}
    
 </style>
 </head>
@@ -102,10 +106,15 @@ button#in-btn {
             <span class="lnr lnr-menu"></span></label>
           </div>
           <select class="custom-select" id="category">
-            <option selected>Choose...</option>
-            <option value="카페">카페</option>
-            <option value="외식">외식</option>
-            <option value="쇼핑">쇼핑</option>
+            <option selected class="ex-category">Choose...</option>
+            <option value="카페" class="ex-category">카페</option>
+            <option value="외식" class="ex-category">외식</option>
+            <option value="쇼핑" class="ex-category">쇼핑</option>
+            
+            <option selected class="in-category">Choose...</option>
+            <option value="월급" class="in-category">월급</option>
+            <option value="이자" class="in-category">이자</option>
+            <option value="용돈" class="in-category">용돈</option>
           </select>
         </div>
                     

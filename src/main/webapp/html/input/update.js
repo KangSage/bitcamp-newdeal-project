@@ -20,11 +20,17 @@ $('#update-btn').on('click',() => {
                 /*location.href = '../main/list.html';*/
             });
         } else {
-            alert('변경 실패')
+            swal('변경 실패!',
+                'error')
         }
     }, 'json')
     .fail(() => {
-        alert('서버 요청 중 오류 발생!')
+        swal({
+            title: '변경 실패!',
+            text: '서버와의 통신에 알 수 없는 문제가 생겼습니다.',
+            type: 'error',
+            confirmButtonColor: "#e83e8c"
+        });
     });
 })
 
@@ -42,10 +48,16 @@ $('#delete-btn').on('click',() => {
                     });
             } else {
                 console.log(data.message);
-                alert('삭제 오류입니다!');
+                swal('삭제 실패!',
+                     'error')
             }
         }).fail(() => {
-            alert('서버 요청 중 오류 발생!')
+            swal({
+                title: '삭제 실패!',
+                text: '서버와의 통신에 알 수 없는 문제가 생겼습니다.',
+                type: 'error',
+                confirmButtonColor: "#e83e8c"
+            });
         });
 });
 
