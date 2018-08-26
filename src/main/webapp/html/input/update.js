@@ -42,10 +42,12 @@ $('#delete-btn').on('click',() => {
                     });
                 
             } else {
+                console.log(data.message);
                 alert('삭제 오류입니다!');
-                console.log(data.error);
             }
-        })
+        }).fail(() => {
+            alert('서버 요청 중 오류 발생!')
+        });
 });
 
 // 수입 화면으로 변환
@@ -61,6 +63,9 @@ $('#in-btn').on('click',() => {
     $('#input-plc').css('visibility', 'hidden');
     $('#input-rcpt').css('visibility', 'hidden');
     
+    $('.ex-category').hide();
+    $('.in-category').show();
+    
 });
 
 // 지출 화면으로 변환
@@ -74,6 +79,10 @@ $('#ex-btn').on('click',() => {
     $('#ex-btn').css('background', '#d33f8d');
     
     $('.input-group').css('visibility', 'visible');
+    
+    $('.in-category').hide();
+    $('.ex-category').show();
+    
 });
 
 
