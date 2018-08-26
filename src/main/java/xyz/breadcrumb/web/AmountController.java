@@ -25,14 +25,14 @@ public class AmountController {
     
     @Autowired AmountService amountService;
     
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin()
     @RequestMapping("list")
     public Object list(HttpServletRequest httpRequest) throws Exception {
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
         
         int userNo = loginUser.getNo();
-        /*List<Amount> list = amountService.list(memberNo);*/
+
         List<DayHistory> list = amountService.list(userNo);
         HashMap<String,Object> data = new HashMap<>();
         data.put("list", list);
@@ -57,7 +57,6 @@ public class AmountController {
     
     @PostMapping("add")
     public Object add(Amount amount) throws Exception {
-        System.out.println(amount);
         amountService.add(amount);
         
         HashMap<String,Object> result = new HashMap<>();
@@ -77,7 +76,7 @@ public class AmountController {
         
         System.out.println(loginUser);
         
-        amount.setMno(loginUser.getNo());
+        amount.setMemberNo(loginUser.getNo());
         System.out.println(amount);
         
         amountService.update(amount);

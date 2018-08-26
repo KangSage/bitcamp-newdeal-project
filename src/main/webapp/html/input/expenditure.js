@@ -6,14 +6,13 @@ $('#add-btn').on('click', () => {
     console.log('추가 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/add`, 
         {
-            
-            'mno':11/*$('#mno').val()*/,
-            'type': $('#type').val(),
+            'memberNo': 1 /*$('#mno').val()*/,
+            'amountType': $('#type').val(),
             'history': $('#history').val(),
             'amount': $('#amount').val(),
             'category': $('#category').val(),
             'memo': $('#memo').val(),
-            'date': $('#date').val()
+            'happenDate': $('#date').val()
         },
         function(data) {
             console.log(data);

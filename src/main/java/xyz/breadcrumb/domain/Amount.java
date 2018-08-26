@@ -1,70 +1,102 @@
 package xyz.breadcrumb.domain;
 
 public class Amount {
-    protected int no;
-    protected int mno;
-    protected String type;
-    protected String history;
-    protected int amount;
-    protected String category;
-    protected String memo;
-    protected String date;
-    
-    
+
+    private int no;
+    private int memberNo;
+    private String amountType;
+    private String history;
+    private int amount;
+    private String category;
+    private String memo;
+    private String happenDate;
+    private String createdDate;
+
     @Override
     public String toString() {
-        return "Amount [no=" + no + ", mno=" + mno + ", type=" + type + ", history=" + history + ", amount=" + amount
-                + ", category=" + category + ", memo=" + memo + ", date=" + date + "]";
+        return "Amount{" +
+                "no=" + no +
+                ", memberNo=" + memberNo +
+                ", amountType='" + amountType + '\'' +
+                ", history='" + history + '\'' +
+                ", amount=" + amount +
+                ", category='" + category + '\'' +
+                ", memo='" + memo + '\'' +
+                ", happenDate='" + happenDate + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                '}';
     }
+
     public int getNo() {
         return no;
     }
+
     public void setNo(int no) {
         this.no = no;
     }
-    public int getMno() {
-        return mno;
+
+    public int getMemberNo() {
+        return memberNo;
     }
-    public void setMno(int mno) {
-        this.mno = mno;
+
+    public void setMemberNo(int memberNo) {
+        this.memberNo = memberNo;
     }
-    public String getType() {
-        return type;
+
+    public String getAmountType() {
+        return amountType;
     }
-    public void setType(String type) {
-        this.type = type;
+
+    public void setAmountType(String amountType) {
+        this.amountType = amountType;
     }
+
     public String getHistory() {
         return history;
     }
+
     public void setHistory(String history) {
         this.history = history;
     }
+
     public int getAmount() {
         return amount;
     }
+
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
     public String getCategory() {
         return category;
     }
+
     public void setCategory(String category) {
         this.category = category;
     }
+
     public String getMemo() {
         return memo;
     }
+
     public void setMemo(String memo) {
         this.memo = memo;
     }
-    public String getDate() {
-        return date;
+
+    public String getHappenDate() {
+        return happenDate;
     }
-    public void setDate(String date) {
-        this.date = date;
+
+    public void setHappenDate(String happenDate) {
+        this.happenDate = happenDate;
     }
-    
-    
-    
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
 }

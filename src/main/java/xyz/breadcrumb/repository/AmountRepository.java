@@ -8,9 +8,9 @@ import xyz.breadcrumb.domain.DayHistory;
 
 public interface AmountRepository {
     
-    List<DayHistory> selectList(int memberNo);
+    List<DayHistory> selectList(int userNo);
     
-    Amount findByAmntNoAndMemberNo(HashMap<String, Object> params);
+    Amount findByAmountNoAndMemberNo(HashMap<String, Object> params);
     
     int insert(Amount amount);
     

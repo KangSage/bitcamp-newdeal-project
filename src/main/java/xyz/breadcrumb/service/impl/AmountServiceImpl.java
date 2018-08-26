@@ -18,8 +18,8 @@ public class AmountServiceImpl implements AmountService {
     AmountRepository amountRepository;
     
     @Override
-    public List<DayHistory> list(int memberNo) {
-        return amountRepository.selectList(memberNo);
+    public List<DayHistory> list(int userNo) {
+        return amountRepository.selectList(userNo);
     }
     
     @Override
@@ -27,11 +27,11 @@ public class AmountServiceImpl implements AmountService {
         return amountRepository.insert(amount);
     }
     
-    public Amount get(int amntNo, int memberNo) {
+    public Amount get(int amountNo, int userNo) {
         HashMap<String,Object> params = new HashMap<>();
-        params.put("amntNo", amntNo);
-        params.put("memberNo", memberNo);
-        return amountRepository.findByAmntNoAndMemberNo(params);
+        params.put("amountNo", amountNo);
+        params.put("memberNo", userNo);
+        return amountRepository.findByAmountNoAndMemberNo(params);
     }
     
     @Override
@@ -40,10 +40,10 @@ public class AmountServiceImpl implements AmountService {
     }
 
     @Override
-    public int delete(int amntNo, int memberNo) {
+    public int delete(int amountNo, int userNo) {
         HashMap<String,Object> params = new HashMap<>();
-        params.put("amntNo", amntNo);
-        params.put("memberNo", memberNo);
+        params.put("amountNo", amountNo);
+        params.put("memberNo", userNo);
         return amountRepository.delete(params);
     }
 

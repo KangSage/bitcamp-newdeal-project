@@ -7,14 +7,14 @@ import xyz.breadcrumb.domain.DayHistory;
 
 public interface AmountService {
     
-    List<DayHistory> list(int memberNo);
+    List<DayHistory> list(int userNo);
     
-    Amount get(int amntNo, int memberNo);
+    Amount get(int amountNo, int userNo);
     
     int add(Amount amount);
     
     int update(Amount amount);
     
-    int delete(int amntNo, int memberNo);
+    int delete(int amountNo, int userNo);
 
 }
