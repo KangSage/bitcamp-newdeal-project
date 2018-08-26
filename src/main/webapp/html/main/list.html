@@ -41,17 +41,6 @@
             display: none;
         }
 
-/*        ul {
-            text-align: center;
-            width:100%;
-        }
-        li {
-            !* height:50px;
-            line-height: 50px; *!
-            text-align: center;
-            !* border-bottom: 1px solid blue; *!
-            !* background-color: yellow; *!
-        }*/
         .table {display: table;}
         .row {display: table-row;}
         .cell {display: table-cell; padding: 3px; border-bottom: 1px solid #DDD;}
@@ -72,11 +61,17 @@
         
         <!-- 헤더 -->
         <header></header>
-            
+
+
     <!--<div class="content">-->
         <div class="container-fluid">
 <!--            <div class="row">
                 <div class="col-lg-12">-->
+            <div class="row list-group-item" style="width:100%;">
+                <span class="cell col1">유형</span>
+                <span class="cell col2">분류</span>
+                <span class="cell col3">금액</span>
+            </div>
                      <div class="scrollBlind">
                          <div id="listHeader">
                              <div class="col-form-label-lg">
@@ -92,8 +87,6 @@
                         <div id="listBody">
                         </div>
                     </div>
-                 <!--</div>
-            </div>-->
         </div>
     <!--</div>-->
 
@@ -101,11 +94,6 @@
 </div>
 
 </body>
-<!--
-<script id="li-template" type="text/x-handlebars-template">
-    <li class="list-group-item list-group-item-action" data-no="{{no}}">{{type}}/{{history}}/{{amount}}</li>
-</script>
--->
 <script id="li-template" type="text/x-handlebars-template">
     <div class="table">
         <div class="row list-group-item list-group-item-action" data-no="{{no}}">

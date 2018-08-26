@@ -30,28 +30,33 @@ public class AmountController {
     public Object list(HttpServletRequest httpRequest) throws Exception {
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
-        
-        int userNo = loginUser.getNo();
 
-        List<DayHistory> list = amountService.list(userNo);
-        HashMap<String,Object> data = new HashMap<>();
-        data.put("list", list);
+
+        HashMap<String, Object> data = new HashMap<>();
+        try {
+            List<DayHistory> list = amountService.list(loginUser.getNo());
+            data.put("list", list);
+        } catch (Exception e) {
+            data.put("status", "fail");
+            data.put("message", e.getMessage());
+        }
         return data;
     }
     
     @GetMapping("{no}")
     public Object get(
             @PathVariable int no, HttpSession session) {
-        
-        Member loginUser = 
-                (Member)session.getAttribute("loginUser");
-        
-        Amount amount = 
-                amountService.get(no, loginUser.getNo());
-        
+        Member loginUser = (Member)session.getAttribute("loginUser");
+
         HashMap<String,Object> result = new HashMap<>();
-        result.put("status", "success");
-        result.put("data", amount);
+        try {
+            Amount amount = amountService.get(no, loginUser.getNo());
+            result.put("status", "success");
+            result.put("data", amount);
+        } catch (Exception e) {
+            result.put("status", "fail");
+            result.put("message", e.getMessage());
+        }
         return result;
     }    
     
@@ -61,18 +66,17 @@ public class AmountController {
             HttpServletRequest httpRequest) {
         
         HttpSession session = httpRequest.getSession();
-        
         Member loginUser = (Member) session.getAttribute("loginUser");
-        
-        System.out.println(loginUser);
-        
-        amount.setMemberNo(loginUser.getNo());
-        System.out.println(amount);
-        
-        amountService.add(amount);
-        
+
         HashMap<String,Object> result = new HashMap<>();
-        result.put("status", "success");
+        try {
+            amount.setMemberNo(loginUser.getNo());
+            amountService.add(amount);
+            result.put("status", "success");
+        } catch (Exception e) {
+            result.put("status", "fail");
+            result.put("message", e.getMessage());
+        }
         return result;
     }
     
@@ -85,16 +89,17 @@ public class AmountController {
         HttpSession session = httpRequest.getSession();
         
         Member loginUser = (Member) session.getAttribute("loginUser");
-        
-        System.out.println(loginUser);
-        
-        amount.setMemberNo(loginUser.getNo());
-        System.out.println(amount);
-        
-        amountService.update(amount);
-        
-        HashMap<String,Object> result = new HashMap<>();
-        result.put("status", "success");
+
+
+        HashMap<String, Object> result = new HashMap<>();
+        try {
+            amount.setMemberNo(loginUser.getNo());
+            amountService.update(amount);
+            result.put("status", "success");
+        } catch (Exception e) {
+            result.put("status", "fail");
+            result.put("message", e.getMessage());
+        }
         return result;
     }
     
@@ -102,34 +107,18 @@ public class AmountController {
     public Object delete(
             int no,
             HttpServletRequest httpRequest) {
-
-        System.out.println(no);
-        
         HttpSession session = httpRequest.getSession();
-        
         Member loginUser = (Member) session.getAttribute("loginUser");
-        
-        System.out.println(loginUser);
-        
-        amountService.delete(no, loginUser.getNo());
-        
-        HashMap<String,Object> data = new HashMap<>();
-        data.put("status", "success");
-        return data;
 
+        HashMap<String,Object> data = new HashMap<>();
+        try {
+            amountService.delete(no, loginUser.getNo());
+            data.put("status", "success");
+            return data;
+        } catch (Exception e) {
+            data.put("status", "fail");
+            data.put("message", e.getMessage());
+        }
+        return data;
     }
-    
-    /*    @CrossOrigin
-    @RequestMapping("list2")
-    public Object list2(HttpServletRequest httpRequest) throws Exception {
-     *//*HttpSession session = httpRequest.getSession();
-        Member loginUser = (Member) session.getAttribute("loginUser");
-
-        int memberNo = loginUser.getNo();*//*
-        List<DayHistory> list = amountService.list2(11);
-
-        HashMap<String,Object> data = new HashMap<>();
-        data.put("list", list);
-        return data;
-    }*/
 }

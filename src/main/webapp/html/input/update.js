@@ -4,7 +4,7 @@
 $('#update-btn').on('click',() => {
     console.log('완료 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/update`, {
-        'memberNo':3/*$('#mno').val()*/,
+        'no':3/*$('#no').val()*/,
         'amountType': $('#type').val(),
         'history': $('#history').val(),
         'amount': $('#amount').val(),
@@ -12,10 +12,16 @@ $('#update-btn').on('click',() => {
         'memo': $('#memo').val(),
         'happenDate': $('#date').val()
     }, (result) => {
-
-        if (result.status !== 'success') return;
-        alert('변경 실패')
-        
+        if (result.status === 'success') {
+            swal('감사합니다!',
+                '변경 되었습니다.',
+                'success'
+            ).then(function() {
+                /*location.href = '../main/list.html';*/
+            });
+        } else {
+            alert('변경 실패')
+        }
     }, 'json')
     .fail(() => {
         alert('서버 요청 중 오류 발생!')
