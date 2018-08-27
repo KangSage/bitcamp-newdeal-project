@@ -65,7 +65,7 @@
         now())
     </insert>
 
-    <select id="selectList" parameterType="int" resultMap="DayHistoryMap" >
+    <!-- <select id="selectList" parameterType="int" resultMap="DayHistoryMap" >
         SELECT
             date_format(hdt, '%Y-%m-%d') day,
             amntno,
@@ -75,9 +75,21 @@
             date_format(date, '%Y-%m-%d') amnt_dt*/
         FROM bc_amount
         WHERE mno = #{value}
-        ORDER BY hdt DESC, cdt DESC;
+        ORDER BY hdt DESC, cdt DESC
+    </select> -->
+
+    <select id="selectList" parameterType="map" resultMap="DayHistoryMap" >
+        SELECT
+          date_format(hdt, '%Y-%m-%d') day,
+          amntno,
+          attype,
+          hst,
+          amnt
+        FROM bc_amount
+        WHERE mno = #{userNo} and hdt LIKE #{month}
+        ORDER BY hdt DESC, cdt DESC
     </select>
-    
+
     <update id="update" parameterType="Amount">
         update bc_amount set
             attype = #{amountType},

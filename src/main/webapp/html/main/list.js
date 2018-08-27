@@ -7,45 +7,89 @@ exampleModalCenter.load('listModal.html');
 var liTemplateSrc = $('#li-template').text();
 var template = Handlebars.compile(liTemplateSrc);
 
-$.post(`${serverApiAddr}/json/amount/list`, (result) => {
+const getYymm = (date, number) => {
 
-    if (result.status === 'fail') {
-        swal('로그인 되지 않았습니다.',
-            '로그인 페이지로 이동합니다.',
-            'error'
-        ).then(function() {
-            location.href = '../login.html';
-        });
+    if (number === undefined) {
+        number = 1;
     }
+    const yyyy = date.getFullYear();
+    const mm = date.getMonth() < 9 ? `0${date.getMonth() + number}` :
+        (date.getMonth() + number);
+    return `${yyyy}-${mm}`
+};
 
-   console.log(result);
-    var {list} = result;
-    var list = result.list;
-    console.log(list);
-    for (let i=0; i < list.length; i++){
-        let {day, amounts} = list[i];
-        let headElement = $("<div></div>").addClass("list-group-item");
-        headElement.append(day);
+let month = getYymm(new Date());
 
-      for(let j = 0; j < amounts.length; j++) {
-          var html = template(amounts[j]);
-            headElement.append(html);
-        }
-        $('#listBody').append(headElement);
+$(document).ready(
+    requestList(month)
+);
+
+$('#this-month').html(month);
+
+$('#select-month').on('click', (e) => {
+    if ($(e.target).attr('id') === 'last-month-btn') {
+        console.log('이전 달로 이동');
+        month = getYymm(new Date(), 0);
+        $('#this-month').html(month);
+        $('#listBody').html('');
+        requestList(month);
+
+    } else if ($(e.target).attr('id') === 'next-month-btn') {
+        console.log('다음 달로 이동');
+        month = getYymm(new Date(), 2);
+        $('#this-month').html(month);
+        $('#listBody').html('');
+        requestList(month);
     }
 });
+
+function requestList(month) {
+    $.post(`${serverApiAddr}/json/amount/list`,
+        {
+            'month' : month
+        },
+        (result) => {
+
+            if (result.status === 'fail') {
+                swal('로그인 되지 않았습니다.',
+                    '로그인 페이지로 이동합니다.',
+                    'error'
+                ).then(function() {
+                    location.href = '../login.html';
+                });
+            }
+
+            console.log(result);
+            var {list} = result;
+            /*var list = result.list;*/
+            console.log(list);
+
+            for (let i=0; i < list.length; i++){
+                let {day, amounts} = list[i];
+                let headElement = $("<div></div>").addClass("list-group-item");
+                headElement.append(`<div id="day">${day}</div>`);
+
+                for(let j = 0; j < amounts.length; j++) {
+                    var html = template(amounts[j]);
+                    headElement.append(html);
+                }
+                $('#listBody').append(headElement);
+            }
+        });
+}
+
+
 
 exampleModalCenter.on('click', '#add-btn', () => {
     console.log('추가 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/add`,
         {
-            'memberNo': 1 /*$('#mno').val()*/,
-            'amountType': $('#type').val(),
+            'amountType': $('#amount-type').val(),
             'history': $('#history').val(),
             'amount': $('#amount').val(),
             'category': $('#category').val(),
             'memo': $('#memo').val(),
-            'happenDate': $('#date').val()
+            'happenDate': $('#happen-date').val()
         },
         function(data) {
             console.log(data);
@@ -54,23 +98,25 @@ exampleModalCenter.on('click', '#add-btn', () => {
         'json');
 });
 
+let listNo = null;
+
 exampleModalCenter.on('click', '#update-btn', () => {
     console.log('완료 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/update`, {
-        'no':3/*$('#no').val()*/,
-        'amountType': $('#type').val(),
+        'no': listNo,
+        'amountType': $('#amount-type').val(),
         'history': $('#history').val(),
         'amount': $('#amount').val(),
         'category': $('#category').val(),
         'memo': $('#memo').val(),
-        'happenDate': $('#date').val()
+        'happenDate': $('#happen-date').val()
     }, (result) => {
         if (result.status === 'success') {
             swal('감사합니다!',
                 '변경 되었습니다.',
                 'success'
             ).then(function() {
-                /*location.href = '../main/list.html';*/
+                location.reload();
             });
         } else {
             swal('변경 실패!',
@@ -89,7 +135,7 @@ exampleModalCenter.on('click', '#update-btn', () => {
 
 exampleModalCenter.on('click', '#delete-btn', () => {
     console.log('삭제 버튼 클릭');
-    $.post(`${serverApiAddr}/json/amount/delete`, {no:2})
+    $.post(`${serverApiAddr}/json/amount/delete`, {no:listNo})
         .done(function(data) {
             console.log(data)
             if (data.status == 'success') {
@@ -117,16 +163,14 @@ exampleModalCenter.on('click', '#delete-btn', () => {
 // 수입 화면으로 변환
 exampleModalCenter.on('click', '#in-btn', () => {
     console.log('in-btn');
-    $('#type').val('수입');
+    $('#amount-type').val('수입');
     $('#category').val('Choose...');
-    console.log($('#type').val());
+    console.log($('#amount-type').val());
 
     $('#ex-btn').css('background', '#e1c5ec');
     $('#in-btn').css('background', '#d33f8d');
 
-    $('#input-plcnm').css('visibility', 'hidden');
-    $('#input-plc').css('visibility', 'hidden');
-    $('#input-rcpt').css('visibility', 'hidden');
+    $('#expenditure-input').css('display', 'none');
 
     $('.ex-category').hide();
     $('.in-category').show();
@@ -137,14 +181,15 @@ exampleModalCenter.on('click', '#in-btn', () => {
 exampleModalCenter.on('click', '#ex-btn', () => {
     console.log('ex-btn');
     $(".hst").empty();
-    $('#type').val('지출');
+    $('#amount-type').val('지출');
     $('#category').val('Choose...');
-    console.log($('#type').val());
+    console.log($('#amount-type').val());
 
     $('#in-btn').css('background', '#e1c5ec');
     $('#ex-btn').css('background', '#d33f8d');
 
-    $('.input-group').css('visibility', 'visible');
+    $('#expenditure-input').css('display', '');
+    $('.input-group').show();
 
     $('.in-category').hide();
     $('.ex-category').show();
@@ -153,10 +198,35 @@ exampleModalCenter.on('click', '#ex-btn', () => {
 
 // moodal 창에 값을 넘긴다.
 exampleModalCenter.on('show.bs.modal', function (e) {
-    var no = $(e.relatedTarget).data('no'); // data-no의 값을 가져온다.
-    $.getJSON(`${serverApiAddr}/json/amount/${no}`, (data) => {
-        
-    });
-    $(e.currentTarget).find('#list-no').val(no); //
+    $('#ex-btn').trigger('click');
+    let currentTarget = $(e.currentTarget);
+    let no = $(e.relatedTarget).data('no');
+    listNo = no;
+    currentTarget.find('.form-control').val('');
+
+    if (typeof no === 'number') {
+
+        $('.new-ctrl').hide();
+        $('.view-ctrl').show();
+        $.getJSON(`${serverApiAddr}/json/amount/${no}`, (result) => {
+            let {data, status} = result;
+            if (data.amountType === '수입') {
+                $('#in-btn').trigger('click')
+            }
+            currentTarget.find('#list-no').val(data.no);
+            currentTarget.find('#history').val(data.history);
+            currentTarget.find('#amount').val(data.amount);
+            currentTarget.find('#category').val(data.category);
+            currentTarget.find('#memo').val(data.memo);
+            currentTarget.find('#happen-date').val(data.happenDate);
+        });
+
+    } else {
+        $('.view-ctrl').hide();
+        $('.new-ctrl').show();
+    }
 });
+
+
+
 

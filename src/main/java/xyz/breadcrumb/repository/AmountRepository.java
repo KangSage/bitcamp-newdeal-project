@@ -1,20 +1,20 @@
 package xyz.breadcrumb.repository;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import xyz.breadcrumb.domain.Amount;
 import xyz.breadcrumb.domain.DayHistory;
 
 public interface AmountRepository {
     
-    List<DayHistory> selectList(int userNo);
+    List<DayHistory> selectList(Map<String, Object> params);
     
-    Amount findByAmountNoAndMemberNo(HashMap<String, Object> params);
+    Amount findByAmountNoAndMemberNo(Map<String, Object> params);
     
     int insert(Amount amount);
     
     int update(Amount amount);
     
-    int delete(HashMap<String, Object> params);
+    int delete(Map<String, Object> params);
 }

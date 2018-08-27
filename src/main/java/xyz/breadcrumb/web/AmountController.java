@@ -27,14 +27,14 @@ public class AmountController {
     
     @CrossOrigin()
     @RequestMapping("list")
-    public Object list(HttpServletRequest httpRequest) throws Exception {
+    public Object list(String month, HttpServletRequest httpRequest) throws Exception {
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
 
 
         HashMap<String, Object> data = new HashMap<>();
         try {
-            List<DayHistory> list = amountService.list(loginUser.getNo());
+            List<DayHistory> list = amountService.list(loginUser.getNo(), month + "%");
             data.put("list", list);
         } catch (Exception e) {
             data.put("status", "fail");
@@ -64,13 +64,16 @@ public class AmountController {
     public Object add(
             Amount amount,
             HttpServletRequest httpRequest) {
-        
+
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
+
+        System.out.printf("loginUser => %s\n", loginUser);
 
         HashMap<String,Object> result = new HashMap<>();
         try {
             amount.setMemberNo(loginUser.getNo());
+            System.out.printf("amount => %s\n", amount);
             amountService.add(amount);
             result.put("status", "success");
         } catch (Exception e) {

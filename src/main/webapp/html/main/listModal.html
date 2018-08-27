@@ -12,52 +12,40 @@ aria-label="Close">
 <div class="limiter">
 <div class="container-login100">
 <div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
-<form class="login100-form validate-form">
-<div class="container-login100-form-btn p-t-25">
-<button type="button" class="login100-form-btn"
-id="in-btn">
-수입
-</button>
-<button type="button" class="login100-form-btn"
-id="ex-btn">
-지출
-</button>
+<div class="login100-form validate-form">
 
+<!-- 수입 지출 버튼 묶음 div -->
+<div class="container-login100-form-btn p-t-25">
+<button type="button" class="login100-form-btn" id="in-btn">수입</button>
+<button type="button" class="login100-form-btn" id="ex-btn">지출</button>
 </div>
 
+<!-- list-no div -->
 <div>
     <input type="hidden" id="list-no">
 </div>
 
 <div class="input-group mb-2">
 <div class="input-group-prepend">
-<span class="input-group-text"
-id="inputGroup-sizing-default"> <span
-class="lnr lnr-apartment"></span></span>
+<span class="input-group-text" id="inputGroup-sizing-default">
+<span class="lnr lnr-apartment"></span>
+</span>
 </div>
-<input type="text" class="form-control"
-aria-label="Sizing example input"
-aria-describedby="inputGroup-sizing-default"
-id="history"
-placeholder="내역">
+<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="history" placeholder="내역">
 </div>
 
 <div class="input-group mb-2">
 <div class="input-group-prepend">
-<span class="input-group-text"> <span
-class="lnr lnr-database"></span></span>
+<span class="input-group-text">
+    <span class="lnr lnr-database"></span>
+</span>
 </div>
-<input type="text" class="form-control"
-aria-label="Sizing example input"
-aria-describedby="inputGroup-sizing-default"
-id="amount"
-placeholder="금액">
+<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="amount" placeholder="금액">
 </div>
 
 <div class="input-group mb-2">
 <div class="input-group-prepend">
-<label class="input-group-text"
-for="inputGroupSelect01">
+<label class="input-group-text" for="category">
 <span class="lnr lnr-menu"></span>
 </label>
 </div>
@@ -76,75 +64,61 @@ for="inputGroupSelect01">
 
 <div class="input-group mb-2">
 <div class="input-group-prepend">
-<span class="input-group-text"
-id="inputGroup-sizing-default"> <span
-class="lnr lnr-pencil"></span></span>
+<span class="input-group-text" id="inputGroup-sizing-default">
+    <span class="lnr lnr-pencil"></span>
+</span>
 </div>
-<input type="text" class="form-control"
-aria-label="Sizing example input"
-aria-describedby="inputGroup-sizing-default"
-id="memo"
-placeholder="메모">
+
+<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="memo" placeholder="메모">
 </div>
 
 <div class="input-group mb-2">
 <div class="input-group-prepend">
-<span class="input-group-text"
-id="inputGroup-sizing-default"> <span
-class="lnr lnr-calendar-full"></span></span>
+<span class="input-group-text" id="inputGroup-sizing-default">
+    <span class="lnr lnr-calendar-full"></span>
+</span>
 </div>
-<input type="date" class="form-control"
-aria-label="Sizing example input"
-aria-describedby="inputGroup-sizing-default"
-id="date">
+<input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="happen-date">
 </div>
 
-<div class="input-group mb-2" id="input-plcnm">
+
+<div id="expenditure-input"> <!-- 지출 -->
+<div class="input-group mb-2" id="input-place-name">
 <div class="input-group-prepend">
-<span class="input-group-text"
-id="inputGroup-sizing-default"> <span
-class="lnr lnr-store"></span></span>
+<span class="input-group-text" id="inputGroup-sizing-default">
+    <span class="lnr lnr-store"></span>
+</span>
 </div>
-<input type="text" class="form-control"
-aria-label="Sizing example input"
-aria-describedby="inputGroup-sizing-default"
-id="plcnm"
-placeholder="사용처">
+<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="place-name" placeholder="사용처">
 </div>
 
-<div class="input-group mb-2" id="input-plc">
+<div class="input-group mb-2" id="input-place">
 <div class="input-group-prepend">
-<span class="input-group-text"
-id="inputGroup-sizing-default"> <span
-class="lnr lnr-map-marker"></span></span>
+<span class="input-group-text" id="inputGroup-sizing-default">
+    <span class="lnr lnr-map-marker"></span>
+</span>
 </div>
-<input type="text" class="form-control"
-aria-label="Sizing example input"
-aria-describedby="inputGroup-sizing-default"
-id="plc"
-placeholder="지도">
+<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="place" placeholder="지도">
 </div>
 
-<div class="input-group mb-2" id="input-rcpt">
+<div class="input-group mb-2" id="input-receipt">
 <div class="input-group-prepend">
-<span class="input-group-text"
-id="inputGroupFileAddon01">
-<span class="lnr lnr-picture"></span>
+<span class="input-group-text" id="inputGroupFileAddon01">
+<span class="lnr lnr-picture">
+</span>
 </span>
 </div>
 
-<div class="custom-file">
-<input type="file" class="custom-file-input"
-id="inputGroupFile01"
-aria-describedby="inputGroupFileAddon01"
-id="rcpt">
-<label class="custom-file-label"
-for="inputGroupFile01"></label>
-</div>
-</div>
 
-<input type="hidden" id="type" placeholder="입출금유형">
-</form>
+<div class="custom-file">
+<input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01" id="receipt">
+<label class="custom-file-label" for="receipt"></label>
+</div>
+</div>
+</div>
+</div> <!-- div#expenditure-input -->
+
+<input type="hidden" id="amount-type" placeholder="입출금유형">
 
 </div>
 </div>
@@ -158,4 +132,4 @@ for="inputGroupFile01"></label>
 
 </div>
 </div>
-<!-- Modal  end-->
+<!-- Modal end-->

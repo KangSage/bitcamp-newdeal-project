@@ -7,7 +7,7 @@ import xyz.breadcrumb.domain.DayHistory;
 
 public interface AmountService {
     
-    List<DayHistory> list(int userNo);
+    List<DayHistory> list(int userNo, String month);
     
     Amount get(int amountNo, int userNo);
     

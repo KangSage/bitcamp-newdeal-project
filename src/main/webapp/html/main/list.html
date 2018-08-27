@@ -78,6 +78,18 @@
         .table {display: table;}
         .row {display: table-row;}
         .cell {display: table-cell; padding: 3px; border-bottom: 1px solid #DDD;}
+        .col-1 {
+            width: 20%;
+            text-align: center;
+        }
+        .col-2 {
+            width: 60%;
+            text-align: center;
+        }
+        .col-3 {
+            width: 20%;
+            text-align: center;
+        }
         .col1 {width: 30%;}
         .col2 {width: 30%;}
         .col3 {width: 40%;}
@@ -99,10 +111,10 @@
 <div id="listHeader">
 <div class="col-form-label-lg">
 <div class="table">
-<div class="row list-group-item">
-<span class="cell col1">유형</span>
-<span class="cell col2">내역</span>
-<span class="cell col3">금액</span>
+<div class="row list-group-item" id="select-month">
+<span class="cell col-1 lnr lnr-arrow-left" id="last-month-btn"></span>
+<span class="cell col-2" id="this-month"></span>
+<span class="cell col-3 lnr lnr-arrow-right" id="next-month-btn"></span>
 </div>
 </div>
 </div>
@@ -134,7 +146,7 @@
 </script>
 <script src="../../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="../../node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
-<script src="../../node_modules/popper.js/dist/popper.min.js" type="text/javascript"></script>
+<script src="../../node_modules/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../../node_modules/select2/dist/js/select2.min.js"></script>
 <script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
