@@ -1,7 +1,7 @@
 "use strict"
 
 
-
+//비밀번호 변경
 $('#update-password').on('click',()=>{
   (async function getFormValues () {
     const {value: formValues} = await swal({
@@ -30,4 +30,44 @@ $('#update-password').on('click',()=>{
     }
     
     })()
+})
+
+//로그아웃
+$('#logout-btn').on('click',()=>{
+    swal({
+        title: '로그아웃 <br> 하시겠습니까?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'yes'
+      }).then((result) => {
+        if (result.value) {
+          swal(
+            '로그아웃 성공',
+            '로그아웃 되었습니다.',
+            'success'
+          )
+        }
+      })
+})
+
+//회원탈퇴
+$('#dropout-btn').on('click',()=>{
+    swal({
+        title: '정말로 <br> 탈퇴하시겠습니까?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'yes'
+      }).then((result) => {
+        if (result.value) {
+          swal(
+            '탈퇴 성공',
+            '탈퇴 되었습니다.',
+            'success'
+          )
+        }
+      })
 })
