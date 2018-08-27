@@ -20,14 +20,48 @@
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <style>
 
-        /**{margin:0;padding:0;list-style: none;}*/
+        button#in-btn {
+            width: 28%;
+            margin-right: 7%;
+            margin-bottom: 5%;
+            background-color: #e1c5ec;
+        }
 
-/*        .view {
-            width:200px;
-            height:150px;
-            border:1px solid red;
-            overflow: hidden;
-        }*/
+        button#ex-btn {
+            width: 28%;
+            margin-left: 7%;
+        }
+
+        .login100-form-btn {
+            height: 25px;
+        }
+
+        #modal-btn{
+            font-size : 50px;
+            color : rgb(95, 75, 139);
+            position: absolute;
+            bottom:20px;
+            right:20px;
+            margin:0;
+            padding: 0;
+
+
+
+        }
+
+        .modal-content{
+            background-color: transparent;
+
+        }
+        .modal-footer{
+            background-color: rgba(255,255,255,0.69);
+            border-bottom-left-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+
+        }
+        .modal-header{
+            background-color: rgba(255,255,255,0.69);
+        }
 
         .scrollBlind {
             width:100%;
@@ -51,52 +85,47 @@
 </head>
 
 <body>
-    <div class="wrapper">
+<div class="wrapper">
+<!-- 사이드바  -->
+<div class="sidebar"></div>
         
-        <!-- 사이드바  -->
-        <div class="sidebar"></div>
-        
-        <!-- 메인 페이지 -->
-        <div class="main-panel">
-        
-        <!-- 헤더 -->
-        <header></header>
+<!-- 메인 페이지 -->
+<div class="main-panel">
 
-
-    <!--<div class="content">-->
-        <div class="container-fluid">
-<!--            <div class="row">
-                <div class="col-lg-12">-->
-            <div class="row list-group-item" style="width:100%;">
-                <span class="cell col1">유형</span>
-                <span class="cell col2">분류</span>
-                <span class="cell col3">금액</span>
-            </div>
-                     <div class="scrollBlind">
-                         <div id="listHeader">
-                             <div class="col-form-label-lg">
-                             <div class="table">
-                                 <div class="row list-group-item">
-                                     <span class="cell col1">유형</span>
-                                     <span class="cell col2">분류</span>
-                                     <span class="cell col3">금액</span>
-                                 </div>
-                             </div>
-                             </div>
-                         </div>
-                        <div id="listBody">
-                        </div>
-                    </div>
-        </div>
-    <!--</div>-->
-
+<!-- 헤더 -->
+<header></header>
+<div class="container-fluid">
+<div class="scrollBlind">
+<div id="listHeader">
+<div class="col-form-label-lg">
+<div class="table">
+<div class="row list-group-item">
+<span class="cell col1">유형</span>
+<span class="cell col2">내역</span>
+<span class="cell col3">금액</span>
+</div>
+</div>
+</div>
+</div>
+<div id="listBody">
+</div>
+</div>
+</div>
 </div> <!-- 메인 페이지  끝-->
 </div>
 
+<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+     role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+
+</div>
+
+<button href="#" type="button" class="lnr lnr-plus-circle" id="modal-btn"
+        data-toggle="modal" data-target="#exampleModalCenter"> </button>
 </body>
 <script id="li-template" type="text/x-handlebars-template">
     <div class="table">
-        <div class="row list-group-item list-group-item-action" data-no="{{no}}">
+        <div class="row list-group-item list-group-item-action modalCheck" data-no="{{no}}" data-toggle="modal" data-target="#exampleModalCenter">
             <span class="cell col1">{{amountType}}</span>
             <span class="cell col2">{{history}}</span>
             <span class="cell col3">{{amount}}</span>
@@ -113,7 +142,4 @@
 <script src="../../js/common2.js"></script>
 <script src="../dashboard.js" type="text/javascript"></script>
 <script src="list.js"></script>
-
- 
-
 </html>

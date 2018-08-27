@@ -30,18 +30,18 @@ public class AuthController {
 
        System.out.println(saveEmail);
        Cookie cookie = null;
-        if (saveEmail) {
-            // 입력폼에서 로그인할 때 사용한 ID를 자동으로 출력할 수 있도록
-            // 웹브라우저로 보내 저장시킨다.
-            cookie = new Cookie("email", email);
-            cookie.setMaxAge(60 * 60 * 24 * 7);
-        } else { // "아이디 저장" 체크박스를 체크하지 않았다면
-            cookie = new Cookie("email", "");
-            cookie.setMaxAge(0); // 웹브라우저에 "id"라는 이름으로 저장된 쿠키가 있다면 제거한다.
-            // 즉 유효기간을 0으로 설정함으로써 "id"라는 이름의 쿠키를 무효화시키는 것이다.
-        }
+       if (saveEmail) {
+           // 입력폼에서 로그인할 때 사용한 ID를 자동으로 출력할 수 있도록
+           // 웹브라우저로 보내 저장시킨다.
+           cookie = new Cookie("email", email);
+           cookie.setMaxAge(60 * 60 * 24 * 7);
+       } else { // "아이디 저장" 체크박스를 체크하지 않았다면
+           cookie = new Cookie("email", "");
+           cookie.setMaxAge(0); // 웹브라우저에 "id"라는 이름으로 저장된 쿠키가 있다면 제거한다.
+           // 즉 유효기간을 0으로 설정함으로써 "id"라는 이름의 쿠키를 무효화시키는 것이다.
+       }
 
-        response.addCookie(cookie);
+       response.addCookie(cookie);
 
         HashMap<String,Object> params = new HashMap<>();
         params.put("email", email);

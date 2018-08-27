@@ -8,17 +8,15 @@ let loginEmail = $('#loginEmail'),
     loginBtn = $('#login-btn'),
     goSignUp = $('#go-sign-up');
 
-
-    $(document).ready(() => {
-        if ($.cookie('email')) {
-            loginSaveEmail.prop('checked', true);
-            loginEmail.val($.cookie('email'));
-        } else if ($.cookie('')) {
-            loginSaveEmail.prop('checked', false);
-            loginEmail.val('');
-        }
-    });
-
+$(document).ready(() => {
+    if ($.cookie('email')) {
+        loginSaveEmail.prop('checked', true);
+        loginEmail.val($.cookie('email'));
+    } else if ($.cookie('')) {
+        loginSaveEmail.prop('checked', false);
+        loginEmail.val('');
+    }
+});
 
 // 로그인 버튼을 클릭 시 이벤트 처리.
 loginBtn.on("click", () => {
