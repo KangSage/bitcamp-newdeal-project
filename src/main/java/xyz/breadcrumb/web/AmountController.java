@@ -43,9 +43,16 @@ public class AmountController {
 
         try {
             List<DayHistory> list = amountService.list(loginUser.getNo(), selectDate + '%');
-            int totalAmounts = amountService.getTotalAmounts(loginUser.getNo(), selectDate + '%');
+            int totalIncomeAmount = amountService.getTotalAmount(loginUser.getNo(), "수입", selectDate + '%');
+            int totalBudgetAmount = amountService.getTotalAmount(loginUser.getNo(), "지출", selectDate + '%');
+
+            int monthlyTotalAmount = (totalIncomeAmount - totalBudgetAmount);
+
             data.put("list", list);
             data.put("selectDate",  selectDate);
+            data.put("totalIncomeAmount",  totalIncomeAmount);
+            data.put("totalBudgetAmount",  totalBudgetAmount);
+            data.put("monthlyTotalAmount", monthlyTotalAmount);
         } catch (Exception e) {
             data.put("status", "fail");
             data.put("message", e.getMessage());

@@ -27,8 +27,12 @@ public class AmountServiceImpl implements AmountService {
     }
 
     @Override
-    public int getTotalAmounts(int userNo, String month) {
-        return 0;
+    public int getTotalAmount(int userNo, String amountType, String month) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("userNo", userNo);
+        params.put("month", month);
+        params.put("amountType", amountType);
+        return amountRepository.findTotalByAmountTypeAndMonth(params);
     }
 
     @Override

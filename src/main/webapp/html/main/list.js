@@ -45,6 +45,10 @@ $('#select-month').on('click', (e) => {
     }
 });
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function requestList(monthOperator) {
     $.post(`${serverApiAddr}/json/amount/list`,
         {
@@ -62,15 +66,20 @@ function requestList(monthOperator) {
             }
 
             console.log(result);
-            var {list, selectDate} = result;
-            /*var list = result.list;*/
-            console.log(list);
-            console.log(selectDate);
+            let {list, selectDate, totalIncomeAmount, totalBudgetAmount, monthlyTotalAmount} = result;
+
+            console.log('totalIncomeAmount', totalIncomeAmount);
+            console.log('totalBudgetAmount', totalBudgetAmount);
+            console.log('MonthlyTotalAmount', monthlyTotalAmount);
             $('#this-month').html(selectDate);
+            $('#total-income-amount').html(numberWithCommas(totalIncomeAmount)+'원');
+            $('#total-budget-amount').html(numberWithCommas(totalBudgetAmount)+'원');
+            $('#monthly-total-amount').html(numberWithCommas(monthlyTotalAmount)+'원');
+
             for (let i=0; i < list.length; i++){
                 let {day, amounts} = list[i];
                 let headElement = $("<div></div>").addClass("list-group-item");
-                headElement.append(`<div id="day">${day}</div>`);
+                headElement.append(`<div class="day">${day}</div>`);
 
                 for(let j = 0; j < amounts.length; j++) {
                     var html = template(amounts[j]);

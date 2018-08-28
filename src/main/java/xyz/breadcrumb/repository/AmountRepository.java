@@ -1,5 +1,6 @@
 package xyz.breadcrumb.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,4 +18,6 @@ public interface AmountRepository {
     int update(Amount amount);
     
     int delete(Map<String, Object> params);
+
+    int findTotalByAmountTypeAndMonth(HashMap<String, Object> params);
 }

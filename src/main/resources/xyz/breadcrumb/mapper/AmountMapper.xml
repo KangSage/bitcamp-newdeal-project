@@ -85,19 +85,19 @@
           amntno,
           attype,
           hst,
-          amnt
+          FORMAT(amnt, 0) amnt
         FROM bc_amount
         WHERE mno = #{userNo} and hdt LIKE #{month}
         ORDER BY hdt DESC, cdt DESC
     </select>
 
-<!--    <select id="selectTotalAmount" parameterType="map">
+    <select id="findTotalByAmountTypeAndMonth" parameterType="map" resultType="int">
         SELECT
           SUM(amnt)
         FROM bc_amount
-        WHERE mno = #{userNo} and hdt LIKE #{month}+'%'
+        WHERE mno = #{userNo} AND attype = #{amountType} AND hdt LIKE #{month}
         ORDER BY hdt DESC, cdt DESC
-    </select>-->
+    </select>
 
 
     <update id="update" parameterType="Amount">
@@ -112,8 +112,8 @@
     </update>
   
     <delete id="delete" parameterType="map">
-    	delete from bc_amount 
-    	where amntno = #{amountNo} and mno = #{userNo}
+        delete from bc_amount
+        where amntno = #{amountNo} and mno = #{userNo}
     </delete>
     
 </mapper>

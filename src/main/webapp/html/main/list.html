@@ -78,18 +78,29 @@
         .table {display: table;}
         .row {display: table-row;}
         .cell {display: table-cell; padding: 3px; border-bottom: 1px solid #DDD;}
-        .col-1 {
+        .col-size1 {
             width: 20%;
             text-align: center;
         }
-        .col-2 {
+        .col-size2 {
             width: 60%;
             text-align: center;
         }
-        .col-3 {
-            width: 20%;
+        .col-size3 {
+            width: 10%;
             text-align: center;
+            border-bottom: 0;
+            display: inline-block;
         }
+        .col-size4 {
+            width: 40%;
+            text-align: right;
+            border-bottom: 0;
+            display: inline-block;
+        }
+
+
+
         .col1 {width: 30%;}
         .col2 {width: 30%;}
         .col3 {width: 40%;}
@@ -112,11 +123,29 @@
 <div class="col-form-label-lg">
 <div class="table">
 <div class="row list-group-item" id="select-month">
-<span class="cell col-1 lnr lnr-arrow-left" id="last-month-btn"></span>
-<span class="cell col-2" id="this-month"></span>
-<span class="cell col-3 lnr lnr-arrow-right" id="next-month-btn"></span>
+<span class="cell col-size1 lnr lnr-arrow-left" id="last-month-btn"></span>
+<span class="cell col-size2" id="this-month"></span>
+<span class="cell col-size1 lnr lnr-arrow-right" id="next-month-btn"></span>
 </div>
 </div>
+
+<div class="table">
+<div class="row list-group-item" id="monthly-total-amount-div">
+    <div class="cell col-size3 lnr lnr-plus-circle" ></div>
+    <div class="cell col-size4" id="total-income-amount"></div>
+    <div class="cell col-size3 lnr lnr-circle-minus"></div>
+    <div class="cell col-size4" id="total-budget-amount"></div>
+</div>
+<div class="row list-group-item">
+    <div class="cell col-size3"></div>
+    <div class="cell col-size4"></div>
+    <div class="cell col-size3 lnr lnr-database"></div>
+    <div class="cell col-size4" id="monthly-total-amount"></div>
+</div>
+</div>
+
+
+
 </div>
 </div>
 <div id="listBody">
@@ -126,7 +155,7 @@
 </div> <!-- 메인 페이지  끝-->
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+<div class="modal fade" exampleModalCenterid="exampleModalCenter" tabindex="-1"
      role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
 

@@ -9,7 +9,7 @@ public interface AmountService {
     
     List<DayHistory> list(int userNo, String month);
 
-    int getTotalAmounts(int userNo, String month);
+    int getTotalAmount(int userNo, String amountType, String month);
 
     Amount get(int amountNo, int userNo);
     

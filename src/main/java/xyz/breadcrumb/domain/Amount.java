@@ -6,7 +6,7 @@ public class Amount {
     private int memberNo;
     private String amountType;
     private String history;
-    private int amount;
+    private String amount;
     private String category;
     private String memo;
     private String happenDate;
@@ -19,7 +19,7 @@ public class Amount {
                 ", memberNo=" + memberNo +
                 ", amountType='" + amountType + '\'' +
                 ", history='" + history + '\'' +
-                ", amount=" + amount +
+                ", amount='" + amount + '\'' +
                 ", category='" + category + '\'' +
                 ", memo='" + memo + '\'' +
                 ", happenDate='" + happenDate + '\'' +
@@ -59,11 +59,11 @@ public class Amount {
         this.history = history;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -98,5 +98,4 @@ public class Amount {
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
-
 }
