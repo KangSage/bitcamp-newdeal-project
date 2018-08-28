@@ -28,6 +28,7 @@ public class AmountController {
     @CrossOrigin()
     @RequestMapping("list")
     public Object list(int monthOperator, HttpServletRequest httpRequest) throws Exception {
+
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
 
@@ -35,16 +36,19 @@ public class AmountController {
         cal.setTime(new Date());
         cal.add(Calendar.MONTH, monthOperator); //들어오는 숫자만큼 더 한다.
 
-        SimpleDateFormat yearMonthFormat = new SimpleDateFormat("yyyy-MM");
+        SimpleDateFormat yearMonthFormat =
+                new SimpleDateFormat("yyyy-MM");
+
         String selectDate = yearMonthFormat.format(cal.getTime());
-        System.out.printf("만들어낸 날짜 => %s\n", selectDate);
 
         HashMap<String, Object> data = new HashMap<>();
 
         try {
             List<DayHistory> list = amountService.list(loginUser.getNo(), selectDate + '%');
-            int totalIncomeAmount = amountService.getTotalAmount(loginUser.getNo(), "수입", selectDate + '%');
-            int totalBudgetAmount = amountService.getTotalAmount(loginUser.getNo(), "지출", selectDate + '%');
+            int totalIncomeAmount =
+                    amountService.getTotalAmount(loginUser.getNo(), "수입", selectDate + '%');
+            int totalBudgetAmount =
+                    amountService.getTotalAmount(loginUser.getNo(), "지출", selectDate + '%');
 
             int monthlyTotalAmount = (totalIncomeAmount - totalBudgetAmount);
 
@@ -56,6 +60,7 @@ public class AmountController {
         } catch (Exception e) {
             data.put("status", "fail");
             data.put("message", e.getMessage());
+            data.put("selectDate",  selectDate);
         }
         return data;
     }
@@ -85,8 +90,6 @@ public class AmountController {
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
 
-        System.out.printf("loginUser => %s\n", loginUser);
-
         HashMap<String,Object> result = new HashMap<>();
         try {
             amount.setMemberNo(loginUser.getNo());
@@ -109,7 +112,6 @@ public class AmountController {
         HttpSession session = httpRequest.getSession();
         
         Member loginUser = (Member) session.getAttribute("loginUser");
-
 
         HashMap<String, Object> result = new HashMap<>();
         try {

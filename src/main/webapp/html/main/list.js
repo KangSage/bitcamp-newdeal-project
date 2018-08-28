@@ -33,7 +33,6 @@ $('#select-month').on('click', (e) => {
     if ($(e.target).attr('id') === 'last-month-btn') {
         console.log('이전 달로 이동');
         monthOperator--;
-
         $('#listBody').html('');
         requestList(monthOperator);
 
@@ -45,8 +44,10 @@ $('#select-month').on('click', (e) => {
     }
 });
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+function numberWithCommas(amount) {
+    if (amount === undefined)
+        return;
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function requestList(monthOperator) {
@@ -63,29 +64,37 @@ function requestList(monthOperator) {
                 ).then(function() {
                     location.href = '../login.html';
                 });
-            }
-
-            console.log(result);
-            let {list, selectDate, totalIncomeAmount, totalBudgetAmount, monthlyTotalAmount} = result;
-
-            console.log('totalIncomeAmount', totalIncomeAmount);
-            console.log('totalBudgetAmount', totalBudgetAmount);
-            console.log('MonthlyTotalAmount', monthlyTotalAmount);
-            $('#this-month').html(selectDate);
-            $('#total-income-amount').html(numberWithCommas(totalIncomeAmount)+'원');
-            $('#total-budget-amount').html(numberWithCommas(totalBudgetAmount)+'원');
-            $('#monthly-total-amount').html(numberWithCommas(monthlyTotalAmount)+'원');
-
-            for (let i=0; i < list.length; i++){
-                let {day, amounts} = list[i];
+            } else if (result.status === 'fail') {
                 let headElement = $("<div></div>").addClass("list-group-item");
-                headElement.append(`<div class="day">${day}</div>`);
-
-                for(let j = 0; j < amounts.length; j++) {
-                    var html = template(amounts[j]);
-                    headElement.append(html);
-                }
+                    headElement.append(`<div style="font-size: 120%; text-align: center;">해당 월의 등록된 내역이 없습니다.</div>`);
+                $('#this-month').html(result.selectDate);
+                $('#total-income-amount').html('원');
+                $('#total-budget-amount').html('원');
+                $('#monthly-total-amount').html('원');
                 $('#listBody').append(headElement);
+            } else {
+                console.log(result);
+                let {list, selectDate, totalIncomeAmount, totalBudgetAmount, monthlyTotalAmount} = result;
+
+                console.log('totalIncomeAmount', totalIncomeAmount);
+                console.log('totalBudgetAmount', totalBudgetAmount);
+                console.log('MonthlyTotalAmount', monthlyTotalAmount);
+                $('#this-month').html(selectDate);
+                $('#total-income-amount').html(numberWithCommas(totalIncomeAmount) + '원');
+                $('#total-budget-amount').html(numberWithCommas(totalBudgetAmount) + '원');
+                $('#monthly-total-amount').html(numberWithCommas(monthlyTotalAmount) + '원');
+
+                for (let i = 0; i < list.length; i++) {
+                    let {day, amounts} = list[i];
+                    let headElement = $("<div></div>").addClass("list-group-item");
+                    headElement.append(`<div class="day">${day}</div>`);
+
+                    for (let j = 0; j < amounts.length; j++) {
+                        var html = template(amounts[j]);
+                        headElement.append(html);
+                    }
+                    $('#listBody').append(headElement);
+                }
             }
         });
 }
