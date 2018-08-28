@@ -4,6 +4,7 @@ import java.util.List;
 
 public class DayHistory {
     private String day;
+    private int totalAmount;
     private List<Amount> amounts;
 
     public String getDay() {

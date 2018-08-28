@@ -1,7 +1,7 @@
 package xyz.breadcrumb.web;
 
-import java.util.HashMap;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,15 +27,25 @@ public class AmountController {
     
     @CrossOrigin()
     @RequestMapping("list")
-    public Object list(String month, HttpServletRequest httpRequest) throws Exception {
+    public Object list(int monthOperator, HttpServletRequest httpRequest) throws Exception {
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
 
+        Calendar cal = new GregorianCalendar(Locale.KOREA);
+        cal.setTime(new Date());
+        cal.add(Calendar.MONTH, monthOperator); //들어오는 숫자만큼 더 한다.
+
+        SimpleDateFormat yearMonthFormat = new SimpleDateFormat("yyyy-MM");
+        String selectDate = yearMonthFormat.format(cal.getTime());
+        System.out.printf("만들어낸 날짜 => %s\n", selectDate);
 
         HashMap<String, Object> data = new HashMap<>();
+
         try {
-            List<DayHistory> list = amountService.list(loginUser.getNo(), month + "%");
+            List<DayHistory> list = amountService.list(loginUser.getNo(), selectDate + '%');
+            int totalAmounts = amountService.getTotalAmounts(loginUser.getNo(), selectDate + '%');
             data.put("list", list);
+            data.put("selectDate",  selectDate);
         } catch (Exception e) {
             data.put("status", "fail");
             data.put("message", e.getMessage());

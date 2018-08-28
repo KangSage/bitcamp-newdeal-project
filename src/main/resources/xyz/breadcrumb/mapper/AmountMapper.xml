@@ -20,6 +20,7 @@
 
     <resultMap type="DayHistory" id="DayHistoryMap">
         <id column="day" property="day"/>
+        <result column="ttlAmnt" property="totalAmount"/>
         <collection property="amounts" ofType="Amount">
             <id column="amntno" property="no"/>
             <result column="mno" property="memberNo"/>
@@ -89,6 +90,15 @@
         WHERE mno = #{userNo} and hdt LIKE #{month}
         ORDER BY hdt DESC, cdt DESC
     </select>
+
+<!--    <select id="selectTotalAmount" parameterType="map">
+        SELECT
+          SUM(amnt)
+        FROM bc_amount
+        WHERE mno = #{userNo} and hdt LIKE #{month}+'%'
+        ORDER BY hdt DESC, cdt DESC
+    </select>-->
+
 
     <update id="update" parameterType="Amount">
         update bc_amount set

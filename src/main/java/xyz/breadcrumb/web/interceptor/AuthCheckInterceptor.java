@@ -25,7 +25,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
 
         if (loginUser == null) { // 로그인을 하지 않았으면 로그인 폼으로 보낸다.
             HashMap<String,Object> result = new HashMap<>();
-            result.put("status", "fail");
+            result.put("status", "login-fail");
             result.put("message", "사용 권한이 없습니다.");
 
             response.setContentType("application/json;charset=UTF-8");

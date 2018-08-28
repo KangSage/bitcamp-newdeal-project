@@ -19,13 +19,18 @@ public class AmountServiceImpl implements AmountService {
     
     @Override
     public List<DayHistory> list(int userNo, String month) {
-        System.out.printf("쿼리문에 들어갈 년월 => %s", month);
+        System.out.printf("쿼리문에 들어갈 년월 => %s\n", month);
         HashMap<String, Object> params = new HashMap<>();
         params.put("userNo", userNo);
         params.put("month", month);
         return amountRepository.selectList(params);
     }
-    
+
+    @Override
+    public int getTotalAmounts(int userNo, String month) {
+        return 0;
+    }
+
     @Override
     public int add(Amount amount) {
         return amountRepository.insert(amount);

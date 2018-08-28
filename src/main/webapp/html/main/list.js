@@ -12,6 +12,7 @@ const getYymm = (date, number) => {
     if (number === undefined) {
         number = 1;
     }
+
     const yyyy = date.getFullYear();
     const mm = date.getMonth() < 9 ? `0${date.getMonth() + number}` :
         (date.getMonth() + number);
@@ -19,9 +20,11 @@ const getYymm = (date, number) => {
 };
 
 let month = getYymm(new Date());
+let monthOperator = 0;
+console.log(month);
 
 $(document).ready(
-    requestList(month)
+    requestList(monthOperator)
 );
 
 $('#this-month').html(month);
@@ -29,28 +32,27 @@ $('#this-month').html(month);
 $('#select-month').on('click', (e) => {
     if ($(e.target).attr('id') === 'last-month-btn') {
         console.log('이전 달로 이동');
-        month = getYymm(new Date(), 0);
-        $('#this-month').html(month);
+        monthOperator--;
+
         $('#listBody').html('');
-        requestList(month);
+        requestList(monthOperator);
 
     } else if ($(e.target).attr('id') === 'next-month-btn') {
         console.log('다음 달로 이동');
-        month = getYymm(new Date(), 2);
-        $('#this-month').html(month);
+        monthOperator++;
         $('#listBody').html('');
-        requestList(month);
+        requestList(monthOperator);
     }
 });
 
-function requestList(month) {
+function requestList(monthOperator) {
     $.post(`${serverApiAddr}/json/amount/list`,
         {
-            'month' : month
+            'monthOperator' : monthOperator
         },
         (result) => {
 
-            if (result.status === 'fail') {
+            if (result.status === 'login-fail') {
                 swal('로그인 되지 않았습니다.',
                     '로그인 페이지로 이동합니다.',
                     'error'
@@ -60,10 +62,11 @@ function requestList(month) {
             }
 
             console.log(result);
-            var {list} = result;
+            var {list, selectDate} = result;
             /*var list = result.list;*/
             console.log(list);
-
+            console.log(selectDate);
+            $('#this-month').html(selectDate);
             for (let i=0; i < list.length; i++){
                 let {day, amounts} = list[i];
                 let headElement = $("<div></div>").addClass("list-group-item");
@@ -93,7 +96,9 @@ exampleModalCenter.on('click', '#add-btn', () => {
         },
         function(data) {
             console.log(data);
-            location.href = '../main/list.html';
+            $('#listBody').html('');
+            requestList(monthOperator);
+            $('#list-modal-close-btn').trigger('click');
         },
         'json');
 });
@@ -116,7 +121,9 @@ exampleModalCenter.on('click', '#update-btn', () => {
                 '변경 되었습니다.',
                 'success'
             ).then(function() {
-                location.reload();
+                $('#listBody').html('');
+                requestList(monthOperator);
+                $('#list-modal-close-btn').trigger('click');
             });
         } else {
             swal('변경 실패!',
@@ -143,7 +150,9 @@ exampleModalCenter.on('click', '#delete-btn', () => {
                     '삭제 되었습니다.',
                     'success'
                 ).then(function() {
-                    location.reload();
+                    $('#listBody').html('');
+                    requestList(monthOperator);
+                    $('#list-modal-close-btn').trigger('click');
                 });
             } else {
                 console.log(data.message);
