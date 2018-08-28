@@ -31,14 +31,14 @@
 <style>
 #month {
 	border-bottom: 2px solid gray;
-	padding-bottom: 5px;
 	text-align: center;
 }
 
-#middle {
+#middle1 {
 	padding-top: 50px;
 	height: 200px;
 }
+
 
 #bottom {
 	font-size: 75%;
@@ -70,9 +70,6 @@
 	padding-right: 10px;
 }
 
-#font {
-	font-size: 50%;
-}
 
 #budget-setting {
 	margin-left: 56%;
@@ -88,6 +85,76 @@
 	font-weight: bold;
 	color: #e02c7f;
 }
+
+/*상단바(월)*/
+.table {display: table;}
+.row {display: table-row;}
+.cell {display: table-cell; padding: 3px; }
+.col-1 {
+    width: 20%;
+    text-align: center;
+}
+.col-2 {
+    width: 60%;
+    text-align: center;
+}
+.col-3 {
+    width: 20%;
+    text-align: center;
+}
+.col1 {width: 30%;}
+.col2 {width: 30%;}
+.col3 {width: 40%;}
+
+/*예산 세팅 전*/
+
+#middle2 {
+    margin-top: 100px;
+    height: 100%;
+    margin-bottom: 100px;
+}
+
+.form3 {
+    /*              width:75%;  */
+    text-align: center;
+    padding: 8px 10px 8px 0px;
+}
+
+.form4 {
+    padding: 8px 10px 8px;
+}
+
+#font {
+    font-size: 60%;
+    color: gray;
+}
+
+#budget-setting2 {
+    color: #7538d8;
+    font-weight: bold;
+    padding: 0px 8px 0px 2px;
+    display: inline-block;
+    width: 40%;
+}
+
+#budget-input {
+    border: none;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0); border-bottom : 1px solid gray;
+    display: inline-block;
+    width: 50%;
+    border-bottom: 1px solid gray;
+}
+
+#budget-btn{
+    font-size:12px;
+    color: #7538d8;
+    border-color: #7538d8;
+    margin: 10% 0% 0% 36%;
+    
+    
+}
+
 </style>
 </head>
 
@@ -109,16 +176,20 @@
 					<div class="container-login100">
 						<div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
 
-							<div id="month">
-								<span class="lnr lnr-chevron-left"></span> 8월 <span
-									class="lnr lnr-chevron-right"></span>
-							</div>
 
-							<div id="middle">
-
-
-
-								<div class="form1 p-r-10">
+                            <div id="month">
+                            <div class="table">
+<!--                             <div class="row list-group-item" id="select-month"> -->
+                                <span class="cell col-1 lnr lnr-chevron-left" id="last-month-btn"></span>
+                                <span class="cell col-2" id="this-month">2018-08</span>
+                                <span class="cell col-3 lnr lnr-chevron-right" id="next-month-btn"></span>
+<!--                             </div> -->
+                            </div>
+                            </div>
+                            
+                            
+							<div id="middle1">
+                                <div class="form1 p-r-10">
 									<span>491,000</span>원 남음
 								</div>
 
