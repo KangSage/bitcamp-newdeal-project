@@ -41,7 +41,7 @@ public class AuthController {
            // 즉 유효기간을 0으로 설정함으로써 "id"라는 이름의 쿠키를 무효화시키는 것이다.
        }
 
-       response.addCookie(cookie);
+        response.addCookie(cookie);
 
         HashMap<String,Object> params = new HashMap<>();
         params.put("email", email);

@@ -12,6 +12,12 @@ public class Amount {
     private String happenDate;
     private String createdDate;
 
+    private String placeName;
+    private String placeAddress;
+    private String mapx;
+    private String mapy;
+    private String receiptFile;
+
     @Override
     public String toString() {
         return "Amount{" +
@@ -24,6 +30,11 @@ public class Amount {
                 ", memo='" + memo + '\'' +
                 ", happenDate='" + happenDate + '\'' +
                 ", createdDate='" + createdDate + '\'' +
+                ", placeName='" + placeName + '\'' +
+                ", placeAddress='" + placeAddress + '\'' +
+                ", mapx='" + mapx + '\'' +
+                ", mapy='" + mapy + '\'' +
+                ", receiptFile='" + receiptFile + '\'' +
                 '}';
     }
 
@@ -97,5 +108,45 @@ public class Amount {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    public String getPlaceAddress() {
+        return placeAddress;
+    }
+
+    public void setPlaceAddress(String placeAddress) {
+        this.placeAddress = placeAddress;
+    }
+
+    public String getMapx() {
+        return mapx;
+    }
+
+    public void setMapx(String mapx) {
+        this.mapx = mapx;
+    }
+
+    public String getMapy() {
+        return mapy;
+    }
+
+    public void setMapy(String mapy) {
+        this.mapy = mapy;
+    }
+
+    public String getReceiptFile() {
+        return receiptFile;
+    }
+
+    public void setReceiptFile(String receiptFile) {
+        this.receiptFile = receiptFile;
     }
 }

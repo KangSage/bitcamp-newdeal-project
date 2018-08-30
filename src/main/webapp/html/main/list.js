@@ -2,7 +2,13 @@
 
 let exampleModalCenter = $('#exampleModalCenter');
 
-exampleModalCenter.load('listModal.html');
+// exampleModalCenter.load('listModal.html');
+
+loadListModal();
+
+function loadListModal() {
+    exampleModalCenter.load('listModal.html');
+}
 
 var liTemplateSrc = $('#li-template').text();
 var template = Handlebars.compile(liTemplateSrc);
@@ -56,7 +62,6 @@ function requestList(monthOperator) {
             'monthOperator' : monthOperator
         },
         (result) => {
-
             if (result.status === 'login-fail') {
                 swal('로그인 되지 않았습니다.',
                     '로그인 페이지로 이동합니다.',
@@ -99,10 +104,9 @@ function requestList(monthOperator) {
         });
 }
 
-
-
 exampleModalCenter.on('click', '#add-btn', () => {
     console.log('추가 버튼 클릭');
+    console.log('imageData => ', imageData);
     $.post(`${serverApiAddr}/json/amount/add`,
         {
             'amountType': $('#amount-type').val(),
@@ -110,13 +114,16 @@ exampleModalCenter.on('click', '#add-btn', () => {
             'amount': $('#amount').val(),
             'category': $('#category').val(),
             'memo': $('#memo').val(),
-            'happenDate': $('#happen-date').val()
+            'happenDate': $('#happen-date').val(),
+            'base64Image': imageData
         },
         function(data) {
             console.log(data);
             $('#listBody').html('');
             requestList(monthOperator);
             $('#list-modal-close-btn').trigger('click');
+            $('#cutting-btn').trigger('click');
+            loadListModal();
         },
         'json');
 });
@@ -163,7 +170,7 @@ exampleModalCenter.on('click', '#delete-btn', () => {
     $.post(`${serverApiAddr}/json/amount/delete`, {no:listNo})
         .done(function(data) {
             console.log(data)
-            if (data.status == 'success') {
+            if (data.status === 'success') {
                 swal('감사합니다!',
                     '삭제 되었습니다.',
                     'success'
@@ -171,6 +178,7 @@ exampleModalCenter.on('click', '#delete-btn', () => {
                     $('#listBody').html('');
                     requestList(monthOperator);
                     $('#list-modal-close-btn').trigger('click');
+                    $('#imageView').css('background', '');
                 });
             } else {
                 console.log(data.message);
@@ -232,11 +240,12 @@ exampleModalCenter.on('show.bs.modal', function (e) {
     currentTarget.find('.form-control').val('');
 
     if (typeof no === 'number') {
-
+        console.log(no);
         $('.new-ctrl').hide();
         $('.view-ctrl').show();
         $.getJSON(`${serverApiAddr}/json/amount/${no}`, (result) => {
             let {data, status} = result;
+            console.log('새로 넘어 온 데이터 =>', data);
             if (data.amountType === '수입') {
                 $('#in-btn').trigger('click')
             }
@@ -246,9 +255,19 @@ exampleModalCenter.on('show.bs.modal', function (e) {
             currentTarget.find('#category').val(data.category);
             currentTarget.find('#memo').val(data.memo);
             currentTarget.find('#happen-date').val(data.happenDate);
+            console.log('a');
+            currentPicture = data.receiptFile;
+            console.log('b');
+            cropit();
+
+            if (currentPicture) {
+                $('#imageView').css("background", `url("../../download/${currentPicture}")`);
+                console.log('c');
+            }
         });
 
     } else {
+        $('#imageView').css("background", "white");
         $('.view-ctrl').hide();
         $('.new-ctrl').show();
     }

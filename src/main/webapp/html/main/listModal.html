@@ -19,8 +19,9 @@
 <button type="button" class="login100-form-btn" id="ex-btn">지출</button>
 </div>
 
+<div id="modal-input-all">
 <!-- list-no div -->
-<div>
+<div id="hidden-input-no" >
     <input type="hidden" id="list-no">
 </div>
 
@@ -103,24 +104,37 @@
 </div>
 
 <div class="input-group mb-2" id="input-receipt">
+<div id="image-cropper">
+    <h5 style="text-align: center">영수증 이미지</h5>
+    <div id="imageView" class="cropit-preview profile"></div>
+    <input type="file" class="cropit-image-input">
+    <input id="cropit-range" type="range" class="cropit-image-zoom-input">
+    <button id="cutting-btn" type="button" style="display: inline-block;">사진 자르기</button>
+    <input type="hidden" name="base64Image" id="hidden-image-data" value=""/>
+    <div class="checkMessages" id="chkImageMsg">
+        <p></p>
+    </div>
+</div>
+</div>
+
+<!--<div class="input-group mb-2" id="input-receipt">
 <div class="input-group-prepend">
 <span class="input-group-text" id="inputGroupFileAddon01">
 <span class="lnr lnr-picture">
 </span>
 </span>
 </div>
-
-
 <div class="custom-file">
 <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01" id="receipt">
 <label class="custom-file-label" for="receipt"></label>
 </div>
-</div>
+</div>-->
+
 </div>
 </div> <!-- div#expenditure-input -->
 
 <input type="hidden" id="amount-type" placeholder="입출금유형">
-
+</div> <!--modal-input-all-->
 </div>
 </div>
 </div>
@@ -133,4 +147,6 @@
 
 </div>
 </div>
+<script src="../../node_modules/cropit/dist/jquery.cropit.js"></script>
+<script src="listModal.js"></script>
 <!-- Modal end-->

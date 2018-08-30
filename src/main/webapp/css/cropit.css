@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.cropit-preview {
+    background-color: #f8f8f8;
+    /*background-image:url('../../images/drogNdrop.jpg');*/
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0px 65px;
+    width: 200px;
+    height: 200px;
+    cursor: move;
+}
+
+.cropit-preview-background {
+  opacity: .2;
+}
+
+input.cropit-image-zoom-input {
+  position: relative;
+}
+
+.image-size-label {
+  margin-top: 10px;
+}
+
+.checkMessages {
+  margin-top:3px;
+}
+
+#cropit-range {
+ display: block;
+}
+
+#cutting-btn {
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    padding: 0px 25px 0px 20px;
+    margin: 0px 8px 0px 13px;
+    display: inline-block;
+    text-decoration: none;
+    width: 300px; height: 40px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #1a1c26;
+    -webkit-box-shadow: 0 3px rgba(58,87,175,.75);
+    -moz-box-shadow: 0 3px rgba(58,87,175,.75);
+    box-shadow: 0 3px rgba(58,87,175,.75);
+    transition: all 0.1s linear 0s;
+    top: 0px;
+    position: relative;
+}
+
+#cutting-btn:hover {
+    top: 3px;
+    background-color:#2e458b;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

@@ -20,6 +20,13 @@ eclipse {
 
 // 의존 라이브러리 등록
 dependencies {
+
+    // java 9 이후 open JDK에서 분리 된 라이브러리를 추가한다.
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    
+    // 썸네일을 만들어주는 라이브러리
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
+
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     

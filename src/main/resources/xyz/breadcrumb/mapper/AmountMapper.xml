@@ -15,6 +15,12 @@
         <result column="memo" property="memo"/>
         <result column="hdt" property="happenDate"/>
         <result column="cdt" property="createdDate"/>
+
+        <result column="plcnm" property="placeName"/>
+        <result column="plcaddr" property="placeAddress"/>
+        <result column="mapx" property="mapx"/>
+        <result column="mapy" property="mapy"/>
+        <result column="rcpt" property="receiptFile"/>
     </resultMap>
     
 
@@ -29,7 +35,7 @@
             <result column="amnt" property="amount"/>
             <result column="cat" property="category"/>
             <result column="memo" property="memo"/>
-            <result column="amnt_dt" property="happenDate"/>
+            <result column="hdt" property="happenDate"/>
             <result column="cdt" property="createdDate"/>
         </collection>
     </resultMap>
@@ -39,20 +45,26 @@
           parameterType="map"
           resultMap="AmountMap">
     select 
-        amntno,
-        mno,
-        attype,
-        hst,
-        amnt,
-        cat,
-        memo,
-        hdt
-    from bc_amount
-    where amntno = #{amountNo} and mno = #{userNo}
+        t001.amntno,
+        t001.mno,
+        t001.attype,
+        t001.hst,
+        t001.amnt,
+        t001.cat,
+        t001.memo,
+        t001.hdt,
+        t002.plcnm,
+        t002.plcaddr,
+        t002.mapx,
+        t002.mapy,
+        t002.rcpt
+    from bc_amount t001
+    left join bc_contents t002 on t001.amntno = t002.amntno
+    where t001.amntno = #{amountNo} and t001.mno = #{userNo}
   </select>
     
 
-    <insert id="insert" parameterType="Amount" >
+    <insert id="insert" parameterType="Amount" useGeneratedKeys="true" keyColumn="amntno" keyProperty="no">
         insert into
         bc_amount(mno, attype, hst, amnt, cat, memo, hdt, cdt)
         values(
@@ -64,6 +76,18 @@
         #{memo},
         #{happenDate},
         now())
+    </insert>
+
+    <insert id="insertContents" parameterType="Amount">
+        INSERT INTO
+        bc_contents(amntno, plcnm, plcaddr, mapx, mapy, rcpt)
+        VALUES (
+        #{no},
+        #{placeName},
+        #{placeAddress},
+        #{mapx},
+        #{mapy},
+        #{receiptFile})
     </insert>
 
     <!-- <select id="selectList" parameterType="int" resultMap="DayHistoryMap" >
