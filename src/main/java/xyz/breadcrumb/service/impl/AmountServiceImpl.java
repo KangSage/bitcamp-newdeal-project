@@ -37,7 +37,9 @@ public class AmountServiceImpl implements AmountService {
 
     @Override
     public int add(Amount amount) {
+        System.out.println(amount);
         int count = amountRepository.insert(amount);
+        System.out.println(amount);
         amountRepository.insertContents(amount);
         return count;
     }
