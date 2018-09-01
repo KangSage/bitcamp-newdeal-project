@@ -255,14 +255,11 @@ exampleModalCenter.on('show.bs.modal', function (e) {
             currentTarget.find('#category').val(data.category);
             currentTarget.find('#memo').val(data.memo);
             currentTarget.find('#happen-date').val(data.happenDate);
-            console.log('a');
             currentPicture = data.receiptFile;
-            console.log('b');
             cropit();
 
             if (currentPicture) {
                 $('#imageView').css("background", `url("../../download/${currentPicture}")`);
-                console.log('c');
             }
         });
 
