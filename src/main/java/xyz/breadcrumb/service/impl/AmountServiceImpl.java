@@ -19,7 +19,6 @@ public class AmountServiceImpl implements AmountService {
     
     @Override
     public List<DayHistory> list(int userNo, String month) {
-        System.out.printf("쿼리문에 들어갈 년월 => %s\n", month);
         HashMap<String, Object> params = new HashMap<>();
         params.put("userNo", userNo);
         params.put("month", month);
@@ -27,7 +26,7 @@ public class AmountServiceImpl implements AmountService {
     }
 
     @Override
-    public int getTotalAmount(int userNo, String amountType, String month) {
+    public Integer getTotalAmount(int userNo, String amountType, String month) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("userNo", userNo);
         params.put("month", month);
@@ -37,9 +36,7 @@ public class AmountServiceImpl implements AmountService {
 
     @Override
     public int add(Amount amount) {
-        System.out.println(amount);
         int count = amountRepository.insert(amount);
-        System.out.println(amount);
         amountRepository.insertContents(amount);
         return count;
     }

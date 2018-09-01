@@ -28,7 +28,6 @@ public class AuthController {
            @RequestParam(value = "saveEmail", required = false) boolean saveEmail,
            HttpSession session, HttpServletResponse response) throws Exception {
 
-       System.out.println(saveEmail);
        Cookie cookie = null;
        if (saveEmail) {
            // 입력폼에서 로그인할 때 사용한 ID를 자동으로 출력할 수 있도록
@@ -49,12 +48,10 @@ public class AuthController {
 
         Member member = memberRepository.findByEmailAndPassword(params);
 
-        System.out.println(member);
         HashMap<String,Object> result = new HashMap<>();
         if (member != null) { // 로그인 성공!
             System.out.println("로그인 성공");
             session.setAttribute("loginUser", member);
-            System.out.println("세션 로그인 유저의 정보 => " + (Member) session.getAttribute("loginUser"));
             result.put("status", "success");
         } else { // 로그인 실패!
             System.out.println("로그인 실패");
@@ -71,8 +68,7 @@ public class AuthController {
 
         // 세션을 꺼내 무효화시킨다.
         session.invalidate();
-
         // 웹 애플리케이션의 시작 페이지로 가라고 웹브라우저에게 얘기한다.
-        return "loginform.html"; // ==> "/java106-java-project"
+        return "login.html";
     }
 }

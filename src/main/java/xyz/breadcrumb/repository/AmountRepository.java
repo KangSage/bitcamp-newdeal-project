@@ -14,5 +14,5 @@ public interface AmountRepository {
     int insertContents(Amount amount);
     int update(Amount amount);
     int delete(Map<String, Object> params);
-    int findTotalByAmountTypeAndMonth(HashMap<String, Object> params);
+    Integer findTotalByAmountTypeAndMonth(HashMap<String, Object> params);
 }

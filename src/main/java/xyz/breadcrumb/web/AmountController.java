@@ -43,23 +43,38 @@ public class AmountController {
         HashMap<String, Object> data = new HashMap<>();
 
         try {
-            List<DayHistory> list = amountService.list(loginUser.getNo(), selectDate + '%');
-            int totalIncomeAmount =
-                    amountService.getTotalAmount(loginUser.getNo(), "수입", selectDate + '%');
-            int totalBudgetAmount =
-                    amountService.getTotalAmount(loginUser.getNo(), "지출", selectDate + '%');
-
-            int monthlyTotalAmount = (totalIncomeAmount - totalBudgetAmount);
+            List<DayHistory> list = amountService.list(
+                    loginUser.getNo(), selectDate + '%');
 
             data.put("list", list);
             data.put("selectDate",  selectDate);
+
+            Integer totalIncomeAmount =
+                    amountService.getTotalAmount(
+                            loginUser.getNo(), "수입", selectDate + '%');
+
+            Integer totalBudgetAmount =
+                    amountService.getTotalAmount(
+                            loginUser.getNo(), "지출", selectDate + '%');
+
+            if (totalBudgetAmount != null && totalIncomeAmount != null ) {
+                Integer monthlyTotalAmount = (totalIncomeAmount - totalBudgetAmount);
+                System.out.printf("monthlyTotalAmount => %d", monthlyTotalAmount);
+                data.put("monthlyTotalAmount", monthlyTotalAmount);
+            }
+
+            System.out.printf("totalIncomeAmount => %d", totalIncomeAmount);
+            System.out.printf("totalBudgetAmount => %d", totalBudgetAmount);
+
             data.put("totalIncomeAmount",  totalIncomeAmount);
             data.put("totalBudgetAmount",  totalBudgetAmount);
-            data.put("monthlyTotalAmount", monthlyTotalAmount);
         } catch (Exception e) {
             data.put("status", "fail");
             data.put("message", e.getMessage());
             data.put("selectDate",  selectDate);
+
+            System.out.println("catch 문으로 넘어 옴");
+            System.out.println(e.getMessage());
         }
         return data;
     }
@@ -100,13 +115,11 @@ public class AmountController {
             String thumbnail100 = ThumbnailMaker.thumbnailMaker(100, 100, uploadDir, filename, "100");
             String thumbnail200 = ThumbnailMaker.thumbnailMaker(200, 200, uploadDir, filename, "200");
             String thumbnail300 = ThumbnailMaker.thumbnailMaker(300, 300, uploadDir, filename, "300");
-
         }
 
         HashMap<String,Object> result = new HashMap<>();
         try {
             amount.setMemberNo(loginUser.getNo());
-            System.out.printf("amount => %s\n", amount);
             amountService.add(amount);
             result.put("status", "success");
         } catch (Exception e) {

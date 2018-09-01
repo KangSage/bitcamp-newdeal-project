@@ -6,15 +6,17 @@ let exampleModalCenter = $('#exampleModalCenter');
 
 loadListModal();
 
+// 모달 창에 띄울 HTML 파일을 불러오는 함수.
 function loadListModal() {
     exampleModalCenter.load('listModal.html');
 }
 
+// Handlebars로 만들어 낼 템플릿 준비
 var liTemplateSrc = $('#li-template').text();
 var template = Handlebars.compile(liTemplateSrc);
 
+// 오늘 날짜를 날짜를 YYYY-mm 형식으로 잘라주는 함수.
 const getYymm = (date, number) => {
-
     if (number === undefined) {
         number = 1;
     }
@@ -25,16 +27,19 @@ const getYymm = (date, number) => {
     return `${yyyy}-${mm}`
 };
 
+// 위의 함수를 이용해 이번 달을 YYYY-mm 형식으로 만든다.
 let month = getYymm(new Date());
-let monthOperator = 0;
-console.log(month);
+$('#this-month').html(month);
 
+// 1달 단위로 리스트를 변경할 때 서버에 넘겨 줄 숫자
+let monthOperator = 0;
+
+// DOM이 생성 되면 실행할 함수.
 $(document).ready(
     requestList(monthOperator)
 );
 
-$('#this-month').html(month);
-
+// 좌우 버튼으로 월을 변경할 이벤트 리스너
 $('#select-month').on('click', (e) => {
     if ($(e.target).attr('id') === 'last-month-btn') {
         console.log('이전 달로 이동');
@@ -50,12 +55,14 @@ $('#select-month').on('click', (e) => {
     }
 });
 
+// 금액에 1000원 단위로 콤마를 넣어주는 함수.
 function numberWithCommas(amount) {
-    if (amount === undefined)
-        return;
+    if (amount === undefined || amount === null)
+        return 0;
     return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// 해당 월의 리스트를 생성할 함수
 function requestList(monthOperator) {
     $.post(`${serverApiAddr}/json/amount/list`,
         {
@@ -81,9 +88,6 @@ function requestList(monthOperator) {
                 console.log(result);
                 let {list, selectDate, totalIncomeAmount, totalBudgetAmount, monthlyTotalAmount} = result;
 
-                console.log('totalIncomeAmount', totalIncomeAmount);
-                console.log('totalBudgetAmount', totalBudgetAmount);
-                console.log('MonthlyTotalAmount', monthlyTotalAmount);
                 $('#this-month').html(selectDate);
                 $('#total-income-amount').html(numberWithCommas(totalIncomeAmount) + '원');
                 $('#total-budget-amount').html(numberWithCommas(totalBudgetAmount) + '원');
@@ -104,6 +108,7 @@ function requestList(monthOperator) {
         });
 }
 
+// 모달 창에서 새로운 내용을 추가할 '저장'버튼의 이벤트 리스너
 exampleModalCenter.on('click', '#add-btn', () => {
     console.log('추가 버튼 클릭');
     console.log('imageData => ', imageData);
@@ -128,8 +133,10 @@ exampleModalCenter.on('click', '#add-btn', () => {
         'json');
 });
 
+// 상세 뷰에 필요한 리스트의 번호를 넣어줄 변수
 let listNo = null;
 
+// 변경 버튼의 이벤트 리스너
 exampleModalCenter.on('click', '#update-btn', () => {
     console.log('완료 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/update`, {
@@ -163,13 +170,14 @@ exampleModalCenter.on('click', '#update-btn', () => {
                 confirmButtonColor: "#e83e8c"
             });
         });
-})
+});
 
+// 삭제
 exampleModalCenter.on('click', '#delete-btn', () => {
     console.log('삭제 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/delete`, {no:listNo})
         .done(function(data) {
-            console.log(data)
+            console.log(data);
             if (data.status === 'success') {
                 swal('감사합니다!',
                     '삭제 되었습니다.',

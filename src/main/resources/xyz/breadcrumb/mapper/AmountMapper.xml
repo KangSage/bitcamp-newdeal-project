@@ -115,7 +115,7 @@
         ORDER BY hdt DESC, cdt DESC
     </select>
 
-    <select id="findTotalByAmountTypeAndMonth" parameterType="map" resultType="int">
+    <select id="findTotalByAmountTypeAndMonth" parameterType="map" resultType="java.lang.Integer">
         SELECT
           SUM(amnt)
         FROM bc_amount
