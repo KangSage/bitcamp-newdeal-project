@@ -20,15 +20,14 @@ const getYymm = (date, number) => {
     if (number === undefined) {
         number = 1;
     }
-
     const yyyy = date.getFullYear();
-    const mm = date.getMonth() < 9 ? `0${date.getMonth() + number}` :
-        (date.getMonth() + number);
+    const mm = date.getMonth() < 9 ? `0${date.getMonth() + number}` : (date.getMonth() + number);
     return `${yyyy}-${mm}`
 };
 
 // 위의 함수를 이용해 이번 달을 YYYY-mm 형식으로 만든다.
 let month = getYymm(new Date());
+
 $('#this-month').html(month);
 
 // 1달 단위로 리스트를 변경할 때 서버에 넘겨 줄 숫자
@@ -76,7 +75,7 @@ function requestList(monthOperator) {
                 ).then(function() {
                     location.href = '../login.html';
                 });
-            } else if (result.status === 'fail') {
+            } else if (result.list.length === 0) {
                 let headElement = $("<div></div>").addClass("list-group-item");
                     headElement.append(`<div style="font-size: 120%; text-align: center;">해당 월의 등록된 내역이 없습니다.</div>`);
                 $('#this-month').html(result.selectDate);
@@ -110,27 +109,36 @@ function requestList(monthOperator) {
 
 // 모달 창에서 새로운 내용을 추가할 '저장'버튼의 이벤트 리스너
 exampleModalCenter.on('click', '#add-btn', () => {
+    $('#cutting-btn').trigger('click');
+
+    if (imageData === undefined) {
+        imageData = null;
+    }
+
     console.log('추가 버튼 클릭');
     console.log('imageData => ', imageData);
-    $.post(`${serverApiAddr}/json/amount/add`,
-        {
-            'amountType': $('#amount-type').val(),
-            'history': $('#history').val(),
-            'amount': $('#amount').val(),
-            'category': $('#category').val(),
-            'memo': $('#memo').val(),
-            'happenDate': $('#happen-date').val(),
-            'base64Image': imageData
-        },
-        function(data) {
-            console.log(data);
-            $('#listBody').html('');
-            requestList(monthOperator);
-            $('#list-modal-close-btn').trigger('click');
-            $('#cutting-btn').trigger('click');
-            loadListModal();
-        },
-        'json');
+
+    setTimeout(() => {
+        $.post(`${serverApiAddr}/json/amount/add`,
+            {
+                'amountType': $('#amount-type').val(),
+                'history': $('#history').val(),
+                'amount': $('#amount').val(),
+                'category': $('#category').val(),
+                'memo': $('#memo').val(),
+                'happenDate': $('#happen-date').val(),
+                'base64Image': imageData
+            },
+            function(data) {
+                $('#listBody').html('');
+                requestList(monthOperator);
+                $('#list-modal-close-btn').trigger('click');
+                loadListModal();
+            },
+            'json');
+    }, 500);
+
+
 });
 
 // 상세 뷰에 필요한 리스트의 번호를 넣어줄 변수

@@ -59,13 +59,8 @@ public class AmountController {
 
             if (totalBudgetAmount != null && totalIncomeAmount != null ) {
                 Integer monthlyTotalAmount = (totalIncomeAmount - totalBudgetAmount);
-                System.out.printf("monthlyTotalAmount => %d", monthlyTotalAmount);
                 data.put("monthlyTotalAmount", monthlyTotalAmount);
             }
-
-            System.out.printf("totalIncomeAmount => %d", totalIncomeAmount);
-            System.out.printf("totalBudgetAmount => %d", totalBudgetAmount);
-
             data.put("totalIncomeAmount",  totalIncomeAmount);
             data.put("totalBudgetAmount",  totalBudgetAmount);
         } catch (Exception e) {
@@ -101,6 +96,8 @@ public class AmountController {
             Amount amount,
             @RequestParam(value="base64Image", required=false) String base64Image,
             HttpServletRequest httpRequest) {
+
+        System.out.println(base64Image);
 
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");

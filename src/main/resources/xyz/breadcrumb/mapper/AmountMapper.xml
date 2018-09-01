@@ -78,31 +78,6 @@
         now())
     </insert>
 
-    <insert id="insertContents" parameterType="Amount">
-        INSERT INTO
-        bc_contents(amntno, plcnm, plcaddr, mapx, mapy, rcpt)
-        VALUES (
-        #{no},
-        #{placeName},
-        #{placeAddress},
-        #{mapx},
-        #{mapy},
-        #{receiptFile})
-    </insert>
-
-    <!-- <select id="selectList" parameterType="int" resultMap="DayHistoryMap" >
-        SELECT
-            date_format(hdt, '%Y-%m-%d') day,
-            amntno,
-            attype,
-            hst,
-            amnt/*,
-            date_format(date, '%Y-%m-%d') amnt_dt*/
-        FROM bc_amount
-        WHERE mno = #{value}
-        ORDER BY hdt DESC, cdt DESC
-    </select> -->
-
     <select id="selectList" parameterType="map" resultMap="DayHistoryMap" >
         SELECT
           date_format(hdt, '%Y-%m-%d') day,

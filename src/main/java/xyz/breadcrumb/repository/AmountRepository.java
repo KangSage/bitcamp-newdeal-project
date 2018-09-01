@@ -11,7 +11,6 @@ public interface AmountRepository {
     List<DayHistory> selectList(Map<String, Object> params);
     Amount findByAmountNoAndMemberNo(Map<String, Object> params);
     int insert(Amount amount);
-    int insertContents(Amount amount);
     int update(Amount amount);
     int delete(Map<String, Object> params);
     Integer findTotalByAmountTypeAndMonth(HashMap<String, Object> params);

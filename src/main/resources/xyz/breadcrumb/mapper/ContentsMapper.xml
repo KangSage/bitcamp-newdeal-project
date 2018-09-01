@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.breadcrumb.repository.ContentsRepository">
+
+    <!-- 컬럼명과 객체의 프로퍼티명을 연결한다. -->
+    <resultMap type="Amount" id="AmountMap">
+        <id column="amntno" property="no"/>
+        <result column="mno" property="memberNo"/>
+        <result column="attype" property="amountType"/>
+        <result column="hst" property="history"/>
+        <result column="amnt" property="amount"/>
+        <result column="cat" property="category"/>
+        <result column="memo" property="memo"/>
+        <result column="hdt" property="happenDate"/>
+        <result column="cdt" property="createdDate"/>
+
+        <result column="plcnm" property="placeName"/>
+        <result column="plcaddr" property="placeAddress"/>
+        <result column="mapx" property="mapx"/>
+        <result column="mapy" property="mapy"/>
+        <result column="rcpt" property="receiptFile"/>
+    </resultMap>
+
+    <insert id="insertContents" parameterType="Amount">
+        INSERT INTO
+        bc_contents(amntno, plcnm, plcaddr, mapx, mapy, rcpt)
+        VALUES (
+        #{no},
+        #{placeName},
+        #{placeAddress},
+        #{mapx},
+        #{mapy},
+        #{receiptFile})
+    </insert>
+    
+</mapper>

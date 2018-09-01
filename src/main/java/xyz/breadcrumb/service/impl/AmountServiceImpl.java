@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import xyz.breadcrumb.domain.Amount;
 import xyz.breadcrumb.domain.DayHistory;
 import xyz.breadcrumb.repository.AmountRepository;
+import xyz.breadcrumb.repository.ContentsRepository;
 import xyz.breadcrumb.service.AmountService;
 
 @Service
@@ -16,7 +17,10 @@ public class AmountServiceImpl implements AmountService {
     
     @Autowired
     AmountRepository amountRepository;
-    
+
+    @Autowired
+    ContentsRepository contentsRepository;
+
     @Override
     public List<DayHistory> list(int userNo, String month) {
         HashMap<String, Object> params = new HashMap<>();
@@ -37,7 +41,7 @@ public class AmountServiceImpl implements AmountService {
     @Override
     public int add(Amount amount) {
         int count = amountRepository.insert(amount);
-        amountRepository.insertContents(amount);
+        contentsRepository.insertContents(amount);
         return count;
     }
     
