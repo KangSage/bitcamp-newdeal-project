@@ -155,6 +155,10 @@
     
 }
 
+#b-budget , #b-withdraw{
+    margin-left : 10px;
+}
+
 </style>
 </head>
 
@@ -178,42 +182,19 @@
 
 
                             <div id="month">
-                            <div class="table">
+                            <div class="table" id="select-month">
 <!--                             <div class="row list-group-item" id="select-month"> -->
                                 <span class="cell col-1 lnr lnr-chevron-left" id="last-month-btn"></span>
-                                <span class="cell col-2" id="this-month">2018-08</span>
+                                <span class="cell col-2" id="this-month"></span>
                                 <span class="cell col-3 lnr lnr-chevron-right" id="next-month-btn"></span>
 <!--                             </div> -->
                             </div>
                             </div>
                             
-                            
-							<div id="middle1">
-                                <div class="form1 p-r-10">
-									<span>491,000</span>원 남음
-								</div>
-
-								<div class="form1 p-r-10" id="font">
-									예산을 맞추려면 하루에 30,687원씩 써야해요<br> 이 추세로 쓴다면 이번달 지출 17,769원 예상
-								</div>
-
-								<a id="budget-setting" href="#">예산 설정</a>
-
-							</div>
-
-							<div class="progress m-b-3">
-								<div class="progress-bar progress-bar-striped active  m-b-1"
-									role="progressbar" aria-valuenow="40" aria-valuemin="0"
-									aria-valuemax="100" style="width: 40%"></div>
-								<div id="statistics">40%</div>
-							</div>
-
-							<div id="bottom">
-								<ul>
-									<li>예산</li>
-									<li>지출</li>
-								</ul>
-							</div>
+                            <!-- Before, after  -->
+                            <div id="bs-div">
+                            </div>
+							
 
 						</div>
 					</div>
@@ -233,6 +214,7 @@
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"
 	type="text/javascript"></script>
 <script src="../../node_modules/select2/dist/js/select2.min.js"></script>
+<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="../../js/common.js"></script>
 <script src="../../js/common2.js"></script>
 <script src="budget.js"></script>

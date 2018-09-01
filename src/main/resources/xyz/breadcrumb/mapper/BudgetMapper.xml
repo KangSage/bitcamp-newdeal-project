@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.breadcrumb.repository.BudgetRepository">
+
+    <resultMap type="budget" id="budgetMap">
+        <id column="bdgno" property="budgetNo"/>
+        <result column="mno" property="memberNo"/>
+        <result column="month" property="month"/>
+        <result column="amnt" property="amount"/>
+        <result column="wthdr" property="withdraw"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="budget">
+        insert into 
+        bc_budget(mno, month, amnt, wthdr)
+        values(
+        #{memberNo}, 
+        #{month}, 
+        #{amount}, 
+        #{withdraw})
+    </insert>
+    
+    <select id="findByBudgetNoAndMemberNo"
+            parameterType="map"
+            resultMap="budgetMap">
+        select 
+          bdgno,
+          mno,
+          month,
+          amnt,
+          wthdr
+     from bc_budget
+    where bdgno = #{budgetNo} and mno = #{userNo}
+    </select>
+    
+    <select id="selectList" parameterType="map" resultMap="budgetMap" >
+        SELECT
+          bdgno,
+          mno,
+          month,
+          amnt,
+          wthdr
+        FROM bc_budget
+        WHERE mno = #{userNo} and month LIKE #{month}
+    </select>
+    
+</mapper>

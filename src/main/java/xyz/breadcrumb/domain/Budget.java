@@ -7,6 +7,8 @@ public class Budget {
     private String month;
     private int amount;
     private int withdraw;
+    
+    
     public int getBudgetNo() {
         return budgetNo;
     }
