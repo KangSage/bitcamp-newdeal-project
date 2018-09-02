@@ -30,7 +30,22 @@
             resultMap="memberMap">
         select mno, email, name, athcd, actvt
         from bc_memb
-        where email=#{email} and AES_DECRYPT(UNHEX(pwd), '959591')=#{password}
+        where email=#{email}
+        and AES_DECRYPT(UNHEX(pwd), '959591')=#{password}
     </select>
+
+    <update id="update" parameterType="map">
+        update bc_memb
+        set pwd=HEX(AES_ENCRYPT(#{newPassword}, '959591'))
+        WHERE mno=#{userNo}
+        and AES_DECRYPT(UNHEX(pwd), '959591')=#{oldPassword}
+    </update>
+
+    <delete id="delete" parameterType="map">
+        delete from bc_memb
+        where mno=#{userNo}
+        and email=#{email}
+        and AES_DECRYPT(UNHEX(pwd), '959591')=#{password}
+    </delete>
 
 </mapper>

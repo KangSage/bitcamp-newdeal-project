@@ -1,5 +1,5 @@
 "use strict";
-
+var currentPicture = null;
 let exampleModalCenter = $('#exampleModalCenter');
 
 // exampleModalCenter.load('listModal.html');
@@ -7,8 +7,14 @@ let exampleModalCenter = $('#exampleModalCenter');
 loadListModal();
 
 // 모달 창에 띄울 HTML 파일을 불러오는 함수.
-function loadListModal() {
-    exampleModalCenter.load('listModal.html');
+function loadListModal(no) {
+    if (typeof no === 'number') {
+        console.log('listModal.js if');
+        exampleModalCenter.load('viewListModal.html');
+    } else {
+        console.log('listModal.js else');
+        exampleModalCenter.load('newListModal.html');
+    }
 }
 
 // Handlebars로 만들어 낼 템플릿 준비
@@ -107,7 +113,7 @@ function requestList(monthOperator) {
         });
 }
 
-// 모달 창에서 새로운 내용을 추가할 '저장'버튼의 이벤트 리스너
+// 모달 창에서 새로운 내용을 추가할 '저장' 버튼의 이벤트 리스너
 exampleModalCenter.on('click', '#add-btn', () => {
     $('#cutting-btn').trigger('click');
 
@@ -144,40 +150,52 @@ exampleModalCenter.on('click', '#add-btn', () => {
 // 상세 뷰에 필요한 리스트의 번호를 넣어줄 변수
 let listNo = null;
 
-// 변경 버튼의 이벤트 리스너
+// 수정 버튼의 이벤트 리스너
 exampleModalCenter.on('click', '#update-btn', () => {
-    console.log('완료 버튼 클릭');
-    $.post(`${serverApiAddr}/json/amount/update`, {
-        'no': listNo,
-        'amountType': $('#amount-type').val(),
-        'history': $('#history').val(),
-        'amount': $('#amount').val(),
-        'category': $('#category').val(),
-        'memo': $('#memo').val(),
-        'happenDate': $('#happen-date').val()
-    }, (result) => {
-        if (result.status === 'success') {
-            swal('감사합니다!',
-                '변경 되었습니다.',
-                'success'
-            ).then(function() {
-                $('#listBody').html('');
-                requestList(monthOperator);
-                $('#list-modal-close-btn').trigger('click');
+    $('#cutting-btn').trigger('click');
+
+    if (imageData === undefined) {
+        imageData = null;
+    }
+
+    console.log('추가 버튼 클릭');
+    console.log('imageData => ', imageData);
+    setTimeout(() => {
+        $.post(`${serverApiAddr}/json/amount/update`, {
+            'no': listNo,
+            'amountType': $('#amount-type').val(),
+            'history': $('#history').val(),
+            'amount': $('#amount').val(),
+            'category': $('#category').val(),
+            'memo': $('#memo').val(),
+            'happenDate': $('#happen-date').val(),
+            'base64Image': imageData
+        }, (result) => {
+            if (result.status === 'success') {
+                swal('감사합니다!',
+                    '변경 되었습니다.',
+                    'success'
+                ).then(function() {
+                    $('#listBody').html('');
+                    requestList(monthOperator);
+                    $('#list-modal-close-btn').trigger('click');
+                });
+            } else {
+                swal('변경 실패!',
+                    'error')
+            }
+        }, 'json')
+            .fail(() => {
+                swal({
+                    title: '변경 실패!',
+                    text: '서버와의 통신에 알 수 없는 문제가 생겼습니다.',
+                    type: 'error',
+                    confirmButtonColor: "#e83e8c"
+                });
             });
-        } else {
-            swal('변경 실패!',
-                'error')
-        }
-    }, 'json')
-        .fail(() => {
-            swal({
-                title: '변경 실패!',
-                text: '서버와의 통신에 알 수 없는 문제가 생겼습니다.',
-                type: 'error',
-                confirmButtonColor: "#e83e8c"
-            });
-        });
+    }, 500);
+
+
 });
 
 // 삭제
@@ -213,10 +231,9 @@ exampleModalCenter.on('click', '#delete-btn', () => {
 
 // 수입 화면으로 변환
 exampleModalCenter.on('click', '#in-btn', () => {
-    console.log('in-btn');
+
     $('#amount-type').val('수입');
     $('#category').val('Choose...');
-    console.log($('#amount-type').val());
 
     $('#ex-btn').css('background', '#e1c5ec');
     $('#in-btn').css('background', '#d33f8d');
@@ -230,11 +247,10 @@ exampleModalCenter.on('click', '#in-btn', () => {
 
 // 지출 화면으로 변환
 exampleModalCenter.on('click', '#ex-btn', () => {
-    console.log('ex-btn');
+
     $(".hst").empty();
     $('#amount-type').val('지출');
     $('#category').val('Choose...');
-    console.log($('#amount-type').val());
 
     $('#in-btn').css('background', '#e1c5ec');
     $('#ex-btn').css('background', '#d33f8d');
@@ -249,11 +265,13 @@ exampleModalCenter.on('click', '#ex-btn', () => {
 
 // moodal 창에 값을 넘긴다.
 exampleModalCenter.on('show.bs.modal', function (e) {
+
     $('#ex-btn').trigger('click');
     let currentTarget = $(e.currentTarget);
     let no = $(e.relatedTarget).data('no');
     listNo = no;
     currentTarget.find('.form-control').val('');
+    loadListModal(no);
 
     if (typeof no === 'number') {
         console.log(no);
@@ -272,7 +290,6 @@ exampleModalCenter.on('show.bs.modal', function (e) {
             currentTarget.find('#memo').val(data.memo);
             currentTarget.find('#happen-date').val(data.happenDate);
             currentPicture = data.receiptFile;
-            cropit();
 
             if (currentPicture) {
                 $('#imageView').css("background", `url("../../download/${currentPicture}")`);
@@ -281,8 +298,6 @@ exampleModalCenter.on('show.bs.modal', function (e) {
 
     } else {
         $('#imageView').css("background", "white");
-        $('.view-ctrl').hide();
-        $('.new-ctrl').show();
     }
 });
 

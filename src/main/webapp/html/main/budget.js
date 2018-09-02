@@ -29,18 +29,18 @@ $('#select-month').on('click' , (e) =>{
 
 
 function requestList(monthOperator) {
-    $.get('http://localhost:8080/json/budget/list',
+    $.get(`${serverApiAddr}/json/budget/list`,
             { 'monthOperator' : monthOperator },
             function(result){
                 
                 $('#this-month').html(result.selectDate);
                 selectDate = result.selectDate;
                 console.log(selectDate);
-                let {status, list} = result; 
+                let {status, budget} = result;
                 if (result.status === 'success'){
                     
                     bsDiv.load('budgetSettingAfter.html');
-                    loadList(list);
+                    loadList(budget);
                 } else {
                     
                     bsDiv.load('budgetSettingBefore.html');
@@ -84,10 +84,10 @@ $('#bs-div').on('click', '#budget-btn', (no)=>{
     })
 });
 
-function loadList(list) {
-    $.getJSON(`http://localhost:8080/json/budget/${list[0].budgetNo}`,
+function loadList(budget) {
+    $.getJSON(`${serverApiAddr}/json/budget/${budget.budgetNo}`,
             (result) => {
-                console.log(result)
+                console.log(result);
                 $('#b-budget').html(result.data.amount);
                 $('#b-withdraw').html(result.data.withdraw);
                 $('#budget-withdraw').html(result.restMoney);

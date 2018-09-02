@@ -106,7 +106,8 @@
             amnt = #{amount},
             cat = #{category},
             memo = #{memo},
-            hdt = #{happenDate}
+            hdt = #{happenDate},
+            cdt = now()
         where amntno = #{no} and mno = #{memberNo}
     </update>
   

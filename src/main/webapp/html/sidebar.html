@@ -11,20 +11,14 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>통계</p>
-                        </a>
-                    </li>
                     <li>
-                        <a class="nav-link" href="./list.html">
+                        <a class="nav-link" id="go-list">
                             <i class="nc-icon nc-notes"></i>
                             <p>리스트</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./typography.html">
+                        <a class="nav-link" id="go-budget">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>예산</p>
                         </a>
@@ -32,11 +26,21 @@
                 </ul>
                 <ul class="nav nav-mobile-menu">
                     <li>
-                        <a class="nav-link" href="./myPage.html">
+                        <a class="nav-link" id="go-myPage">
                             <i class="lnr lnr-user"></i>
                             <p>MyPage</p>
                         </a>
                     </li>
                </ul>
             </div>
-      
+<script>
+$('#go-list').on('click', () => {
+    location.href = `${serverApiAddr}/html/main/list.html`
+});
+$('#go-budget').on('click', () => {
+    location.href = `${serverApiAddr}/html/main/budget2.html`
+});
+$('#go-myPage').on('click', () => {
+    location.href = `${serverApiAddr}/html/myPage.html`
+});
+</script>

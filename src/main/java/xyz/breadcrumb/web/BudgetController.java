@@ -46,9 +46,7 @@ public class BudgetController {
          String selectDate = yearMonthFormat.format(cal.getTime());
          
          List<Budget> list = budgetService.list(loginUser.getNo(), selectDate + "%");
-         
 
-         
          HashMap<String, Object> result = new HashMap<>();
          try {
              
@@ -64,7 +62,6 @@ public class BudgetController {
                  result.put("status", "empty");
              }
              
-             result.put("list", list);
              result.put("selectDate", selectDate);
          
          } catch (Exception e) {

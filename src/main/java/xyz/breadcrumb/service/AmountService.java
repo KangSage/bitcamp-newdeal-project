@@ -12,7 +12,9 @@ public interface AmountService {
     Integer getTotalAmount(int userNo, String amountType, String month);
 
     Amount get(int amountNo, int userNo);
-    
+
+    String get(int amountNo);
+
     int add(Amount amount);
     
     int update(Amount amount);

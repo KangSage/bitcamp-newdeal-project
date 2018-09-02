@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-dialog-centered" role="document">
+`<div class="modal-dialog modal-dialog-centered" role="document">
 <div class="modal-content">
 <div class="modal-header p-2">
 <h5 class="modal-title" id="exampleModalCenterTitle">내역 추가</h5>
@@ -105,7 +105,7 @@
 
 <div class="input-group mb-2" id="input-receipt">
 <div id="image-cropper">
-    <h5 style="text-align: center">영수증 이미지</h5>
+    <h5 style="text-align: center">영수증</h5>
     <div id="imageView" class="cropit-preview profile"></div>
     <input type="file" class="cropit-image-input">
     <input id="cropit-range" type="range" class="cropit-image-zoom-input">
@@ -133,15 +133,13 @@
 </div>
 </div> <!-- div#expenditure-input -->
 
-<input type="hidden" id="amount-type" placeholder="입출금유형">
+<input type="hidden" id="amount-type" placeholder="입출금유형" value="지출">
 </div> <!--modal-input-all-->
 </div>
 </div>
 </div>
 <div class="modal-footer p-2">
-<button id="add-btn" type="button" class="btn btn-secondary new-ctrl">저장</button>
-<button id="delete-btn" type="button" class="btn btn-secondary view-ctrl">삭제</button>
-<button id="update-btn" type="button" class="btn btn-secondary view-ctrl">수정</button>
+<button id="add-btn" type="button" class="btn btn-secondary">저장</button>
 </div>
 <!-- 모달 내용 끝 -->
 

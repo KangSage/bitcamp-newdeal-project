@@ -1,7 +1,8 @@
 var imageData = null;
-var currentPicture = null;
 
-cropit(currentPicture);
+$('.in-category').hide();
+
+cropit();
 
 function cropit() {
     $('#image-cropper').cropit({

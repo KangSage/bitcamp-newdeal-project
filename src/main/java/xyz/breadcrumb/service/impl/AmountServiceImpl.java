@@ -41,20 +41,30 @@ public class AmountServiceImpl implements AmountService {
     @Override
     public int add(Amount amount) {
         int count = amountRepository.insert(amount);
-        contentsRepository.insertContents(amount);
+        contentsRepository.insert(amount);
         return count;
     }
-    
+
+    //
     public Amount get(int amountNo, int userNo) {
         HashMap<String,Object> params = new HashMap<>();
         params.put("amountNo", amountNo);
         params.put("userNo", userNo);
         return amountRepository.findByAmountNoAndMemberNo(params);
     }
-    
+
+    // 기존에 있던 파일 이름을 얻어온다.
+    public String get(int amountNo) {
+        return contentsRepository.findByAmountNo(amountNo);
+    }
+
     @Override
     public int update(Amount amount) {
-        return amountRepository.update(amount);
+        System.out.println(amount);
+        int count = amountRepository.update(amount);
+        System.out.println(amount);
+        contentsRepository.update(amount);
+        return count;
     }
 
     @Override
@@ -62,6 +72,7 @@ public class AmountServiceImpl implements AmountService {
         HashMap<String,Object> params = new HashMap<>();
         params.put("amountNo", amountNo);
         params.put("userNo", userNo);
+        contentsRepository.delete(amountNo);
         return amountRepository.delete(params);
     }
 

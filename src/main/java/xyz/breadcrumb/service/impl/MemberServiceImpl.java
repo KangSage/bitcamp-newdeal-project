@@ -6,6 +6,8 @@ import xyz.breadcrumb.domain.Member;
 import xyz.breadcrumb.repository.MemberRepository;
 import xyz.breadcrumb.service.MemberService;
 
+import java.util.HashMap;
+
 @Service
 public class MemberServiceImpl implements MemberService {
     @Autowired
@@ -16,4 +18,21 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.insert(member);
     }
 
+    @Override
+    public int update(int userNo, String oldPassword, String newPassword) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("userNo", userNo);
+        params.put("oldPassword", oldPassword);
+        params.put("newPassword", newPassword);
+        return memberRepository.update(params);
+    }
+
+    @Override
+    public int delete(int userNo, String email, String password) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("userNo", userNo);
+        params.put("email", email);
+        params.put("password", password);
+        return memberRepository.delete(params);
+    }
 }

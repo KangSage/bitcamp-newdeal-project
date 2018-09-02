@@ -1,10 +1,7 @@
 package xyz.breadcrumb.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyz.breadcrumb.domain.Member;
 import xyz.breadcrumb.repository.MemberRepository;
 
@@ -61,11 +58,11 @@ public class AuthController {
         return result;
     }
 
-    @RequestMapping("/logout")
+    @GetMapping("/logout")
     public String logout(
             HttpServletRequest request,
             HttpSession session) throws Exception {
-
+        System.out.println("로그아웃");
         // 세션을 꺼내 무효화시킨다.
         session.invalidate();
         // 웹 애플리케이션의 시작 페이지로 가라고 웹브라우저에게 얘기한다.

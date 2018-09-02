@@ -61,6 +61,7 @@ public class AmountController {
                 Integer monthlyTotalAmount = (totalIncomeAmount - totalBudgetAmount);
                 data.put("monthlyTotalAmount", monthlyTotalAmount);
             }
+
             data.put("totalIncomeAmount",  totalIncomeAmount);
             data.put("totalBudgetAmount",  totalBudgetAmount);
         } catch (Exception e) {
@@ -97,21 +98,20 @@ public class AmountController {
             @RequestParam(value="base64Image", required=false) String base64Image,
             HttpServletRequest httpRequest) {
 
-        System.out.println(base64Image);
-
         HttpSession session = httpRequest.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
 
         if (!base64Image.isEmpty()) {
 
-            String uploadDir = servletContext.getRealPath("/download");
+            saveFiles(amount, base64Image);
+/*            String uploadDir = servletContext.getRealPath("/download");
             String filename = getNewFilename(".jpg");
             Base64Decoder.decoder(base64Image, uploadDir + "//" + filename);
             amount.setReceiptFile(filename);
 
             String thumbnail100 = ThumbnailMaker.thumbnailMaker(100, 100, uploadDir, filename, "100");
             String thumbnail200 = ThumbnailMaker.thumbnailMaker(200, 200, uploadDir, filename, "200");
-            String thumbnail300 = ThumbnailMaker.thumbnailMaker(300, 300, uploadDir, filename, "300");
+            String thumbnail300 = ThumbnailMaker.thumbnailMaker(300, 300, uploadDir, filename, "300");*/
         }
 
         HashMap<String,Object> result = new HashMap<>();
@@ -130,11 +130,17 @@ public class AmountController {
     @PostMapping("update")
     public Object update(
             Amount amount,
+            @RequestParam(value="base64Image", required=false) String base64Image,
             HttpServletRequest httpRequest) {
         
         HttpSession session = httpRequest.getSession();
-        
         Member loginUser = (Member) session.getAttribute("loginUser");
+
+        if (!base64Image.isEmpty()) {
+            saveFiles(amount, base64Image);
+        } else {
+           amount.setReceiptFile(amountService.get(amount.getNo()));
+        }
 
         HashMap<String, Object> result = new HashMap<>();
         try {
@@ -191,4 +197,14 @@ public class AmountController {
         return filename.substring(dotPosition);
     }
 
+    private void saveFiles(Amount amount, String base64Image) {
+        String uploadDir = servletContext.getRealPath("/download");
+        String filename = getNewFilename(".jpg");
+        Base64Decoder.decoder(base64Image, uploadDir + "//" + filename);
+        amount.setReceiptFile(filename);
+
+        String thumbnail100 = ThumbnailMaker.thumbnailMaker(100, 100, uploadDir, filename, "100");
+        String thumbnail200 = ThumbnailMaker.thumbnailMaker(200, 200, uploadDir, filename, "200");
+        String thumbnail300 = ThumbnailMaker.thumbnailMaker(300, 300, uploadDir, filename, "300");
+    }
 }

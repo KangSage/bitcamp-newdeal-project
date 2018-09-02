@@ -23,7 +23,13 @@
         <result column="rcpt" property="receiptFile"/>
     </resultMap>
 
-    <insert id="insertContents" parameterType="Amount">
+    <select id="findByAmountNo" parameterType="int" resultType="string">
+        SELECT rcpt
+        FROM bc_contents
+        WHERE amntno = #{value}
+    </select>
+
+    <insert id="insert" parameterType="Amount">
         INSERT INTO
         bc_contents(amntno, plcnm, plcaddr, mapx, mapy, rcpt)
         VALUES (
@@ -34,5 +40,20 @@
         #{mapy},
         #{receiptFile})
     </insert>
-    
+
+    <update id="update" parameterType="Amount">
+        update bc_contents set
+            amntno = #{no},
+            plcnm = #{placeName},
+            plcaddr = #{placeAddress},
+            mapx = #{mapx},
+            mapy = #{mapy},
+            rcpt = #{receiptFile}
+        where amntno = #{no}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from bc_contents
+        where amntno = #{value}
+    </delete>
 </mapper>
