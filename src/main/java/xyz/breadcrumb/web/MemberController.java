@@ -63,10 +63,13 @@ public class MemberController {
 
         try {
             int count = memberService.delete(loginUser.getNo(), email, password);
+        System.out.println(count);
             if (count == 1) {
                 // 삭제 된 유저 정보가 있는 세션을 무효화시킨다.
                 session.invalidate();
                 result.put("status", "success");
+            } else if (count == 0) {
+                result.put("status", "exit-fail");
             }
         } catch (Exception e) {
             result.put("status", "fail");

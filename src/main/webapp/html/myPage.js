@@ -109,15 +109,19 @@ $('#dropout-btn').on('click', async () => {
         }
     });
     if (formValues) {
-        console.log(formValues);
         $.post(`${serverApiAddr}/json/member/exit`, {
             email : formValues[0],
             password : formValues[1]
         }, (result) => {
+            console.log(result);
             if (result.status === 'success') {
                 location.href = `${serverApiAddr}/html/login.html`;
-            } else {
-                console.log(result);
+            } else if (result.status === "exit-fail") {
+                swal(
+                    '회원탈퇴 실패!',
+                    '이메일 또는 비밀번호가 잘못되었습니다.<br>확인해주세요',
+                    'error'
+                )
             }
         }, 'json');
     }
