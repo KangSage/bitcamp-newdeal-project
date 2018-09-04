@@ -102,16 +102,7 @@ public class AmountController {
         Member loginUser = (Member) session.getAttribute("loginUser");
 
         if (!base64Image.isEmpty()) {
-
             saveFiles(amount, base64Image);
-/*            String uploadDir = servletContext.getRealPath("/download");
-            String filename = getNewFilename(".jpg");
-            Base64Decoder.decoder(base64Image, uploadDir + "//" + filename);
-            amount.setReceiptFile(filename);
-
-            String thumbnail100 = ThumbnailMaker.thumbnailMaker(100, 100, uploadDir, filename, "100");
-            String thumbnail200 = ThumbnailMaker.thumbnailMaker(200, 200, uploadDir, filename, "200");
-            String thumbnail300 = ThumbnailMaker.thumbnailMaker(300, 300, uploadDir, filename, "300");*/
         }
 
         HashMap<String,Object> result = new HashMap<>();

@@ -1,30 +1,22 @@
-'use strict'
-
+'use strict';
 
 var bsDiv = $('#bs-div');
-
 var monthOperator = 0;
-
 var selectDate = null;
 
 requestList(monthOperator);
 
 $('#select-month').on('click' , (e) =>{
     if($(e.target).attr('id') === 'last-month-btn'){
-        console.log('이전 달로 이동');
         monthOperator--;
-        console.log(monthOperator);
         $('#bs-div').html('');
         requestList(monthOperator);
     }else if($(e.target).attr('id') === 'next-month-btn' ){
-        console.log('다음 달로 이동');
         monthOperator++;
-        console.log(monthOperator);
         $('#bs-div').html('');
         requestList(monthOperator);
     }
-    
-})
+});
 
 
 
@@ -32,21 +24,17 @@ function requestList(monthOperator) {
     $.get(`${serverApiAddr}/json/budget/list`,
             { 'monthOperator' : monthOperator },
             function(result){
-                
                 $('#this-month').html(result.selectDate);
                 selectDate = result.selectDate;
-                console.log(selectDate);
                 let {status, budget} = result;
+                console.log(budget);
                 if (result.status === 'success'){
-                    
                     bsDiv.load('budgetSettingAfter.html');
                     loadList(budget);
                 } else {
                     
                     bsDiv.load('budgetSettingBefore.html');
                 }
-                
-                
             }
     )
 };
@@ -61,10 +49,9 @@ function numberWithCommas(amount) {
 
 $('#bs-div').on('click', '#budget-btn', (no)=>{
     $.post('http://localhost:8080/json/budget/add',{
-        amount: $('#budget-input').html(),
+        amount: $('#budget-input').val(),
 //        month: $('#this-month').html()
         month: selectDate
-        
     },
     function(data){
         var {status, list} = data;
@@ -87,10 +74,9 @@ $('#bs-div').on('click', '#budget-btn', (no)=>{
 function loadList(budget) {
     $.getJSON(`${serverApiAddr}/json/budget/${budget.budgetNo}`,
             (result) => {
-                console.log(result);
-                $('#b-budget').html(result.data.amount);
-                $('#b-withdraw').html(result.data.withdraw);
-                $('#budget-withdraw').html(result.restMoney);
+                $('#b-budget').html(numberWithCommas(result.data.amount));
+                $('#b-withdraw').html(numberWithCommas(result.data.withdraw));
+                $('#budget-withdraw').html(numberWithCommas(result.restMoney));
     })
 }
 

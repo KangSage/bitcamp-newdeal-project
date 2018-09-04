@@ -9,10 +9,8 @@ loadListModal();
 // 모달 창에 띄울 HTML 파일을 불러오는 함수.
 function loadListModal(no) {
     if (typeof no === 'number') {
-        console.log('listModal.js if');
         exampleModalCenter.load('viewListModal.html');
     } else {
-        console.log('listModal.js else');
         exampleModalCenter.load('newListModal.html');
     }
 }
@@ -47,13 +45,11 @@ $(document).ready(
 // 좌우 버튼으로 월을 변경할 이벤트 리스너
 $('#select-month').on('click', (e) => {
     if ($(e.target).attr('id') === 'last-month-btn') {
-        console.log('이전 달로 이동');
         monthOperator--;
         $('#listBody').html('');
         requestList(monthOperator);
 
     } else if ($(e.target).attr('id') === 'next-month-btn') {
-        console.log('다음 달로 이동');
         monthOperator++;
         $('#listBody').html('');
         requestList(monthOperator);
@@ -90,7 +86,6 @@ function requestList(monthOperator) {
                 $('#monthly-total-amount').html('원');
                 $('#listBody').append(headElement);
             } else {
-                console.log(result);
                 let {list, selectDate, totalIncomeAmount, totalBudgetAmount, monthlyTotalAmount} = result;
 
                 $('#this-month').html(selectDate);
@@ -120,9 +115,6 @@ exampleModalCenter.on('click', '#add-btn', () => {
     if (imageData === undefined) {
         imageData = null;
     }
-
-    console.log('추가 버튼 클릭');
-    console.log('imageData => ', imageData);
 
     setTimeout(() => {
         $.post(`${serverApiAddr}/json/amount/add`,
@@ -158,8 +150,6 @@ exampleModalCenter.on('click', '#update-btn', () => {
         imageData = null;
     }
 
-    console.log('추가 버튼 클릭');
-    console.log('imageData => ', imageData);
     setTimeout(() => {
         $.post(`${serverApiAddr}/json/amount/update`, {
             'no': listNo,
@@ -200,10 +190,8 @@ exampleModalCenter.on('click', '#update-btn', () => {
 
 // 삭제
 exampleModalCenter.on('click', '#delete-btn', () => {
-    console.log('삭제 버튼 클릭');
     $.post(`${serverApiAddr}/json/amount/delete`, {no:listNo})
         .done(function(data) {
-            console.log(data);
             if (data.status === 'success') {
                 swal('감사합니다!',
                     '삭제 되었습니다.',
@@ -215,7 +203,6 @@ exampleModalCenter.on('click', '#delete-btn', () => {
                     $('#imageView').css('background', '');
                 });
             } else {
-                console.log(data.message);
                 swal('삭제 실패!',
                     'error')
             }
@@ -274,12 +261,10 @@ exampleModalCenter.on('show.bs.modal', function (e) {
     loadListModal(no);
 
     if (typeof no === 'number') {
-        console.log(no);
         $('.new-ctrl').hide();
         $('.view-ctrl').show();
         $.getJSON(`${serverApiAddr}/json/amount/${no}`, (result) => {
             let {data, status} = result;
-            console.log('새로 넘어 온 데이터 =>', data);
             if (data.amountType === '수입') {
                 $('#in-btn').trigger('click')
             }

@@ -101,11 +101,7 @@ public class BudgetController {
      
      @PostMapping("add")
      public Object add(Budget budget, HttpServletRequest request) {
-         
-         System.out.printf("상태 %s", budget);
-         
          HttpSession session = request.getSession();
-         
          Member loginUser = (Member) session.getAttribute("loginUser");
          
          HashMap<String, Object> result = new HashMap<>();
