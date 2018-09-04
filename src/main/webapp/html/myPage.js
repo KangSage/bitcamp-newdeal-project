@@ -1,9 +1,20 @@
 "use strict";
 
 
-$(document).ready(
+/*$(document).ready(
+    $.getJSON(`${serverApiAddr}/json/member/list`, function(data){
+        console.log(${'name'});
+        
+    });
+);*/
 
-);
+$(document).ready(function() {
+    
+    $.getJSON(`${serverApiAddr}/json/member/list`, function(data) {
+            console.log(data.name);
+            $("#name").html(data.name);
+    });
+});
 
 
 //비밀번호 변경

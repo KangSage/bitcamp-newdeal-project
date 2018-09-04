@@ -1,14 +1,17 @@
 package xyz.breadcrumb.web;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import xyz.breadcrumb.domain.Member;
 import xyz.breadcrumb.service.MemberService;
-
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 
 @RestController
 @RequestMapping("/member")
@@ -16,7 +19,21 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+    
+    @GetMapping("list")
+    public Object list(HttpSession session) {
+        
+        Member loginUser = (Member)session.getAttribute("loginUser");
+        
+        String name = memberService.selectName(loginUser.getNo());
 
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("status", "success");
+        result.put("name", name);
+        return result;
+        
+    }
+    
     @PostMapping("signUp")
     public Object signUp(Member member) {
         System.out.println(member);

@@ -13,7 +13,11 @@
         <result column="athcd" property="authCode"/>
         <result column="actvt" property="activation"/>
     </resultMap>
-
+    
+    <select id="findByNumber" parameterType="int" resultType="string">
+        SELECT name FROM bc_memb WHERE mno = #{value}
+    </select>
+    
     <insert id="insert" parameterType="member">
         insert into
         bc_memb(name,email,pwd,athcd,actvt)
