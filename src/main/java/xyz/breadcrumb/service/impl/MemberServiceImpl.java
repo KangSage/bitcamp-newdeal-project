@@ -1,12 +1,13 @@
 package xyz.breadcrumb.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import xyz.breadcrumb.domain.Member;
 import xyz.breadcrumb.repository.MemberRepository;
 import xyz.breadcrumb.service.MemberService;
-
-import java.util.HashMap;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -35,4 +36,11 @@ public class MemberServiceImpl implements MemberService {
         params.put("password", password);
         return memberRepository.delete(params);
     }
+
+    @Override
+    public String selectName(int no) {
+        return memberRepository.findByNumber(no);
+    }
+
+    
 }
