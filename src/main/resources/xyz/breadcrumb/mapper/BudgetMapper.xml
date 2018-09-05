@@ -22,20 +22,20 @@
         #{withdraw})
     </insert>
     
-    <select id="findByBudgetNoAndMemberNo"
+    <select id="findByMonthAndMemberNo"
             parameterType="map"
             resultMap="budgetMap">
         select 
           bdgno,
           mno,
           month,
-          amnt,
-          wthdr
+          amnt
      from bc_budget
-    where bdgno = #{budgetNo} and mno = #{userNo}
+    where month = #{month} and mno = #{userNo}
     </select>
     
-    <select id="selectList" parameterType="map" resultMap="budgetMap" >
+    <!--
+     <select id="selectList" parameterType="map" resultMap="budgetMap" >
         SELECT
           bdgno,
           mno,
@@ -44,6 +44,18 @@
           wthdr
         FROM bc_budget
         WHERE mno = #{userNo} and month LIKE #{month}
-    </select>
+    </select> 
+    -->
+    
+    <update id="update" parameterType="budget">
+    update bc_budget
+       set amnt = #{amount}
+     where mno = #{memberNo} and month = #{month}
+  </update>
+  
+  <delete id="delete" parameterType="map">
+    delete from  bc_budget
+    where bdgno = #{budgetNo} and mno = #{userNo}
+  </delete>
     
 </mapper>

@@ -16,27 +16,41 @@ public class BudgetServiceImpl implements BudgetService{
     @Autowired
     BudgetRepository budgetRepository;
     
-    @Override
-    public List<Budget> list(int no, String month) {
+/*    @Override
+    public Budget selectOne(int no, String month) {
         
         HashMap<String, Object> params = new HashMap<>();
         params.put("userNo", no);
         params.put("month", month);
         return budgetRepository.selectList(params);
-    }
+    }*/
 
     @Override
-    public Budget get(int budgetNo, int userNo) {
+    public Budget get(String month, int userNo) {
         HashMap<String, Object> params = new HashMap<>();
-        params.put("budgetNo", budgetNo);
+        params.put("month", month);
         params.put("userNo", userNo);
-        return budgetRepository.findByBudgetNoAndMemberNo(params);
+        return budgetRepository.findByMonthAndMemberNo(params);
     }
 
     @Override
     public int add(Budget budget) {
-        System.out.printf("add -> budget = %s", budget);
+        System.out.printf("BudgetServiceImpl  add -> budget = %s", budget);
         return budgetRepository.insert(budget);
+    }
+
+    @Override
+    public int update(Budget budget) {
+        System.out.println("ServiceBudget"+budget);
+        return budgetRepository.update(budget);
+    }
+
+    @Override
+    public int delete(int budgetNo, int userNo) {
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("budgetNo", budgetNo);
+        params.put("userNo", userNo);
+        return budgetRepository.delete(params);
     }
     
 }

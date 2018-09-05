@@ -1,17 +1,21 @@
 package xyz.breadcrumb.repository;
 
 import java.util.Map;
-import java.util.List;
+import java.util.HashMap;
 
 import xyz.breadcrumb.domain.Budget;
 
 public interface BudgetRepository {
 
-    List<Budget> selectList(Map<String, Object> params);
-
-    Budget findByBudgetNoAndMemberNo(Map<String, Object> params);
+    /*Budget findBy(Map<String, Object> params);*/
+    
+    Budget findByMonthAndMemberNo(Map<String, Object> params);
 
     int insert(Budget budget);
+
+    int update(Budget budget);
+
+    int delete(HashMap<String, Object> params);
 
     
     
