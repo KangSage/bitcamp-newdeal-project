@@ -36,7 +36,7 @@ public class AmountController {
     @Autowired AmountService amountService;
     @Autowired ServletContext servletContext;
 
-
+    @CrossOrigin(origins = "*")
     @RequestMapping("list")
     public Object list(int monthOperator, HttpServletRequest httpRequest) throws Exception {
 

@@ -48,6 +48,7 @@
   </mvc:cors>
 
 <mvc:interceptors>
+    <bean class="xyz.breadcrumb.web.interceptor.CrossOriginInterceptor"/>
     <mvc:interceptor>
         <mvc:mapping path="/**"/>
         <mvc:exclude-mapping path="/auth/**"/>

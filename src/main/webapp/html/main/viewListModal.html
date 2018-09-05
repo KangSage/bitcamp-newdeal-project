@@ -84,6 +84,8 @@
 
 
 <div id="expenditure-input"> <!-- 지출 -->
+
+<!--
 <div class="input-group mb-2" id="input-place-name">
 <div class="input-group-prepend">
 <span class="input-group-text">
@@ -93,7 +95,9 @@
 <input type="text" class="form-control" aria-label="Sizing example input"
        aria-describedby="inputGroup-sizing-default" id="place-name" placeholder="사용처">
 </div>
+-->
 
+<!--
 <div class="input-group mb-2" id="input-place">
 <div class="input-group-prepend">
 <span class="input-group-text">
@@ -102,14 +106,15 @@
 </div>
 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="place" placeholder="지도">
 </div>
+-->
 
 <div class="input-group mb-2" id="input-receipt">
 <div id="image-cropper">
     <h5 style="text-align: center">영수증 이미지</h5>
-    <div id="imageView" class="cropit-preview profile" style="width: auto"></div>
+    <div id="imageView" class="cropit-preview profile"></div>
     <input type="file" class="cropit-image-input">
     <input id="cropit-range" type="range" class="cropit-image-zoom-input">
-    <button id="cutting-btn" type="button" style="display: inline-block;">사진 자르기</button>
+    <button id="cutting-btn" type="button" style="display:inline-block; position: center">사진 자르기</button>
     <input type="hidden" name="base64Image" id="hidden-image-data" value=""/>
     <div class="checkMessages" id="chkImageMsg">
         <p></p>
@@ -133,6 +138,7 @@
 -->
 
 </div>
+
 </div> <!-- div#expenditure-input -->
 
 <input type="hidden" id="amount-type" placeholder="입출금유형">

@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 public class AuthCheckInterceptor implements HandlerInterceptor {
 
-
     @CrossOrigin(origins = "*")
     @Override
     public boolean preHandle(

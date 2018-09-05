@@ -3,7 +3,6 @@ var currentPicture = null;
 let exampleModalCenter = $('#exampleModalCenter');
 
 // exampleModalCenter.load('listModal.html');
-
 loadListModal();
 
 // 모달 창에 띄울 HTML 파일을 불러오는 함수.
@@ -36,6 +35,8 @@ $('#this-month').html(month);
 
 // 1달 단위로 리스트를 변경할 때 서버에 넘겨 줄 숫자
 let monthOperator = 0;
+
+
 
 // DOM이 생성 되면 실행할 함수.
 $(document).ready(
@@ -252,8 +253,12 @@ exampleModalCenter.on('click', '#ex-btn', () => {
 
 // moodal 창에 값을 넘긴다.
 exampleModalCenter.on('show.bs.modal', function (e) {
-
+    var width = $('#modal-input-all').width();
     $('#ex-btn').trigger('click');
+    $('#imageView').width(width);
+    $('div.cropit-preview-image-container').width(width);
+    console.log("width =>", width);
+
     let currentTarget = $(e.currentTarget);
     let no = $(e.relatedTarget).data('no');
     listNo = no;
