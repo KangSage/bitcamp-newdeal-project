@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
@@ -29,6 +31,10 @@
 <link rel="stylesheet" type="text/css" href="../../css/util.css">
 <link rel="stylesheet" type="text/css" href="../../css/main.css">
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+body{
+    font-family: 'Hanna', serif;
+}
 #month {
 	border-bottom: 2px solid gray;
 	text-align: center;
@@ -159,7 +165,7 @@
     margin-left : 10px;
 }
 
-#budget-ok{
+#budget-update{
     display: inline-block;
     margin: 30px 0px 0px 80px;
     color: #7538d8;
@@ -173,6 +179,8 @@
     color: #7538d8;
     border-color: #7538d8;
 }
+
+
 </style>
 </head>
 
@@ -204,9 +212,12 @@
 <!--                             </div> -->
                             </div>
                             </div>
+                            <input id="set-budget-input" type="hidden">
+                            <input id="set-budgetNo-input" type="hidden">
                             
                             <!-- Before, after  -->
                             <div id="bs-div">
+                            
                             </div>
 							
 						</div>

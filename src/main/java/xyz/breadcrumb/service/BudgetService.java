@@ -1,16 +1,18 @@
 package xyz.breadcrumb.service;
 
-import java.util.List;
-
 import xyz.breadcrumb.domain.Budget;
 
 
 public interface BudgetService {
 
-    List<Budget> list(int no, String month);
+    /*Budget selectOne(int no, String month);*/
 
-    Budget get(int budgetNo, int userNo);
+    Budget get(String month, int userNo);
 
     int add(Budget budget);
+
+    int update(Budget budget);
+
+    int delete(int budgetNo, int userNo );
     
 }

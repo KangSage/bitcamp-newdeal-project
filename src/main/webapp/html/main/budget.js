@@ -7,9 +7,18 @@ var monthOperator = 0;
 
 var selectDate = null;
 
-requestList(monthOperator);
+var setBudget = 0,
+    setBudgetNo =0;
 
-//
+var aver = 0,
+totalGuess = 0;
+
+$(document).ready(() =>{
+    requestList(monthOperator);
+    
+});
+
+
 $('#select-month').on('click' , (e) =>{
     if($(e.target).attr('id') === 'last-month-btn'){
         console.log('이전 달로 이동');
@@ -34,15 +43,20 @@ function requestList(monthOperator) {
             { 'monthOperator' : monthOperator },
             
             function(result){
+                console.log(result)
+                if (result.status === 'login-fail') {
+                    swal('로그인 되지 않았습니다.',
+                         '로그인 페이지로 이동합니다.',
+                         'error'
+                     ).then(function() { location.href = '../login.html'; });
+                 }
                 $('#this-month').html(result.selectDate);
                 selectDate = result.selectDate;
                 console.log(selectDate);
                 let {status, budget} = result;
                 if (result.status === 'success'){
                     bsDiv.load('budgetSettingAfter.html');
-                    loadList(budget);
-                } else {
-                    bsDiv.load('budgetSettingBefore.html');
+                    loadList(result.selectDate, monthOperator);
                 }
             }
     )
@@ -56,7 +70,7 @@ function numberWithCommas(amount) {
 }
 
 
-$('#bs-div').on('click', '#budget-btn', (no)=>{
+bsDiv.on('click', '#budget-btn', (no)=>{
     $.post('http://localhost:8080/json/budget/add',{
         amount: $('#budget-input').val(),
 //        month: $('#this-month').html()
@@ -81,35 +95,80 @@ $('#bs-div').on('click', '#budget-btn', (no)=>{
     })
 });
 
-function loadList(budget) {
-    $.getJSON(`${serverApiAddr}/json/budget/${budget.budgetNo}`,
+function loadList(month, monthOperator) {
+    $.getJSON(`${serverApiAddr}/json/budget/list/`,
+            { monthOperator : monthOperator},
             (result) => {
-                console.log(result);
-                let data = result.data;
-                let { amount , withdraw , restMoney , percent} = data;
-                $('#b-budget').html(numberWithCommas(amount));
-                $('#b-withdraw').html(numberWithCommas(withdraw));
-                $('#budget-withdraw').html(numberWithCommas(result.restMoney));
-                $('#statistics').html(result.percent);
-                console.log(result.restMoney);
-                var sss= result.restMoney
-              //예산 설정 화면
-              $('#bs-div').on('click','#budget-setting' , (result)=>{
-                  console.log("aa")
-                  console.log("예산 설정 화면으로 가기");
-                  console.log(sss);
-                  console.log(sss);
-                  bsDiv.load('budgetSetting.html');
-                  //loadList(result.budget);
-              })
-        
-
-
+                if (result.budget !== null) {
+                    let data = result.budget;
+                    let {amount, withdraw, restMoney, percent} = data;
+                    console.log("budgetNo",result.budget.budgetNo);
+                    $('#b-budget').html(numberWithCommas(amount));
+                    $('#b-withdraw').html(numberWithCommas(withdraw));
+                    $('#budget-withdraw').html(numberWithCommas(result.restMoney));
+                    var s1 = result.percent
+                    console.log(s1)
+                    
+                    $('#demo').jQMeter({
+                         goal: "100",
+                         raised:`${s1}`,
+                          width: "100%",
+                          height: "50px",
+                          bgColor: "#444",
+                          barColor: "#d43f8d",
+                          orientation: "horizontal",
+                          counterSpeed: 2000,
+                          animationSpeed: 2000,
+                          displayTotal: true
+                    });
+                    
+                    setBudget = amount;
+                    setBudgetNo = data.budgetNo;
+                } else {
+                    bsDiv.load('budgetSettingBefore.html');
+                }
 
     })
 }
 
 
+//예산 설정 화면
+bsDiv.on('click','#budget-setting' , (result)=>{
+    bsDiv.load('budgetSetting.html');
+    console.log('=>', setBudget);
+    $('#set-budget-input').val(setBudget);
+})
+
+//삭제
+bsDiv.on('click','#budget-delete',()=>{
+    $('#set-budgetNo-input').val(setBudgetNo);
+    console.log('setBudgetNo',setBudgetNo);
+    $.getJSON('http://localhost:8080/json/budget/delete',{
+        'no': setBudgetNo
+    },(result)=>{
+        bsDiv.load('budgetSettingBefore.html');
+        swal({
+            type: 'success',
+            title: '삭제하였습니다.',
+            showConfirmButton: false,
+            timer: 1500
+          })
+    })
+});
+
+//수정
+bsDiv.on('click','#budget-update',()=>{
+    $('#set-budgetNo-input').val(setBudgetNo);
+    $.post('http://localhost:8080/json/budget/update',{
+        amount: $('#budget-input').val(),
+        month: selectDate
+    },(result)=>{
+        console.log(result);
+        if(result.status !== 'success') return;
+        bsDiv.load('budgetSettingAfter.html');
+        requestList(monthOperator);
+    },'json')
+});
 
 
 

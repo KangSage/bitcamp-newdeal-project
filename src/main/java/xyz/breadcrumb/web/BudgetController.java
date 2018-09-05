@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,39 +31,60 @@ public class BudgetController {
      
      @Autowired
      AmountService amountService;
-     
+
      @GetMapping("list")
      public Object list(HttpSession session, int monthOperator) {
-         
+
          Member loginUser = (Member)session.getAttribute("loginUser");
          
          Calendar cal = new GregorianCalendar(Locale.KOREA);
+         System.out.println("이 달의 몇 일: " + cal.get(Calendar.DATE));
+         System.out.println("이 달의 마지막 날: " + cal.getActualMaximum(Calendar.DATE) );
+         
+         int today = cal.get(Calendar.DATE);
+         int lastDay = cal.getActualMaximum(Calendar.DATE);
+         int restDay = lastDay - today;
+         
+         System.out.println(restDay);
+         
          cal.setTime(new Date());
-         cal.add(Calendar.MONTH, monthOperator); //들어오는 숫자만큼 더 한다.
+         cal.add(Calendar.MONTH, monthOperator); // 들어오는 숫자만큼 더 한다.
 
          SimpleDateFormat yearMonthFormat = new SimpleDateFormat("yyyy-MM");
          String selectDate = yearMonthFormat.format(cal.getTime());
          
-         List<Budget> list = budgetService.list(loginUser.getNo(), selectDate + "%");
-
+         Budget budget = budgetService.get(selectDate, loginUser.getNo());
+         
          HashMap<String, Object> result = new HashMap<>();
+         if (budget != null) {
+             
+             Integer totalBudgetAmount = 
+                     amountService.getTotalAmount(
+                             loginUser.getNo(), "지출", selectDate + '%');
+             
+             int amount = budget.getAmount();
+             
+             if (totalBudgetAmount != null) {
+                 budget.setWithdraw(totalBudgetAmount);
+                 int withdraw = budget.getWithdraw();
+                 int restMoney = (amount - withdraw);
+                 int percent = (int)((double) withdraw / (double) amount * 100);
+                 int lestAver = restMoney / restDay;
+                 
+                 result.put("lestAver", lestAver);
+                 result.put("percent", percent);
+                 result.put("restMoney", restMoney);
+             }
+         } 
+         
          try {
              
-             if (!list.isEmpty()) {
-                 result.put("status", "success");
-                 
-                 for (Budget budget : list) {
-                     result.put("budget", budget);
-                 }
-                 
-             } else {
-             
-                 result.put("status", "empty");
-             }
-             
+             result.put("status", "success");
+             result.put("budget", budget);
              result.put("selectDate", selectDate);
-         
+             
          } catch (Exception e) {
+             
              result.put("status", "fail");
              result.put("message",e.getMessage());
          }
@@ -72,13 +92,11 @@ public class BudgetController {
          
      }
      
-     @GetMapping("{no}")
-     public Object get(@PathVariable int no, HttpSession session) {
+     @GetMapping("{month}")
+     public Object get(@PathVariable String month, HttpSession session) {
          Member loginUser = (Member)session.getAttribute("loginUser");
          
-         Budget budget = budgetService.get(no, loginUser.getNo());
-         
-         System.out.println(budget + "ㅋㅋㅋ");
+         Budget budget = budgetService.get(month, loginUser.getNo());
          
          HashMap<String, Object> result = new HashMap<>();
          
@@ -89,8 +107,6 @@ public class BudgetController {
          
          int percent = (int)((double) withdraw / (double) amount * 100);
 
-//         System.out.printf("percent의 값 = %d\n", percent);
-         
          result.put("percent", percent);
          result.put("restMoney", restMoney);
          result.put("status", "success");
@@ -133,5 +149,37 @@ public class BudgetController {
          
          return result;
      }
+     
+     @PostMapping("update")
+     public Object update(
+             Budget budget, 
+             HttpSession session) {
+         
+         Member loginUser = 
+                 (Member)session.getAttribute("loginUser");
+         
+         budget.setMemberNo(loginUser.getNo());
+         
+         budgetService.update(budget);
+         
+         HashMap<String,Object> result = new HashMap<>();
+         result.put("status", "success");
+         return result;
+     }
+     
+     @GetMapping("delete")
+     public Object delete(int no, HttpSession session) {
+         
+         Member loginUser = 
+                 (Member)session.getAttribute("loginUser");
+         
+         budgetService.delete(no, loginUser.getNo());
+         
+         HashMap<String,Object> result = new HashMap<>();
+         result.put("status", "success");
+         return result;
+     }
+     
+     
      
 }

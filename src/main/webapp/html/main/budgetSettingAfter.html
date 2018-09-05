@@ -4,11 +4,10 @@
 	</div>
 
 	<div class="form1 p-r-10" id="font">
-		예산을 맞추려면 하루에 30,687원씩 써야해요<br> 이 추세로 쓴다면 이번달 지출 17,769원 예상
 	</div>
 
 	<a id="budget-setting" href="#">예산 설정</a>
-
+    
 </div>
 
 <!-- <div class="progress m-b-3"> -->
@@ -27,47 +26,13 @@
 
 	</div>
 </div>
-
-
 <script>
+/* 
+ *  aver 계산식 : restMoney / 남은 일 수
+ *  totalGuess 계산식 : 이번 달 현재 총 지출 / 지난 일수 * 이번 달의 일수 
+ */
 
-
-//바 그래프
-    $.getJSON(`${serverApiAddr}/json/budget/45`,
-            (result) => {
-                console.log(result);
-                let data = result.data;
-                let { amount , withdraw , restMoney , percent} = data;
-                $('#b-budget').html(numberWithCommas(amount));
-                $('#b-withdraw').html(numberWithCommas(withdraw));
-                $('#budget-withdraw').html(numberWithCommas(result.restMoney));
-                //$('#statistics').html(result.percent);
-                var s1 = result.percent
-                var s2 = 100
-                console.log(s1)
-                //console.log(typeof(s1));
-                //var s1 =100;
-                //console.log(typeof(s2));
-                
-				$('#demo').jQMeter({
-				    
-				     goal:`${s2}`,
-				     raised:`${s1}`,
-				      width: "100%",
-				      height: "50px",
-				      bgColor: "#444",
-				      barColor: "#d43f8d",
-				      orientation: "horizontal",
-				      counterSpeed: 2000,
-				      animationSpeed: 2000,
-				      displayTotal: true
-				});
-    }) 
-
-
-
-
+$('#font').html('예산을 맞추려면 하루에 '+ aver +'원씩 써야해요<br> 이 추세로 쓴다면 이번 달 지출 ' + totalGuess +'원 예상')
 </script>
-
 
 
