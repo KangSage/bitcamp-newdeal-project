@@ -28,6 +28,7 @@ import xyz.breadcrumb.service.AmountService;
 import xyz.breadcrumb.web.util.Base64Decoder;
 import xyz.breadcrumb.web.util.ThumbnailMaker;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/amount")
 public class AmountController {
@@ -35,7 +36,7 @@ public class AmountController {
     @Autowired AmountService amountService;
     @Autowired ServletContext servletContext;
 
-    @CrossOrigin()
+
     @RequestMapping("list")
     public Object list(int monthOperator, HttpServletRequest httpRequest) throws Exception {
 
@@ -199,6 +200,7 @@ public class AmountController {
         return filename.substring(dotPosition);
     }
 
+    // base64로 인코딩 된 파일을 디코딩해서 저장하고 썸네일을 만든다.
     private void saveFiles(Amount amount, String base64Image) {
         String uploadDir = servletContext.getRealPath("/download");
         String filename = getNewFilename(".jpg");

@@ -7,24 +7,67 @@
 		예산을 맞추려면 하루에 30,687원씩 써야해요<br> 이 추세로 쓴다면 이번달 지출 17,769원 예상
 	</div>
 
-	<a id="budget-setting">예산 설정</a>
+	<a id="budget-setting" href="#">예산 설정</a>
 
 </div>
 
-<div class="progress m-b-3">
-	<div class="progress-bar progress-bar-striped active  m-b-1"
-		role="progressbar" aria-valuenow="40" aria-valuemin="0"
-		aria-valuemax="100" style="width: 40%"></div>
-	<div id="statistics">40%</div>
-</div>
+<!-- <div class="progress m-b-3"> -->
+<div id="demo"></div>
+<!-- 	<div><span id="statistics" ></span><span id="statistics" >%</span></div> -->
+
 
 <div id="bottom">
 	<div>
 		<div>
-		  <span>예산</span><span id="b-budget"></span>
-        </div>
-		<div><span>지출</span><span id="b-withdraw"></span>
+			<span>예산</span><span id="b-budget"></span>
 		</div>
-		
+		<div>
+			<span>지출</span><span id="b-withdraw"></span>
+		</div>
+
 	</div>
 </div>
+
+
+<script>
+
+
+//바 그래프
+    $.getJSON(`${serverApiAddr}/json/budget/45`,
+            (result) => {
+                console.log(result);
+                let data = result.data;
+                let { amount , withdraw , restMoney , percent} = data;
+                $('#b-budget').html(numberWithCommas(amount));
+                $('#b-withdraw').html(numberWithCommas(withdraw));
+                $('#budget-withdraw').html(numberWithCommas(result.restMoney));
+                //$('#statistics').html(result.percent);
+                var s1 = result.percent
+                var s2 = 100
+                console.log(s1)
+                //console.log(typeof(s1));
+                //var s1 =100;
+                //console.log(typeof(s2));
+                
+				$('#demo').jQMeter({
+				    
+				     goal:`${s2}`,
+				     raised:`${s1}`,
+				      width: "100%",
+				      height: "50px",
+				      bgColor: "#444",
+				      barColor: "#d43f8d",
+				      orientation: "horizontal",
+				      counterSpeed: 2000,
+				      animationSpeed: 2000,
+				      displayTotal: true
+				});
+    }) 
+
+
+
+
+</script>
+
+
+

@@ -1,18 +1,16 @@
 "use strict";
 
-
-/*$(document).ready(
-    $.getJSON(`${serverApiAddr}/json/member/list`, function(data){
-        console.log(${'name'});
-        
-    });
-);*/
-
 $(document).ready(function() {
-    
     $.getJSON(`${serverApiAddr}/json/member/list`, function(data) {
-            console.log(data.name);
-            $("#name").html(data.name);
+            if (data.status === 'login-fail') {
+                swal('로그인 되지 않았습니다.',
+                    '로그인 페이지로 이동합니다.',
+                    'error'
+                ).then(function () {
+                    location.href = `${serverApiAddr}/html/login.html`
+                });
+            }
+            $("#name").html(data.name + '님 안녕하세요.');
     });
 });
 

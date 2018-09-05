@@ -14,13 +14,14 @@ import java.util.HashMap;
 public class AuthCheckInterceptor implements HandlerInterceptor {
 
 
-    @CrossOrigin()
+    @CrossOrigin(origins = "*")
     @Override
     public boolean preHandle(
             HttpServletRequest request,
             HttpServletResponse response,
             Object handler) throws Exception {
 
+        System.out.println("인터셉터!");
         HttpSession session = request.getSession();
         Member loginUser = (Member) session.getAttribute("loginUser");
 

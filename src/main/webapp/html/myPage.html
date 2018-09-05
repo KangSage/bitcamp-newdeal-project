@@ -19,30 +19,17 @@
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 <!--     <link rel="stylesheet" type="text/css" href="../css/footer.css"> -->
     <style>
-        #imp {
-            width: 450px;
-            background: #fff;
-            border-radius: 3px;
-            overflow: hidden;
-            background-color: rgba(255, 255, 255, 0.75);
-            height: 95vh;
-        }
 
         #mypage-big-box {
-            margin: 10% 0% 20% 0%;
             width: 100%;
         }
 
         .mypage-small-box {
             display: flex;
             border-top: 5px solid rgba(0, 0, 0, 0.1);
-                
+            margin: 20px;
         }
 
-        .mypage-text {
-            margin: 3.5%;
-        }
-        
         #first-small-box {
             background-color: rgba(0, 0, 0, 0.1);
         }
@@ -69,27 +56,22 @@
             
             <div class="content">
 	            <div class="container-fluid">
-                    <div class="row">
-	 		            <div class="col-md-4">
-	                         <div class="card ">
-			                    <div id="mypage-big-box">
-			                            <span id="name"></span>
-				                    <div id="first-small-box" class="mypage-small-box">
-				                        <span class="mypage-text">계정</span>
-				                    </div>
-				                    <div class="mypage-small-box">
-				                        <button type="button" id="update-password" class="mypage-text">비밀번호 변경</button>
-				                    </div>
-				                    <div class="mypage-small-box">
-				                        <button type="button" id="logout-btn" class="mypage-text">로그아웃</button>
-				                    </div>
-				                    <div class="mypage-small-box">
-				                        <button type="button" id="dropout-btn" class="mypage-text">회원탈퇴</button>
-				                    </div>
-			                    </div>
-			               
-	                        </div>
-	                     </div>
+                    <div id="mypage-big-box">
+                        <div class="mypage-small-box">
+                            <span id="name"></span>
+                        </div>
+                        <div id="first-small-box" class="mypage-small-box">
+                            <span class="mypage-text">계정</span>
+                        </div>
+                        <div class="mypage-small-box">
+                            <button type="button" id="update-password" class="mypage-text">비밀번호 변경</button>
+                        </div>
+                        <div class="mypage-small-box">
+                            <button type="button" id="logout-btn" class="mypage-text">로그아웃</button>
+                        </div>
+                        <div class="mypage-small-box">
+                            <button type="button" id="dropout-btn" class="mypage-text">회원탈퇴</button>
+                        </div>
                     </div>
                 </div>
             </div>
