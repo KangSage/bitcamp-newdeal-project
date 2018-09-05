@@ -78,7 +78,7 @@ public class BudgetController {
          
          Budget budget = budgetService.get(no, loginUser.getNo());
          
-         System.out.println(budget);
+         System.out.println(budget + "ㅋㅋㅋ");
          
          HashMap<String, Object> result = new HashMap<>();
          
@@ -89,8 +89,9 @@ public class BudgetController {
          
          int percent = (int)((double) withdraw / (double) amount * 100);
 
-         System.out.printf("percent의 값 = %d\n", percent);
+//         System.out.printf("percent의 값 = %d\n", percent);
          
+         result.put("percent", percent);
          result.put("restMoney", restMoney);
          result.put("status", "success");
          result.put("data", budget);
