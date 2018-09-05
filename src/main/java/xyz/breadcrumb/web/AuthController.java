@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class AuthController {
     @Autowired
     MemberRepository memberRepository;
-
+    
    @PostMapping("/login")
     public Object login(
            @RequestParam("email") String email,
