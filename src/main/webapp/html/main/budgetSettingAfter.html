@@ -4,9 +4,11 @@
 	</div>
 
 	<div class="form1 p-r-10" id="font">
+	   <span>예산을 맞추려면 하루에</span><span id="aver"></span><span>원 씩 써야해요</span><br>
+	   <span>이 추세로 쓴다면 이번달 지출</span><span id="totalGuess"></span><span>원 예상</span><br>
 	</div>
 
-	<a id="budget-setting" href="#">예산 설정</a>
+	<span id="budget-setting">예산 설정</span>
     
 </div>
 
@@ -31,7 +33,9 @@
  *  totalGuess 계산식 : 이번 달 현재 총 지출 / 지난 일수 * 이번 달의 일수 
  */
 
-$('#font').html('예산을 맞추려면 하루에 '+ aver +'원씩 써야해요<br> 이 추세로 쓴다면 이번 달 지출 ' + totalGuess +'원 예상')
+
+
+
 </script>
 
 

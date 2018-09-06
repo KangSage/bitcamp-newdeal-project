@@ -43,6 +43,8 @@ function requestList(monthOperator) {
             
             function(result){
                 console.log(result)
+                console.log('result.restAver',result.restAver);
+                
                 if (result.status === 'login-fail') {
                     swal('로그인 되지 않았습니다.',
                          '로그인 페이지로 이동합니다.',
@@ -105,6 +107,8 @@ function loadList(month, monthOperator) {
                     $('#b-budget').html(numberWithCommas(amount));
                     $('#b-withdraw').html(numberWithCommas(withdraw));
                     $('#budget-withdraw').html(numberWithCommas(result.restMoney));
+                    $('#aver').html(numberWithCommas(result.restAver));
+                    $('#totalGuess').html(numberWithCommas(result.totalGuess));
                     var s1 = result.percent
                     console.log(s1)
                     
@@ -138,7 +142,7 @@ bsDiv.on('click','#budget-setting' , (result)=>{
     $('#set-budget-input').val(setBudget);
 })
 
-//삭제
+//예산 삭제
 bsDiv.on('click','#budget-delete',()=>{
     $('#set-budgetNo-input').val(setBudgetNo);
     console.log('setBudgetNo',setBudgetNo);
@@ -148,14 +152,14 @@ bsDiv.on('click','#budget-delete',()=>{
         bsDiv.load('budgetSettingBefore.html');
         swal({
             type: 'success',
-            title: '삭제하였습니다.',
+            title: '삭제 하였습니다.',
             showConfirmButton: false,
             timer: 1500
           })
     })
 });
 
-//수정
+//예산 수정
 bsDiv.on('click','#budget-update',()=>{
     $('#set-budgetNo-input').val(setBudgetNo);
     $.post(`${serverApiAddr}/json/budget/update`,{
@@ -166,6 +170,12 @@ bsDiv.on('click','#budget-update',()=>{
         if(result.status !== 'success') return;
         bsDiv.load('budgetSettingAfter.html');
         requestList(monthOperator);
+        swal({
+            type: 'success',
+            title: '수정 되었습니다.',
+            showConfirmButton: false,
+            timer: 1500
+          })
     },'json')
 });
 

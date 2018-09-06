@@ -38,7 +38,7 @@ public class BudgetController {
          Member loginUser = (Member)session.getAttribute("loginUser");
          
          Calendar cal = new GregorianCalendar(Locale.KOREA);
-         System.out.println("이 달의 몇 일: " + cal.get(Calendar.DATE));
+         System.out.println("이 달의 며칠: " + cal.get(Calendar.DATE));
          System.out.println("이 달의 마지막 날: " + cal.getActualMaximum(Calendar.DATE) );
          
          int today = cal.get(Calendar.DATE);
@@ -69,11 +69,13 @@ public class BudgetController {
                  int withdraw = budget.getWithdraw();
                  int restMoney = (amount - withdraw);
                  int percent = (int)((double) withdraw / (double) amount * 100);
-                 int lestAver = restMoney / restDay;
+                 int restAver = restMoney / restDay;
+                 int totalGuess = withdraw/(today-1)*lastDay;
                  
-                 result.put("lestAver", lestAver);
+                 result.put("restAver", restAver);
                  result.put("percent", percent);
                  result.put("restMoney", restMoney);
+                 result.put("totalGuess", totalGuess);
              }
          } 
          
