@@ -253,12 +253,7 @@ exampleModalCenter.on('click', '#ex-btn', () => {
 
 // moodal 창에 값을 넘긴다.
 exampleModalCenter.on('show.bs.modal', function (e) {
-    var width = $('#modal-input-all').width();
     $('#ex-btn').trigger('click');
-    $('#imageView').width(width);
-    $('div.cropit-preview-image-container').width(width);
-    console.log("width =>", width);
-
     let currentTarget = $(e.currentTarget);
     let no = $(e.relatedTarget).data('no');
     listNo = no;

@@ -1,158 +1,163 @@
-<div class="modal-dialog modal-dialog-centered" role="document">
-<div class="modal-content">
-<div class="modal-header p-2">
-<h5 class="modal-title" id="exampleModalCenterTitle">내역 추가</h5>
-<button id="list-modal-close-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
+`<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header p-2">
+            <h5 class="modal-title" id="exampleModalCenterTitle">내역 추가</h5>
+            <button id="list-modal-close-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-<!-- 모달 내용 -->
-<div class="limiter">
-<div class="container-login100">
-<div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
-<div class="login100-form validate-form">
+        <!-- 모달 내용 -->
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100 p-l-50 p-r-50 p-t-20 p-b-30">
+                    <div class="login100-form validate-form">
 
-<!-- 수입 지출 버튼 묶음 div -->
-<div class="container-login100-form-btn p-t-25">
-<button type="button" class="login100-form-btn" id="in-btn">수입</button>
-<button type="button" class="login100-form-btn" id="ex-btn">지출</button>
-</div>
+                        <!-- 수입 지출 버튼 묶음 div -->
+                        <div class="container-login100-form-btn p-t-25">
+                            <button type="button" class="login100-form-btn" id="in-btn">수입</button>
+                            <button type="button" class="login100-form-btn" id="ex-btn">지출</button>
+                        </div>
 
-<div id="modal-input-all">
-<!-- list-no div -->
-<div id="hidden-input-no" >
-    <input type="hidden" id="list-no">
-</div>
+                        <div id="modal-input-all" style="width: 100%">
+                            <!-- list-no div -->
+                            <div id="hidden-input-no" >
+                                <input type="hidden" id="list-no">
+                            </div>
 
-<div class="input-group mb-2">
-<div class="input-group-prepend">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
 <span class="input-group-text" >
 <span class="lnr lnr-apartment"></span>
 </span>
-</div>
-<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="history" placeholder="내역">
-</div>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="history" placeholder="내역">
+                            </div>
 
-<div class="input-group mb-2">
-<div class="input-group-prepend">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
 <span class="input-group-text">
     <span class="lnr lnr-database"></span>
 </span>
-</div>
-<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="amount" placeholder="금액">
-</div>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="amount" placeholder="금액">
+                            </div>
 
-<div class="input-group mb-2">
-<div class="input-group-prepend">
-<label class="input-group-text" for="category">
-<span class="lnr lnr-menu"></span>
-</label>
-</div>
-    <select class="custom-select" id="category">
-        <option selected class="ex-category">Choose...</option>
-        <option value="카페" class="ex-category">카페</option>
-        <option value="외식" class="ex-category">외식</option>
-        <option value="쇼핑" class="ex-category">쇼핑</option>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="category">
+                                        <span class="lnr lnr-menu"></span>
+                                    </label>
+                                </div>
+                                <select class="custom-select" id="category">
+                                    <option selected class="ex-category">Choose...</option>
+                                    <option value="카페" class="ex-category">카페</option>
+                                    <option value="외식" class="ex-category">외식</option>
+                                    <option value="월세" class="ex-category">월세</option>
+                                    <option value="통신비" class="ex-category">통신비</option>
+                                    <option value="생활용품" class="ex-category">생활용품</option>
+                                    <option value="의류비" class="ex-category">의류비</option>
+                                    <option value="도서" class="ex-category">도서</option>
+                                    <option value="영화" class="ex-category">영화</option>
+                                    <option value="교통비" class="ex-category">교통비</option>
 
-        <option selected class="in-category">Choose...</option>
-        <option value="월급" class="in-category">월급</option>
-        <option value="이자" class="in-category">이자</option>
-        <option value="용돈" class="in-category">용돈</option>
-    </select>
-</div>
+                                    <option selected class="in-category">Choose...</option>
+                                    <option value="월급" class="in-category">월급</option>
+                                    <option value="이자" class="in-category">이자</option>
+                                    <option value="용돈" class="in-category">용돈</option>
+                                    <option value="상여" class="in-category">상여</option>
+                                </select>
+                            </div>
 
-<div class="input-group mb-2">
-<div class="input-group-prepend">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
 <span class="input-group-text">
     <span class="lnr lnr-pencil"></span>
 </span>
-</div>
+                                </div>
 
-<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="memo" placeholder="메모">
-</div>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="memo" placeholder="메모">
+                            </div>
 
-<div class="input-group mb-2">
-<div class="input-group-prepend">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
 <span class="input-group-text">
     <span class="lnr lnr-calendar-full"></span>
 </span>
-</div>
-<input type="date" class="form-control" aria-label="Sizing example input"
-       aria-describedby="inputGroup-sizing-default" id="happen-date">
-</div>
+                                </div>
+                                <input type="date" class="form-control" aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default" id="happen-date">
+                            </div>
 
 
-<div id="expenditure-input"> <!-- 지출 -->
+                            <div id="expenditure-input"> <!-- 지출 -->
 
-<!--
-<div class="input-group mb-2" id="input-place-name">
-<div class="input-group-prepend">
-<span class="input-group-text">
-    <span class="lnr lnr-store"></span>
-</span>
-</div>
-<input type="text" class="form-control" aria-label="Sizing example input"
-       aria-describedby="inputGroup-sizing-default" id="place-name" placeholder="사용처">
-</div>
--->
+                                <!--
+                                <div class="input-group mb-2" id="input-place-name">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <span class="lnr lnr-store"></span>
+                                </span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default" id="place-name" placeholder="사용처">
+                                </div>
+                                -->
 
-<!--
-<div class="input-group mb-2" id="input-place">
-<div class="input-group-prepend">
-<span class="input-group-text">
-    <span class="lnr lnr-map-marker"></span>
-</span>
-</div>
-<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="place" placeholder="지도">
-</div>
--->
+                                <!--
+                                <div class="input-group mb-2" id="input-place">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <span class="lnr lnr-map-marker"></span>
+                                </span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="place" placeholder="지도">
+                                </div>
+                                -->
 
-<div class="input-group mb-2" id="input-receipt">
-<div id="image-cropper">
-    <h5 style="text-align: center">영수증 이미지</h5>
-    <div id="imageView" class="cropit-preview profile"></div>
-    <input type="file" class="cropit-image-input">
-    <input id="cropit-range" type="range" class="cropit-image-zoom-input">
-    <button id="cutting-btn" type="button" style="display:inline-block; position: center">사진 자르기</button>
-    <input type="hidden" name="base64Image" id="hidden-image-data" value=""/>
-    <div class="checkMessages" id="chkImageMsg">
-        <p></p>
+                                <div class="input-group mb-2" id="input-receipt" style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+                                    <div id="image-cropper">
+                                        <h5 style="display: flex; flex-direction: column; justify-content: center; align-items: center;">영수증 이미지</h5>
+                                        <div id="imageView" class="cropit-preview profile"></div>
+                                        <input type="file" class="cropit-image-input" style="margin: 10px 0 10px 100px;">
+                                        <input id="cropit-range" type="range" class="cropit-image-zoom-input" style="margin: 15px 50px 15px 50px; width: 80%;">
+                                    </div>
+
+                                    <button id="cutting-btn" type="button" style="display: inline-block; margin: 10px 0 10px; width: 100%">사진 자르기</button>
+                                    <input type="hidden" name="base64Image" id="hidden-image-data" value=""/>
+                                </div>
+
+                                <!--<div class="input-group mb-2" id="input-receipt">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">
+                                <span class="lnr lnr-picture">
+                                </span>
+                                </span>
+                                </div>
+                                <div class="custom-file">
+                                <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01" id="receipt">
+                                <label class="custom-file-label" for="receipt"></label>
+                                </div>
+                                </div>-->
+
+                            </div>
+                        </div> <!-- div#expenditure-input -->
+
+                        <input type="hidden" id="amount-type" placeholder="입출금유형" value="지출">
+                    </div> <!--modal-input-all-->
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer p-2">
+            <button id="delete-btn" type="button" class="btn btn-secondary">삭제</button>
+            <button id="update-btn" type="button" class="btn btn-secondary">수정</button>
+        </div>
+        <!-- 모달 내용 끝 -->
+
     </div>
-</div>
-</div>
-
-<!--
-<div class="input-group mb-2" id="input-receipt">
-<div class="input-group-prepend">
-<span class="input-group-text" id="inputGroupFileAddon01">
-<span class="lnr lnr-picture">
-</span>
-</span>
-</div>
-<div class="custom-file">
-<input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01" id="receipt">
-<label class="custom-file-label" for="receipt"></label>
-</div>
-</div>
--->
-
-</div>
-
-</div> <!-- div#expenditure-input -->
-
-<input type="hidden" id="amount-type" placeholder="입출금유형">
-</div> <!--modal-input-all-->
-</div>
-</div>
-</div>
-<div class="modal-footer p-2">
-<button id="delete-btn" type="button" class="btn btn-secondary">삭제</button>
-<button id="update-btn" type="button" class="btn btn-secondary">수정</button>
-</div>
-<!-- 모달 내용 끝 -->
-
-</div>
 </div>
 <script src="../../node_modules/cropit/dist/jquery.cropit.js"></script>
 <script src="listModal.js"></script>

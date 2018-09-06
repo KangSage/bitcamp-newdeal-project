@@ -1,5 +1,4 @@
-'use strict'
-
+'use strict';
 
 var bsDiv = $('#bs-div');
 
@@ -71,7 +70,7 @@ function numberWithCommas(amount) {
 
 
 bsDiv.on('click', '#budget-btn', (no)=>{
-    $.post('http://localhost:8080/json/budget/add',{
+    $.post(`${serverApiAddr}/json/budget/add`,{
         amount: $('#budget-input').val(),
 //        month: $('#this-month').html()
         month: selectDate
@@ -143,7 +142,7 @@ bsDiv.on('click','#budget-setting' , (result)=>{
 bsDiv.on('click','#budget-delete',()=>{
     $('#set-budgetNo-input').val(setBudgetNo);
     console.log('setBudgetNo',setBudgetNo);
-    $.getJSON('http://localhost:8080/json/budget/delete',{
+    $.getJSON(`${serverApiAddr}/json/budget/delete`,{
         'no': setBudgetNo
     },(result)=>{
         bsDiv.load('budgetSettingBefore.html');
@@ -159,7 +158,7 @@ bsDiv.on('click','#budget-delete',()=>{
 //수정
 bsDiv.on('click','#budget-update',()=>{
     $('#set-budgetNo-input').val(setBudgetNo);
-    $.post('http://localhost:8080/json/budget/update',{
+    $.post(`${serverApiAddr}/json/budget/update`,{
         amount: $('#budget-input').val(),
         month: selectDate
     },(result)=>{
