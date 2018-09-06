@@ -100,6 +100,7 @@ function loadList(month, monthOperator) {
     $.getJSON(`${serverApiAddr}/json/budget/list/`,
             { monthOperator : monthOperator},
             (result) => {
+                console.log('r <=',result);
                 if (result.budget !== null) {
                     let data = result.budget;
                     let {amount, withdraw, restMoney, percent} = data;
@@ -112,18 +113,20 @@ function loadList(month, monthOperator) {
                     var s1 = result.percent
                     console.log(s1)
                     
-                    $('#demo').jQMeter({
-                         goal: "100",
-                         raised:`${s1}`,
-                          width: "100%",
-                          height: "50px",
-                          bgColor: "#444",
-                          barColor: "#d43f8d",
-                          orientation: "horizontal",
-                          counterSpeed: 2000,
-                          animationSpeed: 2000,
-                          displayTotal: true
-                    });
+                    if (s1) {
+                        $('#demo').jQMeter({
+                            goal: "100",
+                            raised:`${s1}`,
+                             width: "100%",
+                             height: "50px",
+                             bgColor: "#444",
+                             barColor: "#d43f8d",
+                             orientation: "horizontal",
+                             counterSpeed: 2000,
+                             animationSpeed: 2000,
+                             displayTotal: true
+                       });
+                    }
                     
                     setBudget = amount;
                     setBudgetNo = data.budgetNo;

@@ -2,8 +2,47 @@
 var currentPicture = null;
 let exampleModalCenter = $('#exampleModalCenter');
 
+//DOM이 생성 되면 실행할 함수.
+$(document).ready(() =>{
+    
+    $.getJSON(`${serverApiAddr}/json/budget/list/`,
+            { monthOperator : monthOperator},
+                (result) => {
+                    let data = result.budget;
+                    let {percent} = data;
+                    var s1 = result.percent
+                    console.log('s1',s1);
+                    
+                    if(s1){
+                        swal({
+                            title: '이번 달 예산 사용률',
+                            position: 'top-end',
+                            focusConfirm: false,
+                            showConfirmButton: false,
+                            html: '<div id="demo"></div>',
+                            timer: 3500
+                        })
+                        
+                        $('#demo').jQMeter({
+                            goal: "100",
+                            raised:`${s1}`,
+                            width: "100%",
+                            height: "50px",
+                            bgColor: "#444",
+                            barColor: "#d43f8d",
+                            orientation: "horizontal",
+                            counterSpeed: 2000,
+                            animationSpeed: 2000,
+                            displayTotal: true
+                        });
+                    }
+              });
+              
+    
+    loadListModal();
+    requestList(monthOperator)
+});
 // exampleModalCenter.load('listModal.html');
-loadListModal();
 
 // 모달 창에 띄울 HTML 파일을 불러오는 함수.
 function loadListModal(no) {
@@ -38,10 +77,7 @@ let monthOperator = 0;
 
 
 
-// DOM이 생성 되면 실행할 함수.
-$(document).ready(
-    requestList(monthOperator)
-);
+
 
 // 좌우 버튼으로 월을 변경할 이벤트 리스너
 $('#select-month').on('click', (e) => {

@@ -38,15 +38,10 @@ public class BudgetController {
          Member loginUser = (Member)session.getAttribute("loginUser");
          
          Calendar cal = new GregorianCalendar(Locale.KOREA);
-         System.out.println("이 달의 며칠: " + cal.get(Calendar.DATE));
-         System.out.println("이 달의 마지막 날: " + cal.getActualMaximum(Calendar.DATE) );
          
          int today = cal.get(Calendar.DATE);
          int lastDay = cal.getActualMaximum(Calendar.DATE);
          int restDay = lastDay - today;
-         
-         System.out.println(restDay);
-         
          cal.setTime(new Date());
          cal.add(Calendar.MONTH, monthOperator); // 들어오는 숫자만큼 더 한다.
 
