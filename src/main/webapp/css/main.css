@@ -358,7 +358,7 @@ iframe {
 }
 
 .label-checkbox100 {
-  font-family: Raleway-Regular;
+/*   font-family: Raleway-Regular; */
   font-size: 16px;
   color: #999999;
   line-height: 1.2;
@@ -419,7 +419,7 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Raleway-Bold;
+/*   font-family: Raleway-Bold; */
   font-size: 16px;
   line-height: 1.5;
   color: #fff;
