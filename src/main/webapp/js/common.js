@@ -1,7 +1,7 @@
 "use strict";
 
 var serverApiAddr = "http://localhost:8080";
-//var serverApiAddr = "http://192.168.0.73:8080";
+var serverApiAddr = "http://192.168.0.73:8080";
 /*
 
 //  집 ip
