@@ -8,8 +8,12 @@ $(document).ready(() =>{
     $.getJSON(`${serverApiAddr}/json/budget/list/`,
             { monthOperator : monthOperator},
                 (result) => {
+                    console.log(result);
                     let data = result.budget;
-                    let {percent} = data;
+                    if (data) {
+                        console.log('data=>',data);
+                        let {percent} = data;
+                    }
                     var s1 = result.percent
                     console.log('s1',s1);
                     

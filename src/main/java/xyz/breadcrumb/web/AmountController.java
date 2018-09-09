@@ -117,7 +117,8 @@ public class AmountController {
             saveFiles(amount, base64Image);
         }
 
-        HashMap<String,Object> result = new HashMap<>();
+        HashMap<String, Object> result = new HashMap<>();
+
         try {
             amount.setMemberNo(loginUser.getNo());
             amountService.add(amount);
@@ -126,6 +127,7 @@ public class AmountController {
             result.put("status", "fail");
             result.put("message", e.getMessage());
         }
+
         return result;
     }
     
@@ -146,6 +148,7 @@ public class AmountController {
         }
 
         HashMap<String, Object> result = new HashMap<>();
+
         try {
             amount.setMemberNo(loginUser.getNo());
             amountService.update(amount);
