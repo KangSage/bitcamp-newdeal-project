@@ -6,8 +6,8 @@ import xyz.breadcrumb.domain.Amount;
 import xyz.breadcrumb.domain.DayHistory;
 
 public interface AmountService {
-    
-    List<DayHistory> list(int userNo, String month);
+
+     List<DayHistory> list(int userNo, String month);
 
     Integer getTotalAmount(int userNo, String amountType, String month);
 
@@ -15,7 +15,7 @@ public interface AmountService {
 
     String get(int amountNo);
 
-    int add(Amount amount);
+     int add(Amount amount);
     
     int update(Amount amount);
     

@@ -91,7 +91,7 @@ public class AmountController {
     public Object get(
             @PathVariable int no, HttpSession session) {
         Member loginUser = (Member)session.getAttribute("loginUser");
-
+        
         HashMap<String,Object> result = new HashMap<>();
         try {
             Amount amount = amountService.get(no, loginUser.getNo());

@@ -52,8 +52,7 @@ public class BudgetController {
          
          HashMap<String, Object> result = new HashMap<>();
          if (budget != null) {
-             
-             Integer totalBudgetAmount = 
+             Integer totalBudgetAmount =
                      amountService.getTotalAmount(
                              loginUser.getNo(), "지출", selectDate + '%');
              
@@ -65,7 +64,7 @@ public class BudgetController {
                  int restMoney = (amount - withdraw);
                  int percent = (int)((double) withdraw / (double) amount * 100);
                  int restAver = restMoney / restDay;
-                 int totalGuess = withdraw/(today-1)*lastDay;
+                 int totalGuess = withdraw/(today-1) * lastDay;
                  
                  result.put("restAver", restAver);
                  result.put("percent", percent);
@@ -108,7 +107,6 @@ public class BudgetController {
          result.put("restMoney", restMoney);
          result.put("status", "success");
          result.put("data", budget);
-
          
          return result;
      }
